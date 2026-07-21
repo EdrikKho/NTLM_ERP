@@ -1,0 +1,416 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.paymentpage {
+  background: white;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-left: 270px;
+}
+
+.payment-header-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  width: 99.3%;
+}
+
+.payment-header-row button {
+  margin-top: 0.7%;
+}
+
+.payment-topwrapper {
+  width: 99.3%;
+}
+
+.payment-modaltitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5%;
+}
+
+.payment-modaltitle h2 {
+  margin: 0;
+  display: inline;
+  line-height: 1;
+}
+
+.top-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  background: white;
+  padding: 15px 20px;
+
+  width: 100%;
+  min-width: 700px;
+  box-sizing: border-box;
+
+  border-radius: 7px;
+
+  box-shadow:
+    0 -2px 4px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+button {
+  background-color: #185229;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  margin: 0;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.addpayment {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: 160px;
+}
+
+.paymentsearch-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.payment-search-bar {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.payment-table-container {
+  width: 99.3%;
+  margin-top: 20px;
+
+  overflow-x: auto;
+  box-sizing: border-box;
+
+  border-radius: 7px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    0 4px 5px rgba(0, 0, 0, 0.05);
+}
+
+table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+table th,
+table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+  white-space: nowrap;
+}
+
+thead {
+  background: #185229;
+  color: white;
+}
+
+thead th {
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tbody tr:hover {
+  background: #f1f7ff;
+}
+
+table button {
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin: 2px;
+}
+
+.payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background: rgba(0,0,0,0.4);
+}
+
+.payment-modal {
+  background: white;
+  padding: 15px 25px 25px;
+  border-radius: 10px;
+  width: 450px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.payment-modal h2 {
+  font-size: 25px;
+  text-align: center;
+}
+
+.payment-modal input {
+  width: 95%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.payment-modal select {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.payment-modal-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.payment-modal-actions button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.save-btn {
+  background-color: #185229;
+}
+
+.payment-edit-btn {
+  background: transparent;
+  align-items: center;
+}
+
+.payment-cancel-btn {
+  background: rgb(219, 32, 32);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .paymentpage {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .payment-modal {
+    width: 95%;
+  }
+
+  table th,
+  table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+.payment_required {
+  color: red;
+  margin-left: 5px;
+}
+
+.paymentsearch-card {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 7px;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  box-shadow:
+    0 -2px 4px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.payment-input-error {
+  border: 1px solid red;
+}
+
+.payment-error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: -5px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Additional styles for select dropdown in modals */
+.payment-modal select {
+  appearance: auto;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Label styling for payment modals */
+.payment-modal label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 2px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Fix for search icon position */
+.paymentsearch-container {
+  position: relative;
+}
+
+.payment-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  position: absolute;
+  margin-left: 0px;
+}
+
+.payment-search-bar {
+  padding-left: 38px;
+  width: 100%;
+}
+
+/* Search and Filters Container - like Inventory */
+.payment-filters-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+
+.payment-search-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.payment-filter-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.payment-filter-select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  min-width: 190px;
+  height: 40px;
+  margin-left: -4px;
+}
+
+.payment-filter-select:focus {
+  border-color: #185229;
+}
+
+/* Responsive adjustments for tables */
+@media (max-width: 768px) {
+  .paymentpage {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .payment-header-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .addpayment {
+    width: 100%;
+  }
+
+  .paymentsearch-card {
+    padding: 10px;
+  }
+
+  .payment-filters-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .payment-search-container {
+    min-width: auto;
+  }
+  
+  .payment-filter-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .payment-filter-select {
+    width: 100%;
+    min-width: auto;
+  }
+}

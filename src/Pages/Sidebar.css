@@ -1,0 +1,126 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #185229;
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  margin-top: -5px;
+  text-decoration: none;
+  color: inherit;        
+}
+
+.logoContainer:hover {
+  opacity: 0.8; 
+}
+
+.logoText {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 9px;
+  border-radius: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.sidebar-link.active,
+.sidebar-link:hover {
+  background-color: #1f6a35;
+}
+
+.icon {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.bottomSection {
+  margin-top: auto;
+}
+
+.userCard {
+  background: #1f5f33;
+  border-radius: 12px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #185229;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.userName {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.userRole {
+  font-size: 10px;
+  opacity: 0.8;
+  text-transform: capitalize;
+}
+
+.logoutBtn {
+  width: 97.5%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #185229;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  transition: 0.2s ease;
+  margin-bottom: 29px;
+}
+
+.logoutBtn:hover {
+  background-color: #1f6a35; 
+  transform: none;
+}
+
+.sidebar-section-title {
+  font-size: 10px;      
+  color: rgb(235, 235, 235);    
+  text-transform: uppercase;  
+
+  margin: 0px 0 0px 0px; /* top right bottom left */
+}

@@ -1,0 +1,875 @@
+/* PurchaseOrders.css */
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.purchaseorder-page {
+  background: white;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-left: 270px;
+}
+
+.purchaseorder-header-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  width: 99.3%;
+}
+
+.add-purchaseorder-btn {
+  width: 199px;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.add-purchaseorder-btn .icon {
+  margin-right: 8px;
+  padding: 0;
+}
+
+.purchaseorder-header-row button {
+  margin-top: 0.7%;
+}
+
+.purchaseorder-top-wrapper {
+  width: 99.3%;
+}
+
+.purchaseorder-search-card {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 7px;
+  box-shadow:
+    0 -2px 4px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.purchaseorder-search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  gap: 10px;
+}
+
+.search-icon {
+  position: absolute;
+  margin-left: 12px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.purchaseorder-search-container .supplier-filter-select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-left: 1px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 190px;
+  height: 40px;
+}
+
+.purchaseorder-search-container .status-filter-select {
+  padding: 8px 12px;
+  border-radius: 5px;
+  margin-left: 1px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 190px;
+  height: 40px;
+}
+
+.purchaseorder-table-container {
+  width: 99.3%;
+  margin-top: 20px;
+  overflow-x: auto;
+  box-sizing: border-box;
+  border-radius: 7px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
+}
+
+.purchaseorder-styled-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.purchaseorder-styled-table th,
+.purchaseorder-styled-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+  white-space: nowrap;
+}
+
+.edit-orderitem-modal select {
+  width: 95%;
+  min-width: 350px;
+}
+
+.purchaseorder-styled-table thead {
+  background: #185229;
+  color: white;
+}
+
+.purchaseorder-styled-table thead th {
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+.purchaseorder-styled-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.purchaseorder-styled-table tbody tr:hover {
+  background: #f1f7ff;
+}
+
+.view-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin: 2px;
+  transition: all 0.2s ease-in-out;
+}
+
+.view-btn:hover {
+  transform: translateY(-2px);
+}
+
+.purchaseorder-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.purchaseorder-modal {
+  background: white;
+  padding: 15px 25px 25px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.purchaseorder-modal-large {
+  max-width: 1100px;
+}
+
+.purchaseorder-modal h2 {
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 12px;
+  margin-top: 0px;
+}
+
+.purchaseorder-modal h3 {
+  font-size: 13px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+.purchaseorder-form-section {
+  margin-bottom: 25px;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.purchaseorder-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.purchaseorder-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.purchaseorder-form-group label {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.po-required {
+  color: red !important;
+  display: inline !important;
+}
+
+.purchaseorder-form-group input,
+.purchaseorder-form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.purchaseorder-form-group input:focus,
+.purchaseorder-form-group select:focus {
+  border-color: #185229;
+}
+
+.error-text {
+  color: red;
+  font-size: 12px;
+  margin-top: 2px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.add-item-btn {
+  background-color: #185229;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  margin-top: 24px;
+  transition: all 0.2s ease-in-out;
+}
+
+.add-item-btn:hover {
+  transform: translateY(-2px);
+}
+
+.purchaseorder-table-wrapper {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.purchaseorder-orderitems-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.purchaseorder-orderitems-table th {
+  background: #185229;
+  color: white;
+  font-weight: normal;
+  padding: 10px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.purchaseorder-orderitems-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+}
+
+.purchaseorder-orderitems-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.purchaseorder-orderitems-table tbody tr:hover {
+  background: #f1f7ff;
+}
+
+.remove-item-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.remove-item-btn:hover {
+  transform: translateY(-2px);
+}
+
+.purchaseorder-modal-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+.purchaseorder-modal-actions button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 170px;
+}
+
+.submit-btn {
+  background-color: #185229;
+}
+
+.print-btn {
+  background-color: #185229;
+}
+
+.cancel-btn {
+  background: rgb(219, 32, 32);
+}
+
+.orderitems-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -10px;
+  width: 100%;
+}
+
+.orderitems-header h3 {
+  margin: 0;
+}
+
+.orderitems-search {
+  width: 200px;
+  position: relative;
+  margin-left: auto;
+}
+
+.orderitems-search .search-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  z-index: 1;
+}
+
+.orderitems-search input {
+  width: 100%;
+  padding: 6px 12px 6px 35px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.orderitems-search input:focus {
+  border-color: #185229;
+}
+
+.view-only-display {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  min-height: 38px;
+  box-sizing: border-box;
+  width: 100%;
+  color: #333;
+  font-size: 14px;
+}
+
+.edit-item-btn {
+  background-color: transparent;
+}
+
+.edit-orderitem-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.edit-orderitem-modal {
+  background: white;
+  padding: 15px 25px 25px;
+  border-radius: 10px;
+  width: 450px;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.edit-orderitem-modal h2 {
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.edit-orderitem-modal label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.edit-orderitem-modal select,
+.edit-orderitem-modal input {
+  width: 95%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.edit-orderitem-modal select:focus,
+.edit-orderitem-modal input:focus {
+  outline: none;
+  border-color: #185229;
+}
+
+.edit-orderitem-modal .modal-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.edit-orderitem-modal .modal-actions button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.edit-orderitem-modal .save-btn {
+  background-color: #185229;
+  color: white;
+}
+
+.edit-orderitem-modal .save-btn:hover {
+  transform: translateY(-2px);
+}
+
+.edit-orderitem-modal .cancel-btn {
+  background: rgb(219, 32, 32);
+  color: white;
+}
+
+.edit-orderitem-modal .cancel-btn:hover {
+  transform: translateY(-2px);
+  background-color: rgb(190, 28, 28);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .purchaseorder-page {
+    margin-left: 240px;
+  }
+  
+  .purchaseorder-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .purchaseorder-page {
+    margin-left: 0;
+  }
+  
+  .purchaseorder-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .add-purchaseorder-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .purchaseorder-search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-bar,
+  .supplier-filter-select,
+  .status-filter-select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+  
+  .purchaseorder-modal {
+    width: 95%;
+    padding: 15px;
+  }
+  
+  .purchaseorder-styled-table th,
+  .purchaseorder-styled-table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+  
+  .purchaseorder-orderitems-table th,
+  .purchaseorder-orderitems-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+  
+  .purchaseorder-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Print Template Styles */
+.print-template {
+  display: none;
+}
+
+@media print {
+  .purchaseorder-page {
+    margin-left: 0;
+    padding: 0;
+  }
+  
+  .sidebar,
+  .add-purchaseorder-btn,
+  .purchaseorder-top-wrapper,
+  .view-btn,
+  .print-btn,
+  .cancel-btn,
+  .status-select {
+    display: none !important;
+  }
+  
+  .purchaseorder-styled-table,
+  .purchaseorder-orderitems-table {
+    border: 1px solid #ddd;
+  }
+  
+  .purchaseorder-modal-overlay {
+    position: relative;
+    background: none;
+  }
+  
+  .purchaseorder-modal {
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+/* Print Template Styles for modal */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  
+  .print-template,
+  .print-template * {
+    visibility: visible !important;
+  }
+
+  .purchaseorder-modal-overlay {
+    position: relative;
+    background: none;
+    display: block;
+  }
+  
+  .purchaseorder-modal {
+    box-shadow: none;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .purchaseorder-modal-actions button,
+  .add-item-btn,
+  .remove-item-btn,
+  .orderitems-search,
+  .product-select,
+  .purchaseorder-form-group button {
+    display: none !important;
+  }
+  
+  .purchaseorder-form-section {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .purchaseorder-orderitems-table {
+    border: 1px solid #ddd;
+  }
+}
+
+/* Print Template Styles for print window */
+@media print {
+  /* Hide all UI elements */
+  .purchaseorder-modal-overlay,
+  .purchaseorder-modal,
+  .purchaseorder-modal-actions,
+  .add-item-btn,
+  .remove-item-btn,
+  .orderitems-search,
+  .purchaseorder-form-section,
+  button {
+    display: none !important;
+  }
+  
+  /* Show only print content */
+  .print-template {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+    background: white;
+    z-index: 9999;
+  }
+  
+  .print-content {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    margin: 0 auto;
+    max-width: 800px;  
+    width: 100%;       
+  }
+  
+  .print-header {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .print-header h1 {
+    margin-bottom: 5px;
+    font-size: 24px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .print-header .street,
+  .print-header .contact_no {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+  }
+  
+  .print-header hr {
+    margin: 10px 0;
+    border-top: 1px solid black;
+  }
+  
+  .print-header p {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .print-items h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  .print-table {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    margin-top: 10px;
+    align-items: center;
+  }
+  
+  .print-table th {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .print-table td {
+    padding: 8px;
+    font-size: 13px;
+    text-align: center;
+  }
+  
+  .print-footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid black;
+    font-size: 12px;
+  }
+}
+
+/* Purchase Order Delete Modal Styles */
+.purchaseorder-delete-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: purchaseorderFadeIn 0.3s ease;
+}
+
+.purchaseorder-delete-modal-content {
+  background: #fff;
+  padding: 23px 20px 23px;
+  border-radius: 10px;
+  width: 310px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: purchaseorderSlideIn 0.3s ease;
+}
+
+.purchaseorder-delete-modal-content p {
+  color: #333;
+  font-size: 16px;
+  margin: 0 0 20px 0;
+  line-height: 1.6;
+}
+
+.purchaseorder-delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.purchaseorder-confirm-delete-btn {
+  background: rgb(219, 32, 32);
+  color: white;
+  border: none;
+  padding: 10px 50px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.purchaseorder-confirm-delete-btn:hover {
+  background: rgb(190, 25, 25);
+  transform: translateY(-2px);
+}
+
+.purchaseorder-confirm-delete-btn:active {
+  transform: translateY(0);
+}
+
+.purchaseorder-cancel-delete-btn {
+  background: #909090;
+  color: white;
+  border: none;
+  padding: 10px 50px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.purchaseorder-cancel-delete-btn:hover {
+  background: #777777;
+  transform: translateY(-2px);
+}
+
+.purchaseorder-cancel-delete-btn:active {
+  transform: translateY(0);
+}
+
+/* Unique keyframes for Purchase Order */
+@keyframes purchaseorderFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes purchaseorderSlideIn {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.supplier-filter-select:focus {
+  border-color: #185229;
+}
+
+.status-filter-select:focus {
+  border-color: #185229;
+}

@@ -1,0 +1,436 @@
+/* Inventory.css */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.inventory-page {
+  background: white;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-left: 270px;
+}
+
+.inventory-header-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: space-between;
+  width: 99.3%;
+}
+
+.inventory-header-row button {
+  margin-top: 0.7%;
+}
+
+.inventory-top-wrapper {
+  width: 99.3%;
+}
+
+.inventory-modal-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5%;
+}
+
+.inventory-modal-title h2 {
+  margin: 0;
+  display: inline;
+  line-height: 1;
+}
+
+.top-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  background: white;
+  padding: 15px 20px;
+
+  width: 100%;
+  min-width: 700px;
+  box-sizing: border-box;
+
+  border-radius: 7px;
+
+  box-shadow:
+    0 -2px 4px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+button {
+  background-color: #185229;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  margin: 0;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.add-product-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 162px;
+}
+
+.inventory-search-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.search-icon {
+  position: absolute;
+  margin-left: 12px;
+}
+
+.inventory-search-bar {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.inventory-table-container {
+  width: 99.3%;
+  margin-top: 20px;
+
+  overflow-x: auto;
+  box-sizing: border-box;
+
+  border-radius: 7px;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.03),
+    0 4px 5px rgba(0, 0, 0, 0.05);
+}
+
+table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+table th,
+table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px;
+  white-space: nowrap;
+}
+
+thead {
+  background: #185229;
+  color: white;
+}
+
+thead th {
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+tbody tr:hover {
+  background: #f1f7ff;
+}
+
+table button {
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin: 2px;
+}
+
+.inventory-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  z-index: 9999;
+  background: rgba(0,0,0,0.4);
+}
+
+.inventory-modal h2 {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.inventory-modal {
+  background: white;
+  padding: 15px 20px 20px;
+  border-radius: 10px;
+  width: 450px;
+  height: auto;
+  max-width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.inventory-modal label {
+  display: block;
+  margin-bottom: 3px;
+  margin-top: 2px;  /* Reduced top margin */
+  font-size: 10px;  /* Slightly smaller font */
+  font-weight: 500;
+  color: #333;
+}
+
+.inventory-modal input {
+  width: 100%;
+  margin: 2px 0 6px 0;  /* Reduced margins */
+  padding: 6px 8px;  /* Smaller padding */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 10px;  /* Smaller font to fit more */
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.inventory-modal input[type="number"]::-webkit-inner-spin-button,
+.inventory-modal input[type="number"]::-webkit-outer-spin-button {
+  height: 15px;
+  width: 7px;
+}
+
+.inventory-modal select {
+  width: 100%;
+  margin: 2px 0 6px 0;  /* Reduced margins */
+  padding: 6px 9px;  /* Smaller padding */
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 10px;  /* Smaller font to fit more */
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.inventory-modal input:focus,
+.inventory-modal select:focus {
+  outline: none;
+  border-color: #185229;
+}
+
+.inventory-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.inventory-modal-actions button {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  gap: 15px;
+  justify-content: space-between;
+}
+
+.save-btn {
+  background-color: #185229;
+}
+
+.inventory-del-btn,
+.inventory-edit-btn {
+  background: transparent;
+  align-items: center;
+}
+
+.inventory-cancel-btn {
+  background: rgb(219, 32, 32);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .inventory-page {
+    margin-left: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  .inventory-modal {
+    width: 95%;
+    padding: 15px;
+  }
+  
+  .inventory-modal input,
+  .inventory-modal select {
+    margin: 4px 0 10px 0;
+    padding: 5px 8px;
+  }
+  
+  .inventory-modal label {
+    font-size: 12px;
+  }
+
+  table th,
+  table td {
+    font-size: 13px;
+    padding: 10px;
+  }
+}
+
+.inventory-delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.inventory-delete-modal-content {
+  background: #fff;
+  padding: 15px 25px 25px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.inventory-delete-modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.inventory-confirm-delete-btn {
+  background: rgb(219, 32, 32);
+  color: white;
+  border: none;
+  padding: 10px 50px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.inventory-cancel-delete-btn {
+  background: #909090;
+  border: none;
+  padding: 10px 50px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.inventory-required {
+  color: red;
+  margin-left: 3px;
+  font-size: 12px;
+}
+
+.inventory-search-card {
+  background: white;
+  padding: 15px 20px;
+  border-radius: 7px;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  box-shadow:
+    0 -2px 4px rgba(0, 0, 0, 0.04),
+    0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.inventory-error-text {
+  color: red;
+  font-size: 11px;
+  margin-top: -7px;
+  margin-bottom: 0px;
+  display: block;
+}
+
+.inventory-filters-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.inventory-search-container {
+  flex: 2;
+  min-width: 250px;
+}
+
+.inventory-filter-group {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.inventory-filter-select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  margin-left: 1px;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  flex: 1;
+  min-width: 120px;
+}
+
+.inventory-filter-select:focus {
+  outline: none;
+  border-color: #185229;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .inventory-filters-container {
+    flex-direction: column;
+  }
+  
+  .inventory-filter-group {
+    width: 100%;
+  }
+  
+  .inventory-search-container {
+    width: 100%;
+  }
+}

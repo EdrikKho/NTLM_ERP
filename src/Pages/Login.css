@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+}
+
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+}
+
+.login-card {
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  width: 320px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08),
+              0 5px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-section img {
+  width: 80px;
+  margin-bottom: 10px;
+}
+
+.logo-section h2 {
+  font-size: 20px;
+  margin: 0;
+  color: #333;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.login-card input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.login-card input:focus {
+  border-color: #0A6B28;
+  outline: none;
+}
+
+.login-card button {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #185229;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 319px;
+  margin-left:1px;
+}
+
+.login-card button:hover {
+  background-color: #1f6a35; 
+}
+
+.login-card button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+.logininput-error {
+  border: 1px solid red;
+}
+
+.loginerror-text {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 13px;
+  display: block;
+}
