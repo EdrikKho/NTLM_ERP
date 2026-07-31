@@ -352,11 +352,11 @@ const Payments = () => {
             <tbody>
               {filteredPayments.map((payment) => (
                 <tr key={payment.pay_no}>
-                  <td>{payment.date ? new Date(payment.date).toLocaleDateString() : ''}</td>
-                  <td>{payment.p_method}</td>
-                  <td>{payment.SALES_TRANS?.CUSTOMER?.name || 'N/A'}</td>
-                  <td>{payment.SALES_TRANS?.date ? new Date(payment.SALES_TRANS.date).toLocaleDateString() : 'N/A'}</td>
-                  <td>₱ {payment.SALES_TRANS?.total_amt?.toLocaleString() || '0.00'}</td>
+                  <td style={{ padding: '19px 13px' }}>{payment.date ? new Date(payment.date).toLocaleDateString() : ''}</td>
+                  <td style={{ padding: '19px 13px' }}>{payment.p_method}</td>
+                  <td style={{ padding: '19px 13px' }}>{payment.SALES_TRANS?.CUSTOMER?.name || 'N/A'}</td>
+                  <td style={{ padding: '19px 13px' }}>{payment.SALES_TRANS?.date ? new Date(payment.SALES_TRANS.date).toLocaleDateString() : 'N/A'}</td>
+                  <td style={{ padding: '19px 13px' }}>₱ {payment.SALES_TRANS?.total_amt?.toLocaleString() || '0.00'}</td>
 
                   {/* <td>
                     <button
