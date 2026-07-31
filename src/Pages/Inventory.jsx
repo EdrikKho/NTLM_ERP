@@ -630,6 +630,10 @@ const Inventory = () => {
                 className={submitted && !product.price_case ? "inventory-input-error" : ""}
               />
 
+              {submitted && !product.price_case && (
+                <span className="inventory-error-text">Price (Case) is required.</span>
+              )}
+
               <label>
                 Price (Piece)
                 <span className="inventory-required">*</span>
@@ -642,6 +646,10 @@ const Inventory = () => {
                 onChange={handleChange}
                 className={submitted && !product.price_piece ? "inventory-input-error" : ""}
               />
+
+              {submitted && !product.price_piece && (
+                <span className="inventory-error-text">Price (Piece) is required.</span>
+              )}
 
               <label>
                 Supplier
@@ -719,8 +727,8 @@ const Inventory = () => {
                       size_amt: '',
                       u_size: '',
                       category: '',
-                      price_c: '',
-                      price_p: '',
+                      price_case: '',
+                      price_piece: '',
                       sup_no: '',
                       loc_name: '',
                       stock: ''
@@ -832,6 +840,10 @@ const Inventory = () => {
                 className={submittedEdit && !product2.price_case ? "inventory-input-error" : ""}
               />
 
+              {submittedEdit && !product2.price_case && (
+                <span className="inventory-error-text">Price (Case) is required.</span>
+              )}
+
               <label>
                 Price (Piece)
                 <span className="inventory-required">*</span>
@@ -844,6 +856,10 @@ const Inventory = () => {
                 onChange={handleChange2}
                 className={submittedEdit && !product2.price_piece ? "inventory-input-error" : ""}
               />
+
+              {submittedEdit && !product2.price_piece && (
+                <span className="inventory-error-text">Price (Piece) is required.</span>
+              )}
 
               <label>
                 Supplier
