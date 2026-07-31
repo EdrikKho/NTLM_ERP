@@ -34,8 +34,8 @@ const Inventory = () => {
     size_amt: '',
     u_size: '',
     category: '',
-    price_c: '',
-    price_p: '',
+    price_case: '',
+    price_piece: '',
     sup_no: '',
     loc_name: '',
     stock: ''
@@ -49,8 +49,8 @@ const Inventory = () => {
     size_amt: '',
     u_size: '',
     category: '',
-    price_c: '',
-    price_p: '',
+    price_case: '',
+    price_piece: '',
     sup_no: '',
     loc_name: '',
     stock: ''
@@ -185,8 +185,8 @@ const Inventory = () => {
       !product.size_amt ||
       !product.u_size ||
       !product.category ||
-      !product.price_c ||
-      !product.price_p ||
+      !product.price_case ||
+      !product.price_piece ||
       !product.sup_no ||
       !product.loc_name ||
       !product.stock
@@ -221,8 +221,8 @@ const Inventory = () => {
         size_amt: '',
         u_size: '',
         category: '',
-        price_c: '',
-        price_p: '',
+        price_case: '',
+        price_piece: '',
         sup_no: '',
         loc_name: '',
         stock: ''
@@ -250,8 +250,8 @@ const Inventory = () => {
         size_amt: selected.size_amt,
         u_size: selected.u_size,
         category: selected.category,
-        price_c: selected.price_c,
-        price_p: selected.price_p,
+        price_case: selected.price_case,
+        price_piece: selected.price_piece,
         sup_no: selected.sup_no,
         loc_name: selected.loc_name,
         stock: selected.stock
@@ -273,8 +273,8 @@ const Inventory = () => {
       !product2.size_amt ||
       !product2.u_size ||
       !product2.category ||
-      !product2.price_c ||
-      !product2.price_p ||
+      !product2.price_case ||
+      !product2.price_piece ||
       !product2.sup_no ||
       !product2.loc_name ||
       !product2.stock
@@ -305,8 +305,8 @@ const Inventory = () => {
         size_amt: product2.size_amt,
         u_size: product2.u_size,
         category: product2.category,
-        price_c: product2.price_c,
-        price_p: product2.price_p,
+        price_case: product2.price_case,
+        price_piece: product2.price_piece,
         sup_no: product2.sup_no,
         loc_name: product2.loc_name,
         stock: product2.stock
@@ -498,8 +498,8 @@ const Inventory = () => {
                   <td>{product.name}</td>
                   <td>{product.size_amt} {product.u_size}</td>
                   <td>{product.category}</td>
-                  <td>₱ {parseFloat(product.price_c).toFixed(2)}</td>
-                  <td>₱ {parseFloat(product.price_p).toFixed(2)}</td>
+                  <td>₱ {parseFloat(product.price_case).toFixed(2)}</td>
+                  <td>₱ {parseFloat(product.price_piece).toFixed(2)}</td>
                   <td>{product.loc_name}</td>
                   <td>{product.stock}</td>
 
@@ -622,34 +622,26 @@ const Inventory = () => {
                 <span className="inventory-required">*</span>
               </label>
               <input
-                name="price_c"
+                name="price_case"
                 type="number"
                 step="0.01"
-                value={product.price_c}
+                value={product.price_case}
                 onChange={handleChange}
-                className={submitted && !product.price_c ? "inventory-input-error" : ""}
+                className={submitted && !product.price_case ? "inventory-input-error" : ""}
               />
-
-              {submitted && !product.price_c && (
-                <span className="inventory-error-text">Cost Price is required.</span>
-              )}
 
               <label>
                 Price (Piece)
                 <span className="inventory-required">*</span>
               </label>
               <input
-                name="price_p"
+                name="price_piece"
                 type="number"
                 step="0.01"
-                value={product.price_p}
+                value={product.price_piece}
                 onChange={handleChange}
-                className={submitted && !product.price_p ? "inventory-input-error" : ""}
+                className={submitted && !product.price_piece ? "inventory-input-error" : ""}
               />
-
-              {submitted && !product.price_p && (
-                <span className="inventory-error-text">Selling Price is required.</span>
-              )}
 
               <label>
                 Supplier
@@ -832,34 +824,26 @@ const Inventory = () => {
                 <span className="inventory-required">*</span>
               </label>
               <input
-                name="price_c"
+                name="price_case"
                 type="number"
                 step="0.01"
-                value={product2.price_c}
+                value={product2.price_case}
                 onChange={handleChange2}
-                className={submittedEdit && !product2.price_c ? "inventory-input-error" : ""}
+                className={submittedEdit && !product2.price_case ? "inventory-input-error" : ""}
               />
-
-              {submittedEdit && !product2.price_c && (
-                <span className="inventory-error-text">Cost Price is required</span>
-              )}
 
               <label>
                 Price (Piece)
                 <span className="inventory-required">*</span>
               </label>
               <input
-                name="price_p"
+                name="price_piece"
                 type="number"
                 step="0.01"
-                value={product2.price_p}
+                value={product2.price_piece}
                 onChange={handleChange2}
-                className={submittedEdit && !product2.price_p ? "inventory-input-error" : ""}
+                className={submittedEdit && !product2.price_piece ? "inventory-input-error" : ""}
               />
-
-              {submittedEdit && !product2.price_p && (
-                <span className="inventory-error-text">Selling Price is required</span>
-              )}
 
               <label>
                 Supplier
