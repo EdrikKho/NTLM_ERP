@@ -125,11 +125,17 @@ table {
   overflow: hidden;
 }
 
-table th,
-table td {
+table th {
   text-align: center;
   vertical-align: middle;
   padding: 12px;
+  white-space: nowrap;
+}
+
+table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 12px 12px;
   white-space: nowrap;
 }
 
