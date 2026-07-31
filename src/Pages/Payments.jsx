@@ -345,7 +345,7 @@ const Payments = () => {
                 <th>Customer Name</th>
                 <th>Sales Order Date</th>
                 <th>Total Amount</th>
-                <th>Actions</th>
+                {/* <th>Actions</th> */}
               </tr>
             </thead>
 
@@ -358,7 +358,7 @@ const Payments = () => {
                   <td>{payment.SALES_TRANS?.date ? new Date(payment.SALES_TRANS.date).toLocaleDateString() : 'N/A'}</td>
                   <td>₱ {payment.SALES_TRANS?.total_amt?.toLocaleString() || '0.00'}</td>
 
-                  <td>
+                  {/* <td>
                     <button
                       className="payment-edit-btn"
                       onClick={() =>
@@ -367,7 +367,8 @@ const Payments = () => {
                     >
                       <FiEdit color="#185229" size={18} />
                     </button>
-                  </td>
+                  </td> */}
+
                 </tr>
               ))}
             </tbody>
