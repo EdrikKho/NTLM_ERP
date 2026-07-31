@@ -204,7 +204,7 @@ const SalesOrder = () => {
       // Now fetch with proper column names (use the exact names from the log above)
       const { data, error } = await supabase
         .from('PRODUCT')
-        .select('prod_no, name, brand, size_amt, u_size, price_c, price_p, stock, loc_name')
+        .select('prod_no, name, brand, size_amt, u_size, price_case, price_piece, stock, loc_name')
         .order('name');
 
       if (error) {
@@ -402,7 +402,7 @@ const SalesOrder = () => {
   const getProductPrice = (prod_no, unit) => {
     const product = products.find(p => p.prod_no === parseInt(prod_no));
     if (!product) return 0;
-    return unit === 'Case' ? product.price_c : product.price_p;
+    return unit === 'Case' ? product.price_case : product.price_piece;
   };
 
   // GET PRODUCT NAME
@@ -893,8 +893,8 @@ const SalesOrder = () => {
           u_size,
           stock,
           loc_name,
-          price_c,
-          price_p
+          price_case,
+          price_piece
         )
       `)
       .eq('salestrans_no', order.salestrans_no);
@@ -916,7 +916,7 @@ const SalesOrder = () => {
       loc_name: item.PRODUCT?.loc_name || '',
       qty: item.qty,
       unit: item.unit,
-      price: item.unit === 'Case' ? item.PRODUCT?.price_c : item.PRODUCT?.price_p,
+      price: item.unit === 'Case' ? item.PRODUCT?.price_case : item.PRODUCT?.price_piece,
       subtotal: item.subtotal
     }));
 
@@ -943,8 +943,8 @@ const SalesOrder = () => {
         PRODUCT (
           prod_no,
           name,
-          price_c,
-          price_p
+          price_case,
+          price_piece
         )
       `)
       .eq('salestrans_no', salestrans_no);
@@ -1047,8 +1047,8 @@ const SalesOrder = () => {
           size_amt,
           u_size,
           loc_name,
-          price_c,
-          price_p
+          price_case,
+          price_piece
         )
       `)
       .eq('salestrans_no', salestrans_no);
@@ -2266,7 +2266,7 @@ const SalesOrder = () => {
                         <td>{item.PRODUCT?.brand || ''} {item.PRODUCT?.name || ''} {item.PRODUCT?.size_amt || ''} {item.PRODUCT?.u_size || ''} {item.PRODUCT?.loc_name && `(${item.PRODUCT.loc_name})`}</td>
                         <td>{item.qty}</td>
                         <td>{item.unit}</td>
-                        <td>₱{(item.unit === 'Case' ? item.PRODUCT?.price_c : item.PRODUCT?.price_p)?.toLocaleString()}</td>
+                        <td>₱{(item.unit === 'Case' ? item.PRODUCT?.price_case : item.PRODUCT?.price_piece)?.toLocaleString()}</td>
                         <td>₱{item.subtotal?.toLocaleString()}</td>
                       </tr>
                     ))}
@@ -2291,7 +2291,7 @@ const SalesOrder = () => {
                     u_size: item.PRODUCT?.u_size || '',
                     qty: item.qty,
                     unit: item.unit,
-                    price: item.unit === 'Case' ? item.PRODUCT?.price_c : item.PRODUCT?.price_p,
+                    price: item.unit === 'Case' ? item.PRODUCT?.price_case : item.PRODUCT?.price_piece,
                     subtotal: item.subtotal
                   }));
                   // Group the items before printing
