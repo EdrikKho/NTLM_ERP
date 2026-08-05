@@ -40,7 +40,7 @@ const Login = ({ setToken }) => {
     try {
       const { data: profile, error: profileError } = await supabase
         .from('USER')
-        .select('email')
+        .select('email, is_logged_in')
         .eq('username', formData.Username)
         .single();
 
@@ -49,6 +49,11 @@ const Login = ({ setToken }) => {
       }
 
       const email = profile.email;
+      if (profile.is_logged_in) {
+        setLoginError("This account is already logged in.");
+        setLoading(false);
+        return;
+}
 
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
@@ -56,6 +61,11 @@ const Login = ({ setToken }) => {
       });
 
       if (error) throw error;
+
+      await supabase
+        .from("USER")
+        .update({ is_logged_in: true })
+        .eq("email", email);
 
       setLoginError(''); // clear error on success
 
