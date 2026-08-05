@@ -35,7 +35,10 @@ const Sidebar = () => {
       if (email) {
         await supabase
           .from("USER")
-          .update({ is_logged_in: false })
+          .update({
+            is_logged_in: false,
+            last_seen: null
+          })
           .eq("email", email);
       }
 

@@ -36,6 +36,25 @@ export const AuthProvider = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (!user?.email) return;
+
+    const heartbeat = setInterval(async () => {
+      const { error } = await supabase
+        .from("USER")
+        .update({
+          last_seen: new Date().toISOString()
+        })
+        .eq("email", user.email);
+
+      if (error) {
+        console.error("Heartbeat failed:", error);
+      }
+    }, 5000); // Every 5 seconds
+
+    return () => clearInterval(heartbeat);
+  }, [user]);
+
   const ignoreNextAuthChange = () => {
     isCreatingUser.current = true;
     setTimeout(() => {
