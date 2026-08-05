@@ -29,8 +29,21 @@ const Sidebar = () => {
   const lastName = user?.user_metadata?.last_name || '';
 
   async function handleLogout() {
-    await supabase.auth.signOut();
-    navigate('/');
+    try {
+      const email = user?.email;
+
+      if (email) {
+        await supabase
+          .from("USER")
+          .update({ is_logged_in: false })
+          .eq("email", email);
+      }
+
+      await supabase.auth.signOut();
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const displayName =
