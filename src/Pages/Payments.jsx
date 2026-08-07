@@ -285,11 +285,11 @@ const Payments = () => {
 
       {/* HEADER */}
       <div className="payment-header-row">
-        {(role === 'admin' || role === 'employee') && (
+        {(role === 'admin') && (
           <h1>Payments</h1>
         )}
 
-        {(role === 'admin' || role === 'employee') && (
+        {(role === 'admin') && (
           <button
             className="addpayment"
             onClick={() => setShowAddModal(true)}
@@ -301,7 +301,7 @@ const Payments = () => {
       </div>
 
       {/* SEARCH AND FILTERS */}
-      {(role === 'admin' || role === 'employee') && (
+      {(role === 'admin') && (
         <div className="payment-topwrapper">
           <div className="paymentsearch-card">
             <div className="payment-filters-container">
@@ -335,7 +335,7 @@ const Payments = () => {
       )}
 
       {/* TABLE */}
-      {(role === 'admin' || role === 'employee') && (
+      {(role === 'admin') && (
         <div className="payment-table-container">
           <table className="payment-styled-table">
             <thead>
