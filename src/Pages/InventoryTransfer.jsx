@@ -988,7 +988,7 @@ const InventoryTransfer = () => {
                       disabled={!transferItem.from_prod}
                     >
                       <option value="">
-                        {!transferItem.from_prod ? 'Please select a product from the wareouse first.' : 'Select Product to Store.'}
+                        {!transferItem.from_prod ? 'Please select a product from the warehouse first.' : 'Select Product to Store.'}
                       </option>
                       {getStoreProducts(
                         transferItem.from_prod,
