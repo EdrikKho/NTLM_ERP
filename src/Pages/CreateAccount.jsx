@@ -8,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateAccount = () => {
-  const { ignoreNextAuthChange, user } = useAuth();
+  const { ignoreNextAuthChange, user} = useAuth();
 
   const [profiles, setProfiles] = useState([]);
   const [search, setSearch] = useState('');
@@ -323,7 +323,9 @@ const CreateAccount = () => {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <div className="createaccount-header-row">
-        <h1>User Management</h1>
+        {role === 'admin' && (
+          <h1>User Management</h1>
+        )}
         
         {role === 'admin' && (
           <button className="adduser" onClick={() => setShowAddModal(true)}>
@@ -349,7 +351,7 @@ const CreateAccount = () => {
 
         {/* TABLE */}
         <div className="createaccount-table-container">
-          {role === 'admin' ? (
+          {(role === 'admin') && (
             <table className="createaccount-table">
               <thead>
                 <tr>
@@ -384,8 +386,6 @@ const CreateAccount = () => {
                 ))}
               </tbody>
             </table>
-          ) : (
-            <div className="no-access-message">You don't have access to view users</div>
           )}
         </div>
       </div>
