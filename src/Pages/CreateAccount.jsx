@@ -333,72 +333,72 @@ const CreateAccount = () => {
       <ToastContainer position="top-right" autoClose={3000} />
 
       <div className="createaccount-header-row">
-        {role === 'admin' && <h1>User Management</h1>}
+  <h1>User Management</h1>
+  
+  {role === 'admin' && (
+    <button className="adduser" onClick={() => setShowAddModal(true)}>
+      <FiPlus className="icon" />
+      Create User
+    </button>
+  )}
+</div>
 
-        {role === 'admin' && (
-          <button className="adduser" onClick={() => setShowAddModal(true)}>
-            <FiPlus className="icon" />
-            Create User
-          </button>
-        )}
-      </div>
+<div className="createaccount-topwrapper">
+  <div className="createaccount-top-controls">
+    <div className="createaccount-search-container">
+      <FiSearch className="createaccount-search-icon" />
+      <input
+        type="text"
+        placeholder="Search users..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="createaccount-search-bar"
+      />
+    </div>
+  </div>
 
-      <div className="createaccount-topwrapper">
+  {/* TABLE */}
+  <div className="createaccount-table-container">
+    {role === 'admin' ? (
+      <table className="createaccount-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-        {role === 'admin' && (
-          <div className="createaccount-top-controls">
-            <div className="createaccount-search-container">
-              <FiSearch className="createaccount-search-icon" />
-              <input
-                type="text"
-                placeholder="Search users..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="createaccount-search-bar"
-              />
-            </div>
-          </div>
-        )}
-
-        {/* TABLE */}
-        {role === 'admin' && (
-          <div className="createaccount-table-container">
-            <table className="createaccount-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {filteredProfiles.map((user) => (
-                  <tr key={user.u_id}>
-                    <td>{user.f_name} {user.l_name}</td>
-                    <td>
-                      {user.role
-                        ? user.role.charAt(0).toUpperCase() + user.role.slice(1)
-                        : ''}
-                    </td>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>
-                      <button
-                        className="createaccount-del-btn"
-                        onClick={() => openDeleteModal(user)}
-                      >
-                        <FiTrash2 color="rgb(219, 32, 32)" size={18} />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+        <tbody>
+          {filteredProfiles.map((user) => (
+            <tr key={user.u_id}>
+              <td>{user.f_name} {user.l_name}</td>
+              <td>
+                {user.role
+                  ? user.role.charAt(0).toUpperCase() + user.role.slice(1)
+                  : ''}
+              </td>
+              <td>{user.username}</td>
+              <td>{user.email}</td>
+              <td>
+                <button
+                  className="createaccount-del-btn"
+                  onClick={() => openDeleteModal(user)}
+                >
+                  <FiTrash2 color="rgb(219, 32, 32)" size={18} />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : (
+      <div className="no-access-message">You don't have access to view users</div>
+    )}
+  </div>
+</div>
 
         {/* ADD MODAL */}
         {showAddModal && (
