@@ -1522,7 +1522,7 @@ const InventoryTransfer = () => {
                   disabled={!editTransferItemForm.from_prod}
                 >
                   <option value="">
-                    {!editTransferItemForm.from_prod ? 'Please select a product first.' : 'Select Product to Store.'}
+                    {!editTransferItemForm.from_prod ? 'Please select a product from the warehouse first.' : 'Select Product to Store.'}
                   </option>
                   {getStoreProducts(
                     editTransferItemForm.from_prod,
@@ -1657,7 +1657,7 @@ const InventoryTransfer = () => {
                   disabled={!editTransferItemFormEdit.from_prod}
                 >
                   <option value="">
-                    {!editTransferItemFormEdit.from_prod ? 'Please select a product first.' : 'Select Product to Store.'}
+                    {!editTransferItemFormEdit.from_prod ? 'Please select a product from the warehouse first.' : 'Select Product to Store.'}
                   </option>
                   {getStoreProducts(
                     editTransferItemFormEdit.from_prod,
