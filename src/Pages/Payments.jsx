@@ -335,7 +335,7 @@ const Payments = () => {
       )}
 
       {/* TABLE */}
-      {(role === 'admin' || role === 'employee') && (
+      {(role === 'admin') && (
         <div className="payment-table-container">
           <table className="payment-styled-table">
             <thead>

@@ -8,7 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateAccount = () => {
-  const { ignoreNextAuthChange } = useAuth();
+  const { ignoreNextAuthChange, user } = useAuth();
 
   const [profiles, setProfiles] = useState([]);
   const [search, setSearch] = useState('');
@@ -38,9 +38,10 @@ const CreateAccount = () => {
     username: ''
   });
 
-  const [role, setRole] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const role = user?.user_metadata?.role || '';
+  const firstName = user?.user_metadata?.first_name || '';
+  const lastName = user?.user_metadata?.last_name || '';
+
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
@@ -51,23 +52,12 @@ const CreateAccount = () => {
 
   useEffect(() => {
     fetchProfiles();
-    loadUser();
   }, []);
-
-  async function loadUser() {
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (user) {
-      setRole(user.user_metadata?.role || '');
-      setFirstName(user.user_metadata?.first_name || '');
-      setLastName(user.user_metadata?.last_name || '');
-    }
-  }
 
   async function fetchProfiles() {
     const { data, error } = await supabase
       .from('USER')
-      .select('*')
+      .select('u_id, f_name, l_name, role, username, email')
       .order('u_id', { ascending: false });
 
     if (error) {
