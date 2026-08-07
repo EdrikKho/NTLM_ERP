@@ -49,39 +49,27 @@ const Suppliers = () => {
 
   // FETCH SUPPLIERS
   async function fetchSuppliers() {
-    const { data, error } = await supabase
-      .from('SUPPLIER')
-      .select('*')
-      .order('sup_no', { ascending: false });
+    try {
+      const { data, error } = await supabase
+        .from('SUPPLIER')
+        .select(`
+          *,
+          PRODUCT (prod_no)
+        `)
+        .order('sup_no', { ascending: false });
 
-    if (!error) {
-      // Check each supplier if it has associated products
-      const suppliersWithStatus = await Promise.all(
-        data.map(async (supplier) => {
-          const hasProducts = await checkSupplierHasProducts(supplier.sup_no);
-          return { ...supplier, hasProducts };
-        })
-      );
-      setSuppliers(suppliersWithStatus || []);
-    } else {
-      toast.error('Failed to fetch suppliers');
+      if (!error && data) {
+        const suppliersWithStatus = data.map(supplier => ({
+          ...supplier,
+          hasProducts: supplier.PRODUCT && supplier.PRODUCT.length > 0
+        }));
+        setSuppliers(suppliersWithStatus);
+      } else if (error) {
+        toast.error('Failed to fetch suppliers');
+      }
+    } catch (error) {
+      toast.error('An error occurred while fetching suppliers');
     }
-  }
-
-  // CHECK IF SUPPLIER HAS PRODUCTS
-  async function checkSupplierHasProducts(sup_no) {
-    const { data, error } = await supabase
-      .from('PRODUCT')
-      .select('prod_no')
-      .eq('sup_no', sup_no)
-      .limit(1);
-
-    if (error) {
-      toast.error('Error checking supplier associations');
-      return false;
-    }
-
-    return data && data.length > 0;
   }
 
   // HANDLE INPUT
