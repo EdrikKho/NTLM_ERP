@@ -104,6 +104,18 @@ const CreateAccount = () => {
       setEmailError('');
     }
 
+    // Check if username already exists
+    const { data: existingUsername, error: usernameCheckError } = await supabase
+      .from('USER')
+      .select('username')
+      .eq('username', formData.username)
+      .maybeSingle();
+
+    if (existingUsername) {
+      toast.error('User is already registered');
+      return;
+    }
+
     // Validate password length
     if (formData.password && formData.password.length < 6) {
       setPasswordError('Password must be at least 6 characters.');
