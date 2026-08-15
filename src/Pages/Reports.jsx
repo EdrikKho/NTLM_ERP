@@ -19,10 +19,6 @@ const Dashboard = () => {
           <Outlet />
 
           <h1>Reports Page</h1>
-
-          <p>
-            Welcome {firstName} {lastName} 
-          </p>
         </div>
       )}
 
