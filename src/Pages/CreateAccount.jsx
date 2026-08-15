@@ -112,7 +112,7 @@ const CreateAccount = () => {
       .maybeSingle();
 
     if (existingUsername) {
-      toast.error('User is already registered');
+      toast.error('User already registered');
       return;
     }
 
