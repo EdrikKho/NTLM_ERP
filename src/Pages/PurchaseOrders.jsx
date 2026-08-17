@@ -1123,6 +1123,7 @@ const PurchaseOrders = () => {
                       value={editPurchaseOrder.sup_no}
                       onChange={handleEditPurchaseOrderChange}
                       className={submittedEdit && !editPurchaseOrder.sup_no ? "input-error" : ""}
+                      disabled
                     >
                       <option value="">Select Supplier</option>
                       {suppliers.map(supplier => (
