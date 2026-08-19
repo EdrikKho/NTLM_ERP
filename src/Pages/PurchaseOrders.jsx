@@ -819,6 +819,7 @@ const PurchaseOrders = () => {
                     <button
                       className="view-btn"
                       onClick={() => viewOrderDetails(order.purtrans_no)}
+                      title="View Purchase Order"
                     >
                       <FiEye color="#185229" size={18} />
                     </button>
@@ -827,6 +828,7 @@ const PurchaseOrders = () => {
                         className="edit-btn"
                         onClick={() => openEditModal(order)}
                         style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        title="Edit Purchase Order"
                       >
                         <FiEdit color="#185229" size={18} />
                       </button>
@@ -1023,6 +1025,7 @@ const PurchaseOrders = () => {
                               type="button"
                               className="edit-item-btn"
                               onClick={() => openEditOrderItemModal(item)}
+                              title="Edit Order Item"
                             >
                               <FiEdit color="#185229" size={16} />
                             </button>
@@ -1034,6 +1037,7 @@ const PurchaseOrders = () => {
                                 setDeleteModalContext('add');
                                 setShowDeleteItemModal(true);
                               }}
+                              title="Delete Order Item"
                             >
                               <FiTrash2 color="rgb(219, 32, 32)" size={16} />
                             </button>
@@ -1276,6 +1280,7 @@ const PurchaseOrders = () => {
                               type="button"
                               className="edit-item-btn"
                               onClick={() => openEditOrderItemModalEdit(item)}
+                              title="Edit Order Item"
                             >
                               <FiEdit color="#185229" size={16} />
                             </button>
@@ -1287,6 +1292,7 @@ const PurchaseOrders = () => {
                                 setDeleteModalContext('edit');
                                 setShowDeleteItemModal(true);
                               }}
+                              title="Delete Order Item"
                             >
                               <FiTrash2 color="rgb(219, 32, 32)" size={16} />
                             </button>

@@ -880,6 +880,7 @@ const InventoryTransfer = () => {
                     <button
                       className="view-btn"
                       onClick={() => viewTransferDetails(transfer.transfertrans_no)}
+                      title="View Inventory Transfer"
                     >
                       <FiEye color="#185229" size={18} />
                     </button>
@@ -888,6 +889,7 @@ const InventoryTransfer = () => {
                         className="edit-btn"
                         onClick={() => openEditModal(transfer)}
                         style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        title="Edit Inventory Transfer"
                       >
                         <FiEdit color="#185229" size={18} />
                       </button>
@@ -1106,6 +1108,7 @@ const InventoryTransfer = () => {
                               type="button"
                               className="edit-item-btn"
                               onClick={() => openEditTransferItemModal(item)}
+                              title="Edit Transfer Item"
                             >
                               <FiEdit color="#185229" size={16} />
                             </button>
@@ -1117,6 +1120,7 @@ const InventoryTransfer = () => {
                                 setDeleteModalContext('add');
                                 setShowDeleteItemModal(true);
                               }}
+                              title="Delete Transfer Item"
                             >
                               <FiTrash2 color="rgb(219, 32, 32)" size={16} />
                             </button>
@@ -1392,6 +1396,7 @@ const InventoryTransfer = () => {
                               type="button"
                               className="edit-item-btn"
                               onClick={() => openEditTransferItemModalEdit(item)}
+                              title="Edit Transfer Item"
                             >
                               <FiEdit color="#185229" size={16} />
                             </button>
@@ -1403,6 +1408,7 @@ const InventoryTransfer = () => {
                                 setDeleteModalContext('edit');
                                 setShowDeleteItemModal(true);
                               }}
+                              title="Delete Transfer Item"
                             >
                               <FiTrash2 color="rgb(219, 32, 32)" size={16} />
                             </button>
