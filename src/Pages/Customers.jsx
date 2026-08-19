@@ -306,6 +306,7 @@ const Customers = () => {
                     <button
                       className="edit-btn"
                       onClick={() => displayCustomer(customer.cust_no)}
+                      title="Edit Customer"
                     >
                       <FiEdit color="#185229" size={18} />
                     </button>
@@ -317,6 +318,7 @@ const Customers = () => {
                           setSelectedCustomer(customer);
                           setShowDeleteModal(true);
                         }}
+                        title="Delete Customer"
                       >
                         <FiTrash2 color="rgb(219, 32, 32)" size={18} />
                       </button>
