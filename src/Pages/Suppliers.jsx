@@ -296,12 +296,12 @@ const Suppliers = () => {
             <tbody>
               {filteredSuppliers.map((supplier) => (
                 <tr key={supplier.sup_no}>
-                  <td>{supplier.com_name}</td>
-                  <td>{supplier.address}</td>
-                  <td>{supplier.sales_p}</td>
-                  <td>{supplier.contact_no}</td>
+                  <td style={{ textAlign: 'left' }}>{supplier.com_name}</td>
+                  <td style={{ textAlign: 'left' }}>{supplier.address}</td>
+                  <td style={{ textAlign: 'left' }}>{supplier.sales_p}</td>
+                  <td style={{ textAlign: 'left' }}>{supplier.contact_no}</td>
 
-                  <td>
+                  <td style={{ textAlign: 'left' }}>
                     <button
                       className="edit-btn"
                       onClick={() =>
