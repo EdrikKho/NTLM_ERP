@@ -841,6 +841,7 @@ const InventoryTransfer = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-bar"
+                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' }}
               />
               <select
                 value={statusFilter}
@@ -997,7 +998,7 @@ const InventoryTransfer = () => {
                         transferItem.from_prod,
                         tempTransferItems.map(item => parseInt(item.to_prod))
                       ).map(product => (
-                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                           {product.brand} {product.name} {product.size_amt} {product.u_size}
                           | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                         </option>
@@ -1254,7 +1255,7 @@ const InventoryTransfer = () => {
                       {getWarehouseProducts(
                         editTempTransferItems.map(item => parseInt(item.from_prod))
                       ).map(product => (
-                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                           {product.brand} {product.name} {product.size_amt} {product.u_size} 
                           | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                         </option>

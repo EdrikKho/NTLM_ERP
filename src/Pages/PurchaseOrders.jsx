@@ -771,6 +771,7 @@ const PurchaseOrders = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-bar"
+                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' }}
               />
               <select
                 value={supplierFilter}
