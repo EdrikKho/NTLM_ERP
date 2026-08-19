@@ -378,15 +378,15 @@ const CreateAccount = () => {
               <tbody>
                 {filteredProfiles.map((user) => (
                   <tr key={user.u_id}>
-                    <td>{user.f_name} {user.l_name}</td>
-                    <td>
+                    <td style={{ textAlign: 'left' }}>{user.f_name} {user.l_name}</td>
+                    <td style={{ textAlign: 'left' }}>
                       {user.role
                         ? user.role.charAt(0).toUpperCase() + user.role.slice(1)
                         : ''}
                     </td>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>
+                    <td style={{ textAlign: 'left' }}>{user.username}</td>
+                    <td style={{ textAlign: 'left' }}>{user.email}</td>
+                    <td style={{ textAlign: 'left' }}>
                       <button
                         className="createaccount-del-btn"
                         onClick={() => openDeleteModal(user)}
