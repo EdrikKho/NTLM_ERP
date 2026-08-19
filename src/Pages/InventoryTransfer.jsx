@@ -921,6 +921,7 @@ const InventoryTransfer = () => {
                       value={transfer.date}
                       onChange={handleTransferChange}
                       className={submitted && !transfer.date ? "input-error" : ""}
+                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                     />
                     {submitted && !transfer.date && (
                       <span className="error-text">Date is required.</span>
@@ -959,7 +960,7 @@ const InventoryTransfer = () => {
                         setAddTransferItemErrors(prev => ({ ...prev, from_prod: '', to_prod: '' }));
                       }}
                       className={addTransferItemErrors.from_prod ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                     >
                       <option value="">Select Product from Warehouse.</option>
                       {getWarehouseProducts(
@@ -1196,6 +1197,7 @@ const InventoryTransfer = () => {
                       value={editTransfer.date}
                       onChange={handleEditTransferChange}
                       className={submittedEdit && !editTransfer.date ? "input-error" : ""}
+                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                     />
                     {submittedEdit && !editTransfer.date && (
                       <span className="error-text">Date is required.</span>
@@ -1246,7 +1248,7 @@ const InventoryTransfer = () => {
                         setEditAddTransferItemErrors(prev => ({ ...prev, from_prod: '', to_prod: '' }));
                       }}
                       className={editAddTransferItemErrors.from_prod ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                     >
                       <option value="">Select Product from Warehouse.</option>
                       {getWarehouseProducts(
