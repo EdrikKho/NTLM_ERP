@@ -296,13 +296,13 @@ const Customers = () => {
             <tbody>
               {filteredCustomers.map((customer) => (
                 <tr key={customer.cust_no}>
-                  <td>{customer.name}</td>
-                  <td>{customer.contact_no}</td>
-                  <td>{customer.address}</td>
-                  {role === 'admin' && <td>₱ {customer.balance.toLocaleString()}</td>}
-                  <td>{customer.p_terms} Days</td>
+                  <td style={{ textAlign: 'left' }}>{customer.name}</td>
+                  <td style={{ textAlign: 'left' }}>{customer.contact_no}</td>
+                  <td style={{ textAlign: 'left' }}>{customer.address}</td>
+                  {role === 'admin' && <td style={{ textAlign: 'right' }}>₱ {customer.balance.toLocaleString()}</td>}
+                  <td style={{ textAlign: 'left' }}>{customer.p_terms} Days</td>
 
-                  <td>
+                  <td style={{ textAlign: 'left' }}>
                     <button
                       className="edit-btn"
                       onClick={() => displayCustomer(customer.cust_no)}
