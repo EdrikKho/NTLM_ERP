@@ -841,7 +841,7 @@ const InventoryTransfer = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-bar"
-                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' }}
+                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
               />
               <select
                 value={statusFilter}
@@ -967,7 +967,7 @@ const InventoryTransfer = () => {
                       {getWarehouseProducts(
                         tempTransferItems.map(item => parseInt(item.from_prod))
                       ).map(product => (
-                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                           {product.brand} {product.name} {product.size_amt} {product.u_size} 
                           | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                         </option>
@@ -988,7 +988,7 @@ const InventoryTransfer = () => {
                         setAddTransferItemErrors(prev => ({ ...prev, to_prod: '' }));
                       }}
                       className={addTransferItemErrors.to_prod ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                       disabled={!transferItem.from_prod}
                     >
                       <option value="">
@@ -1276,7 +1276,7 @@ const InventoryTransfer = () => {
                         setEditAddTransferItemErrors(prev => ({ ...prev, to_prod: '' }));
                       }}
                       className={editAddTransferItemErrors.to_prod ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                       disabled={!editTransferItem.from_prod}
                     >
                       <option value="">
@@ -1286,7 +1286,7 @@ const InventoryTransfer = () => {
                         editTransferItem.from_prod,
                         editTempTransferItems.map(item => parseInt(item.to_prod))
                       ).map(product => (
-                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                        <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                           {product.brand} {product.name} {product.size_amt} {product.u_size}
                           | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                         </option>
@@ -1497,14 +1497,14 @@ const InventoryTransfer = () => {
                     setEditTransferItemErrors(prev => ({ ...prev, from_prod: '', to_prod: '' }));
                   }}
                   className={editTransferItemErrors.from_prod ? "input-error" : ""}
-                  style={{ minWidth: '100%', fontSize: '12px' }}
+                  style={{ minWidth: '100%', fontSize: '14px' }}
                 >
                   <option value="">Select Product from Warehouse.</option>
                   {getWarehouseProducts(
                     tempTransferItems.map(item => parseInt(item.from_prod)),
                     editTransferItemForm.from_prod ? parseInt(editTransferItemForm.from_prod) : null
                   ).map(product => (
-                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                       {product.brand} {product.name} {product.size_amt} {product.u_size} 
                       | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                     </option>
@@ -1632,14 +1632,14 @@ const InventoryTransfer = () => {
                     setEditTransferItemErrorsEdit(prev => ({ ...prev, from_prod: '', to_prod: '' }));
                   }}
                   className={editTransferItemErrorsEdit.from_prod ? "input-error" : ""}
-                  style={{ minWidth: '100%', fontSize: '12px' }}
+                  style={{ minWidth: '100%', fontSize: '14px' }}
                 >
                   <option value="">Select Product from Warehouse</option>
                   {getWarehouseProducts(
                     editTempTransferItems.map(item => parseInt(item.from_prod)),
                     editTransferItemFormEdit.from_prod ? parseInt(editTransferItemFormEdit.from_prod) : null
                   ).map(product => (
-                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                       {product.brand} {product.name} {product.size_amt} {product.u_size} 
                       | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                     </option>
@@ -1662,7 +1662,7 @@ const InventoryTransfer = () => {
                     setEditTransferItemErrorsEdit(prev => ({ ...prev, to_prod: '' }));
                   }}
                   className={editTransferItemErrorsEdit.to_prod ? "input-error" : ""}
-                  style={{ minWidth: '100%', fontSize: '12px' }}
+                  style={{ minWidth: '100%', fontSize: '14px' }}
                   disabled={!editTransferItemFormEdit.from_prod}
                 >
                   <option value="">
@@ -1673,7 +1673,7 @@ const InventoryTransfer = () => {
                     editTempTransferItems.map(item => parseInt(item.to_prod)),
                     editTransferItemFormEdit.to_prod ? parseInt(editTransferItemFormEdit.to_prod) : null
                   ).map(product => (
-                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                       {product.brand} {product.name} {product.size_amt} {product.u_size}
                       | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                     </option>

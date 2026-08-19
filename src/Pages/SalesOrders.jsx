@@ -1132,7 +1132,7 @@ const SalesOrder = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-bar"
-                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif' }}
+                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
               />
               <select
                 value={statusFilter}
