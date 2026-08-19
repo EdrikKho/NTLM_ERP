@@ -390,6 +390,7 @@ const CreateAccount = () => {
                       <button
                         className="createaccount-del-btn"
                         onClick={() => openDeleteModal(user)}
+                        title="Delete User"
                       >
                         <FiTrash2 color="rgb(219, 32, 32)" size={18} />
                       </button>
