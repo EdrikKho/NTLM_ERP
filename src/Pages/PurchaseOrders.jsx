@@ -861,6 +861,7 @@ const PurchaseOrders = () => {
                       value={purchaseOrder.date}
                       onChange={handlePurchaseOrderChange}
                       className={submitted && !purchaseOrder.date ? "input-error" : ""}
+                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                     />
                     {submitted && !purchaseOrder.date && (
                       <span className="error-text">Date is required.</span>
@@ -916,7 +917,7 @@ const PurchaseOrders = () => {
                       value={orderItem.prod_no}
                       onChange={handleOrderItemChange}
                       className={submitted && !orderItem.prod_no ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                       disabled={!purchaseOrder.sup_no}
                     >
                       <option value="">
@@ -1112,6 +1113,7 @@ const PurchaseOrders = () => {
                       value={editPurchaseOrder.date}
                       onChange={handleEditPurchaseOrderChange}
                       className={submittedEdit && !editPurchaseOrder.date ? "input-error" : ""}
+                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                     />
                     {submittedEdit && !editPurchaseOrder.date && (
                       <span className="error-text">Date is required.</span>
@@ -1170,7 +1172,7 @@ const PurchaseOrders = () => {
                         setEditAddOrderItemErrors(prev => ({ ...prev, prod_no: '' }));
                       }}
                       className={editAddOrderItemErrors.prod_no ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                       disabled={!editPurchaseOrder.sup_no}
                     >
                       <option value="">
