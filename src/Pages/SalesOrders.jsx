@@ -1214,7 +1214,7 @@ const SalesOrder = () => {
                       value={salesOrder.date}
                       onChange={handleSalesOrderChange}
                       className={submitted && !salesOrder.date ? "input-error" : ""}
-                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '15px', fontWeight: 490 }}
+                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 490 }}
                     />
                     {submitted && !salesOrder.date && (
                       <span className="error-text">Date is required.</span>
@@ -1273,7 +1273,7 @@ const SalesOrder = () => {
                         setAddLineItemErrors(prev => ({ ...prev, prod_no: '' }));
                       }}
                       className={addLineItemErrors.prod_no ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                     >
                       <option value="">Select Product</option>
                       {getAvailableProducts(
@@ -1533,6 +1533,7 @@ const SalesOrder = () => {
                       value={editSalesOrder.date}
                       onChange={handleEditSalesOrderChange}
                       className={submittedEdit && !editSalesOrder.date ? "input-error" : ""}
+                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 490 }}
                     />
                     {submittedEdit && !editSalesOrder.date && (
                       <span className="error-text">Date is required.</span>
@@ -1591,7 +1592,7 @@ const SalesOrder = () => {
                         setEditAddLineItemErrors(prev => ({ ...prev, prod_no: '' }));
                       }}
                       className={editAddLineItemErrors.prod_no ? "input-error" : ""}
-                      style={{ fontSize: '12px' }}
+                      style={{ fontSize: '14px' }}
                     >
                       <option value="">Select Product</option>
                       {getAvailableProducts(
