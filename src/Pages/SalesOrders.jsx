@@ -1165,7 +1165,7 @@ const SalesOrder = () => {
                 <tr key={order.salestrans_no}>
                   <td style={{ textAlign: 'left' }}>{new Date(order.date).toLocaleDateString()}</td>
                   <td style={{ textAlign: 'left' }}>{order.status}</td>
-                  <td style={{ textAlign: 'right' }}>₱ {order.total_amt?.toLocaleString()}</td>
+                  <td style={{ textAlign: 'right' }}>₱ {order.total_amt?.toFixed(2)}</td>
                   <td style={{ textAlign: 'left' }}>{order.CUSTOMER?.name}</td>
                   <td style={{ textAlign: 'left' }}>
                     <button
@@ -1429,8 +1429,8 @@ const SalesOrder = () => {
                           <td style={{ textAlign: 'left' }}>{item.brand} {item.name} {item.size_amt} {item.u_size} {item.loc_name && `(${item.loc_name})`}</td>
                           <td style={{ textAlign: 'left' }}>{item.qty}</td>
                           <td style={{ textAlign: 'left' }}>{item.unit}</td>
-                          <td style={{ textAlign: 'right' }}>₱{item.price?.toLocaleString()}</td>
-                          <td style={{ textAlign: 'right' }}>₱{item.subtotal?.toLocaleString()}</td>
+                          <td style={{ textAlign: 'right' }}>₱{item.price?.toFixed(2)}</td>
+                          <td style={{ textAlign: 'right' }}>₱{item.subtotal?.toFixed(2)}</td>
                           <td style={{ display: 'flex', gap: '5px', justifyContent: 'center', textAlign: 'left' }}>
                             <button
                               type="button"
@@ -1457,7 +1457,7 @@ const SalesOrder = () => {
                 </table>
 
                 <div className="salesorder-total">
-                  <strong>Total Amount: ₱{calculateTotalAmount().toLocaleString()}</strong>
+                  <strong>Total Amount: ₱{calculateTotalAmount().toFixed(2)}</strong>
                 </div>
                 {submitted && tempLineItems.length === 0 && (
                   <span className="error-text" style={{ display: 'block', marginTop: '10px' }}>
@@ -1749,8 +1749,8 @@ const SalesOrder = () => {
                           <td style={{ textAlign: 'left' }}>{item.brand} {item.name} {item.size_amt} {item.u_size} {item.loc_name && `(${item.loc_name})`}</td>
                           <td style={{ textAlign: 'left' }}>{item.qty}</td>
                           <td style={{ textAlign: 'left' }}>{item.unit}</td>
-                          <td style={{ textAlign: 'right' }}>₱{item.price?.toLocaleString()}</td>
-                          <td style={{ textAlign: 'right' }}>₱{item.subtotal?.toLocaleString()}</td>
+                          <td style={{ textAlign: 'right' }}>₱{item.price?.toFixed(2)}</td>
+                          <td style={{ textAlign: 'right' }}>₱{item.subtotal?.toFixed(2)}</td>
                           <td style={{ display: 'flex', gap: '5px', justifyContent: 'center', textAlign: 'left' }}>
                             <button
                               type="button"
@@ -1777,7 +1777,7 @@ const SalesOrder = () => {
                 </table>
 
                 <div className="salesorder-total">
-                  <strong>Total Amount: ₱{calculateEditTotalAmount().toLocaleString()}</strong>
+                  <strong>Total Amount: ₱{calculateEditTotalAmount().toFixed(2)}</strong>
                 </div>
                 {submittedEdit && editTempLineItems.length === 0 && (
                   <span className="error-text" style={{ display: 'block', marginTop: '10px' }}>
@@ -2167,11 +2167,11 @@ const SalesOrder = () => {
                 {printData.items && printData.items.length > 0 ? (
                   printData.items.map((item, index) => (
                     <tr key={index}>
-                      <td>{item?.brand || ''} {item?.name || ''} {item?.size_amt || ''} {item?.u_size || ''}</td>
-                      <td>{item?.qty || 0}</td>
-                      <td>{item?.unit || ''}</td>
-                      <td>₱{(item?.price || 0).toLocaleString()}</td>
-                      <td>₱{(item?.subtotal || 0).toLocaleString()}</td>
+                      <td style={{ textAlign: 'left' }}>{item?.brand || ''} {item?.name || ''} {item?.size_amt || ''} {item?.u_size || ''}</td>
+                      <td style={{ textAlign: 'left' }}>{item?.qty || 0}</td>
+                      <td style={{ textAlign: 'left' }}>{item?.unit || ''}</td>
+                      <td style={{ textAlign: 'right' }}>₱{(item?.price || 0).toFixed(2)}</td>
+                      <td style={{ textAlign: 'right' }}>₱{(item?.subtotal || 0).toFixed(2)}</td>
                     </tr>
                   ))
                 ) : (
@@ -2183,7 +2183,7 @@ const SalesOrder = () => {
               <tfoot>
                 <tr>
                   <td colSpan="4" style={{ textAlign: 'right' }}><strong>Total Amount:</strong></td>
-                  <td><strong>₱{printData.total.toLocaleString()}</strong></td>
+                  <td><strong>₱{(printData.total || 0).toFixed(2)}</strong></td>
                 </tr>
               </tfoot>
             </table>
@@ -2263,18 +2263,18 @@ const SalesOrder = () => {
                     })
                     .map((item, index) => (
                       <tr key={index}>
-                        <td>{item.PRODUCT?.brand || ''} {item.PRODUCT?.name || ''} {item.PRODUCT?.size_amt || ''} {item.PRODUCT?.u_size || ''} {item.PRODUCT?.loc_name && `(${item.PRODUCT.loc_name})`}</td>
-                        <td>{item.qty}</td>
-                        <td>{item.unit}</td>
-                        <td>₱{(item.unit === 'Case' ? item.PRODUCT?.price_case : item.PRODUCT?.price_piece)?.toLocaleString()}</td>
-                        <td>₱{item.subtotal?.toLocaleString()}</td>
+                        <td style={{ textAlign: 'left' }}>{item.PRODUCT?.brand || ''} {item.PRODUCT?.name || ''} {item.PRODUCT?.size_amt || ''} {item.PRODUCT?.u_size || ''} {item.PRODUCT?.loc_name && `(${item.PRODUCT.loc_name})`}</td>
+                        <td style={{ textAlign: 'left' }}>{item.qty}</td>
+                        <td style={{ textAlign: 'left' }}>{item.unit}</td>
+                        <td style={{ textAlign: 'right' }}>₱{(item.unit === 'Case' ? item.PRODUCT?.price_case : item.PRODUCT?.price_piece)?.toFixed(2)}</td>
+                        <td style={{ textAlign: 'right' }}>₱{item.subtotal?.toFixed(2)}</td>
                       </tr>
                     ))}
                 </tbody>
               </table>
 
               <div className="salesorder-total">
-                <strong>Total Amount: ₱{viewOrder.total_amt?.toLocaleString()}</strong>
+                <strong>Total Amount: ₱{viewOrder.total_amt?.toFixed(2)}</strong>
               </div>
             </div>
 
