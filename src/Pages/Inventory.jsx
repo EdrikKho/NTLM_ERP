@@ -486,7 +486,7 @@ const Inventory = () => {
                 <th>Price (Case)</th>
                 <th>Price (Piece)</th>
                 <th>Location</th>
-                <th>Stock On Hand</th>
+                <th>Quantity</th>
                 <th>Actions</th>
               </tr>
             </thead>
