@@ -1527,7 +1527,7 @@ const InventoryTransfer = () => {
                     setEditTransferItemErrors(prev => ({ ...prev, to_prod: '' }));
                   }}
                   className={editTransferItemErrors.to_prod ? "input-error" : ""}
-                  style={{ minWidth: '100%', fontSize: '12px' }}
+                  style={{ minWidth: '100%', fontSize: '14px' }}
                   disabled={!editTransferItemForm.from_prod}
                 >
                   <option value="">
@@ -1538,7 +1538,7 @@ const InventoryTransfer = () => {
                     tempTransferItems.map(item => parseInt(item.to_prod)),
                     editTransferItemForm.to_prod ? parseInt(editTransferItemForm.to_prod) : null
                   ).map(product => (
-                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                       {product.brand} {product.name} {product.size_amt} {product.u_size}
                       | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                     </option>
@@ -1755,6 +1755,7 @@ const InventoryTransfer = () => {
                     value={viewTransfer.date ? new Date(viewTransfer.date).toISOString().split('T')[0] : ''}
                     disabled
                     style={{ backgroundColor: '#f5f5f5', cursor: 'not-allowed' }}
+                    style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                   />
                 </div>
 

@@ -1378,7 +1378,7 @@ const PurchaseOrders = () => {
                     }
                   }}
                   className={editOrderItemErrors.prod_no ? "input-error" : ""}
-                  style={{ minWidth: '100%', fontSize: '12px' }}
+                  style={{ minWidth: '100%', fontSize: '14px' }}
                   disabled={!purchaseOrder.sup_no}
                 >
                   <option value="">
@@ -1389,7 +1389,7 @@ const PurchaseOrders = () => {
                     tempOrderItems.map(item => parseInt(item.prod_no)),
                     editOrderItemForm.prod_no ? parseInt(editOrderItemForm.prod_no) : null
                   ).map(product => (
-                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                       {product.brand} {product.name} {product.size_amt} {product.u_size} 
                       | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                       | Loc: {product.loc_name || 'Not Assigned'}
@@ -1483,7 +1483,7 @@ const PurchaseOrders = () => {
                     }
                   }}
                   className={editOrderItemErrorsEdit.prod_no ? "input-error" : ""}
-                  style={{ minWidth: '100%', fontSize: '12px' }}
+                  style={{ minWidth: '100%', fontSize: '14px' }}
                   disabled={!editPurchaseOrder.sup_no}
                 >
                   <option value="">
@@ -1494,7 +1494,7 @@ const PurchaseOrders = () => {
                     editTempOrderItems.map(item => parseInt(item.prod_no)),
                     editOrderItemFormEdit.prod_no ? parseInt(editOrderItemFormEdit.prod_no) : null
                   ).map(product => (
-                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '11px' }}>
+                    <option key={product.prod_no} value={product.prod_no} style={{ fontSize: '14px' }}>
                       {product.brand} {product.name} {product.size_amt} {product.u_size} 
                       | Stock: {product.stock !== null && product.stock !== undefined ? product.stock : '0'}
                       | Loc: {product.loc_name || 'Not Assigned'}
@@ -1572,6 +1572,7 @@ const PurchaseOrders = () => {
                     value={viewOrder.date ? new Date(viewOrder.date).toISOString().split('T')[0] : ''}
                     disabled
                     style={{ backgroundColor: '#f5f5f5', cursor: 'not-allowed' }}
+                    style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                   />
                 </div>
 
