@@ -812,10 +812,10 @@ const PurchaseOrders = () => {
             <tbody>
               {filteredOrders.map((order) => (
                 <tr key={order.purtrans_no}>
-                  <td>{new Date(order.date).toLocaleDateString()}</td>
-                  <td>{order.status}</td>
-                  <td>{order.SUPPLIER?.com_name}</td>
-                  <td>
+                  <td style={{ textAlign: 'left' }}>{new Date(order.date).toLocaleDateString()}</td>
+                  <td style={{ textAlign: 'left' }}>{order.status}</td>
+                  <td style={{ textAlign: 'left' }}>{order.SUPPLIER?.com_name}</td>
+                  <td style={{ textAlign: 'left' }}>
                     <button
                       className="view-btn"
                       onClick={() => viewOrderDetails(order.purtrans_no)}
@@ -1016,9 +1016,9 @@ const PurchaseOrders = () => {
                       })
                       .map((item) => (
                         <tr key={item.id}>
-                          <td>{item.brand} {item.name} {item.size_amt} {item.u_size} {item.loc_name && `(${item.loc_name})`}</td>
-                          <td>{item.qty}</td>
-                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center' }}>
+                          <td style={{ textAlign: 'left' }}>{item.brand} {item.name} {item.size_amt} {item.u_size} {item.loc_name && `(${item.loc_name})`}</td>
+                          <td style={{ textAlign: 'left' }}>{item.qty}</td>
+                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center', textAlign: 'left' }}>
                             <button
                               type="button"
                               className="edit-item-btn"
@@ -1269,9 +1269,9 @@ const PurchaseOrders = () => {
                       })
                       .map((item) => (
                         <tr key={item.id}>
-                          <td>{item.brand} {item.name} {item.size_amt} {item.u_size} {item.loc_name && `(${item.loc_name})`}</td>
-                          <td>{item.qty}</td>
-                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center' }}>
+                          <td style={{ textAlign: 'left' }}>{item.brand} {item.name} {item.size_amt} {item.u_size} {item.loc_name && `(${item.loc_name})`}</td>
+                          <td style={{ textAlign: 'left' }}>{item.qty}</td>
+                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center', textAlign: 'left' }}>
                             <button
                               type="button"
                               className="edit-item-btn"
@@ -1610,8 +1610,8 @@ const PurchaseOrders = () => {
                     })
                     .map((item, index) => (
                       <tr key={index}>
-                        <td>{item.PRODUCT?.brand || ''} {item.PRODUCT?.name || ''} {item.PRODUCT?.size_amt || ''} {item.PRODUCT?.u_size || ''} {item.PRODUCT?.loc_name && `(${item.PRODUCT.loc_name})`}</td>
-                        <td>{item.qty}</td>
+                        <td style={{ textAlign: 'left' }}>{item.PRODUCT?.brand || ''} {item.PRODUCT?.name || ''} {item.PRODUCT?.size_amt || ''} {item.PRODUCT?.u_size || ''} {item.PRODUCT?.loc_name && `(${item.PRODUCT.loc_name})`}</td>
+                        <td style={{ textAlign: 'left' }}>{item.qty}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -1703,11 +1703,11 @@ const PurchaseOrders = () => {
                 {printData.items && printData.items.length > 0 ? (
                   printData.items.map((item, index) => (
                     <tr key={index}>
-                      <td>
+                      <td style={{ textAlign: 'left' }}>
                         {item?.brand || ''} {item?.name || ''} {item?.size_amt || ''} {item?.u_size || ''}
                         {item?.loc_name && ` (${item.loc_name})`}
                       </td>
-                      <td>{item?.qty || 0}</td>
+                      <td style={{ textAlign: 'left' }}>{item?.qty || 0}</td>
                     </tr>
                   ))
                 ) : (
