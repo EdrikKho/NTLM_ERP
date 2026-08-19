@@ -486,7 +486,7 @@ const Inventory = () => {
                 <th>Price (Case)</th>
                 <th>Price (Piece)</th>
                 <th>Location</th>
-                <th>Stock</th>
+                <th>Stock On Hand</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -494,16 +494,16 @@ const Inventory = () => {
             <tbody>
               {filteredProducts.map((product) => (
                 <tr key={product.prod_no}>
-                  <td>{product.brand}</td>
-                  <td>{product.name}</td>
-                  <td>{product.size_amt} {product.u_size}</td>
-                  <td>{product.category}</td>
-                  <td>₱ {parseFloat(product.price_case).toFixed(2)}</td>
-                  <td>₱ {parseFloat(product.price_piece).toFixed(2)}</td>
-                  <td>{product.loc_name}</td>
-                  <td>{product.stock}</td>
+                  <td style={{ textAlign: 'left' }}>{product.brand}</td>
+                  <td style={{ textAlign: 'left' }}>{product.name}</td>
+                  <td style={{ textAlign: 'left' }}>{product.size_amt} {product.u_size}</td>
+                  <td style={{ textAlign: 'left' }}>{product.category}</td>
+                  <td style={{ textAlign: 'right' }}>₱ {parseFloat(product.price_case).toFixed(2)}</td>
+                  <td style={{ textAlign: 'right' }}>₱ {parseFloat(product.price_piece).toFixed(2)}</td>
+                  <td style={{ textAlign: 'left' }}>{product.loc_name}</td>
+                  <td style={{ textAlign: 'left' }}>{product.stock}</td>
 
-                  <td>
+                  <td style={{ textAlign: 'left' }}>
                     <button
                       className="inventory-edit-btn"
                       onClick={() =>
