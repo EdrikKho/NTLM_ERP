@@ -713,7 +713,7 @@ const Inventory = () => {
 
               <div className="inventory-modal-actions">
                 <button type="submit">
-                  Add Product
+                  Save
                 </button>
 
                 <button

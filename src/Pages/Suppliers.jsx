@@ -406,7 +406,7 @@ const Suppliers = () => {
 
               <div className="modal-actions">
                 <button type="submit">
-                  Add Supplier
+                  Save
                 </button>
 
                 <button

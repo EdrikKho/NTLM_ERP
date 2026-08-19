@@ -1474,7 +1474,7 @@ const SalesOrder = () => {
 
               <div className="salesorder-modal-actions">
                 <button type="submit" className="submit-btn">
-                  Add Sales Order
+                  Save
                 </button>
                 <button
                   type="button"

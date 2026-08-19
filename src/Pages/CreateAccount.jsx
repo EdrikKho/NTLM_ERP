@@ -502,7 +502,7 @@ const CreateAccount = () => {
 
                 <div className="accmodal-actions">
                   <button className="adduser" type="submit" disabled={loading}>
-                    {loading ? 'Creating...' : 'Create Account'}
+                    {loading ? 'Creating...' : 'Save'}
                   </button>
 
                   <button

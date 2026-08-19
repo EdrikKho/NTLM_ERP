@@ -445,7 +445,7 @@ const Payments = () => {
 
               <div className="payment-modal-actions">
                 <button type="submit">
-                  Add Payment
+                  Save
                 </button>
 
                 <button

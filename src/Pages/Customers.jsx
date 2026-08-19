@@ -393,7 +393,7 @@ const Customers = () => {
               )}
 
               <div className="modal-actions">
-                <button type="submit">Add Customer</button>
+                <button type="submit">Save</button>
                 <button
                   type="button"
                   className="cancel-btn"

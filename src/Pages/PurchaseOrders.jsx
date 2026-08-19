@@ -1058,7 +1058,7 @@ const PurchaseOrders = () => {
 
               <div className="purchaseorder-modal-actions">
                 <button type="submit" className="submit-btn">
-                  Add Purchase Order
+                  Save
                 </button>
                 <button
                   type="button"

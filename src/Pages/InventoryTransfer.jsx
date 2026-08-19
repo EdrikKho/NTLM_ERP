@@ -1141,7 +1141,7 @@ const InventoryTransfer = () => {
 
               <div className="inventorytransfer-modal-actions">
                 <button type="submit" className="submit-btn">
-                  Add Inventory Transfer
+                  Save
                 </button>
                 <button
                   type="button"
