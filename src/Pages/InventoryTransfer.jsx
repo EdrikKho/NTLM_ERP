@@ -871,12 +871,12 @@ const InventoryTransfer = () => {
             <tbody>
               {filteredTransfers.map((transfer) => (
                 <tr key={transfer.transfertrans_no}>
-                  <td>{new Date(transfer.date).toLocaleDateString()}</td>
-                  <td>{transfer.status}</td>
-                  <td>{transfer.requester ? `${transfer.requester.f_name}` : '-'}</td>
-                  <td>{transfer.dispatcher ? `${transfer.dispatcher.f_name}` : '-'}</td>
-                  <td>{transfer.receiver ? `${transfer.receiver.f_name}` : '-'}</td>
-                  <td>
+                  <td style={{ textAlign: 'left' }}>{new Date(transfer.date).toLocaleDateString()}</td>
+                  <td style={{ textAlign: 'left' }}>{transfer.status}</td>
+                  <td style={{ textAlign: 'left' }}>{transfer.requester ? `${transfer.requester.f_name}` : '-'}</td>
+                  <td style={{ textAlign: 'left' }}>{transfer.dispatcher ? `${transfer.dispatcher.f_name}` : '-'}</td>
+                  <td style={{ textAlign: 'left' }}>{transfer.receiver ? `${transfer.receiver.f_name}` : '-'}</td>
+                  <td style={{ textAlign: 'left' }}>
                     <button
                       className="view-btn"
                       onClick={() => viewTransferDetails(transfer.transfertrans_no)}
@@ -1099,9 +1099,9 @@ const InventoryTransfer = () => {
                       })
                       .map((item) => (
                         <tr key={item.id}>
-                          <td>{item.brand} {item.name} {item.size_amt} {item.u_size}</td>
-                          <td>{item.qty}</td>
-                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center' }}>
+                          <td style={{ textAlign: 'left' }}>{item.brand} {item.name} {item.size_amt} {item.u_size}</td>
+                          <td style={{ textAlign: 'left' }}>{item.qty}</td>
+                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center', textAlign: 'left' }}>
                             <button
                               type="button"
                               className="edit-item-btn"
@@ -1385,9 +1385,9 @@ const InventoryTransfer = () => {
                       })
                       .map((item) => (
                         <tr key={item.id}>
-                          <td>{item.brand} {item.name} {item.size_amt} {item.u_size}</td>
-                          <td>{item.qty}</td>
-                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center' }}>
+                          <td style={{ textAlign: 'left' }}>{item.brand} {item.name} {item.size_amt} {item.u_size}</td>
+                          <td style={{ textAlign: 'left' }}>{item.qty}</td>
+                          <td style={{ display: 'flex', gap: '5px', justifyContent: 'center', textAlign: 'left' }}>
                             <button
                               type="button"
                               className="edit-item-btn"
@@ -1786,8 +1786,8 @@ const InventoryTransfer = () => {
                     })
                     .map((item, index) => (
                       <tr key={index}>
-                        <td>{item.TO_PRODUCT?.brand || ''} {item.TO_PRODUCT?.name || ''} {item.TO_PRODUCT?.size_amt || ''} {item.TO_PRODUCT?.u_size || ''}</td>
-                        <td>{item.qty}</td>
+                        <td style={{ textAlign: 'left' }}>{item.TO_PRODUCT?.brand || ''} {item.TO_PRODUCT?.name || ''} {item.TO_PRODUCT?.size_amt || ''} {item.TO_PRODUCT?.u_size || ''}</td>
+                        <td style={{ textAlign: 'left' }}>{item.qty}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -1877,10 +1877,10 @@ const InventoryTransfer = () => {
                 {printData.items && printData.items.length > 0 ? (
                   printData.items.map((item, index) => (
                     <tr key={index}>
-                      <td>
+                      <td style={{ textAlign: 'left' }}>
                         {item?.brand || ''} {item?.name || ''} {item?.size_amt || ''} {item?.u_size || ''}
                       </td>
-                      <td>{item?.qty || 0}</td>
+                      <td style={{ textAlign: 'left' }}>{item?.qty || 0}</td>
                     </tr>
                   ))
                 ) : (
