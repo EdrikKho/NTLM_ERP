@@ -307,6 +307,7 @@ const Suppliers = () => {
                       onClick={() =>
                         displaySupplier(supplier.sup_no)
                       }
+                      title="Edit Supplier"
                     >
                       <FiEdit color="#185229" size={18} />
                     </button>
@@ -318,6 +319,7 @@ const Suppliers = () => {
                           setSelectedSupplier(supplier);
                           setShowDeleteModal(true);
                         }}
+                        title="Delete Supplier"
                       >
                         <FiTrash2
                           color="rgb(219, 32, 32)"

@@ -509,6 +509,7 @@ const Inventory = () => {
                       onClick={() =>
                         displayProduct(product.prod_no)
                       }
+                      title="Edit Product"
                     >
                       <FiEdit color="#185229" size={18} />
                     </button>
@@ -520,6 +521,7 @@ const Inventory = () => {
                           setSelectedProduct(product);
                           setShowDeleteModal(true);
                         }}
+                        title="Delete Product"
                       >
                         <FiTrash2 color="rgb(219, 32, 32)" size={18} />
                       </button>
