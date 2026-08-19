@@ -1214,7 +1214,7 @@ const SalesOrder = () => {
                       value={salesOrder.date}
                       onChange={handleSalesOrderChange}
                       className={submitted && !salesOrder.date ? "input-error" : ""}
-                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 400, color: '#333' }}
+                      style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 500 }}
                     />
                     {submitted && !salesOrder.date && (
                       <span className="error-text">Date is required.</span>
