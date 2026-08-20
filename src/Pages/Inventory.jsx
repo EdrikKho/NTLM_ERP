@@ -483,7 +483,7 @@ const Inventory = () => {
                 <th>Name</th>
                 <th>Size</th>
                 <th>Category</th>
-                <th>Price (Case)</th>
+                <th>Price (Box/Sack)</th>
                 <th>Price (Piece)</th>
                 <th>Location</th>
                 <th>Quantity</th>
