@@ -410,10 +410,12 @@ const Payments = () => {
               <input
                 type="date"
                 name="date"
-                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
+                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000', outline: 'none' }}
                 value={payment.date}
                 onChange={handleChange}
                 className={submitted && !payment.date ? "payment-input-error" : ""}
+                onFocus={(e) => e.target.style.borderColor = '#185229'}
+                onBlur={(e) => e.target.style.borderColor = ''}
               />
 
               {submitted && !payment.date && (
@@ -431,6 +433,9 @@ const Payments = () => {
                 value={payment.salestrans_no}
                 onChange={handleChange}
                 className={submitted && !payment.salestrans_no ? "payment-input-error" : ""}
+                style={{ outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#185229'}
+                onBlur={(e) => e.target.style.borderColor = ''}
               >
                 <option value="">Select Sales Order</option>
                 {salesOrders.map((order) => (
@@ -453,6 +458,9 @@ const Payments = () => {
                 value={payment.p_method}
                 onChange={handleChange}
                 className={submitted && !payment.p_method ? "payment-input-error" : ""}
+                style={{ outline: 'none' }}
+                onFocus={(e) => e.target.style.borderColor = '#185229'}
+                onBlur={(e) => e.target.style.borderColor = ''}
               >
                 <option value="">Select Payment Method</option>
                 <option value="Cash">Cash</option>
@@ -491,10 +499,12 @@ const Payments = () => {
                   <input
                     type="date"
                     name="check_date"
-                    style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
+                    style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000', outline: 'none' }}
                     value={payment.check_date}
                     onChange={handleChange}
                     className={submitted && !payment.check_date ? "payment-input-error" : ""}
+                    onFocus={(e) => e.target.style.borderColor = '#185229'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
                   />
 
                   {submitted && !payment.check_date && (
