@@ -480,7 +480,6 @@ const Payments = () => {
                   <input
                     type="text"
                     name="check_no"
-                    placeholder="Enter check number"
                     value={payment.check_no}
                     onChange={handleChange}
                     className={submitted && !payment.check_no ? "payment-input-error" : ""}
