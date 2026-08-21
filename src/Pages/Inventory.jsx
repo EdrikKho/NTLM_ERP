@@ -459,7 +459,7 @@ const filteredProducts = products
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
                 className="inventory-filter-select"
-                style={{ paddingRight: '-5px', width: '300' }}
+                style={{ marginRight: '-5px', width: '100' }}
               >
                 <option value="default">Default (Newest First)</option>
                 <option value="alphabetical">Alphabetical (A-Z)</option>
