@@ -289,7 +289,6 @@ const Suppliers = () => {
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
                 className="supplier-filter-select"
-                // style={{ marginLeft: '-4px' }}
               >
                 <option value="default">Default (Newest First)</option>
                 <option value="alphabetical">Alphabetical (A-Z)</option>

@@ -20,6 +20,7 @@ const Customers = () => {
   const [submittedAdd, setSubmittedAdd] = useState(false);
   const [submittedEdit, setSubmittedEdit] = useState(false);
 
+  const [sortOption, setSortOption] = useState('default'); // 'default' or 'alphabetical'
   // ADD CUSTOMER STATE
   const [customer, setCustomer] = useState({
     name: '',
@@ -218,10 +219,19 @@ const Customers = () => {
     fetchCustomers();
   }
 
-  // SEARCH FILTER
-  const filteredCustomers = customers.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase())
-  );
+  // SEARCH FILTER WITH SORTING
+  const filteredCustomers = customers
+    .filter((c) =>
+      c.name.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOption === 'alphabetical') {
+        // Sort alphabetically by name
+        return a.name.localeCompare(b.name);
+      }
+      // Default: sort by cust_no descending (most recently added first)
+      return b.cust_no - a.cust_no;
+    });
 
   return (
     <div className="customerpage">
@@ -273,6 +283,15 @@ const Customers = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-bar"
               />
+
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="customer-filter-select"
+              >
+                <option value="default">Default (Newest First)</option>
+                <option value="alphabetical">Alphabetical (A-Z)</option>
+              </select>
             </div>
           </div>
         </div>
