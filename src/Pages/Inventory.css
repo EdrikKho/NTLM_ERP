@@ -394,7 +394,7 @@ table button {
 
 .inventory-search-container {
   flex: 2;
-  min-width: 250px;
+  min-width: 100px;
 }
 
 .inventory-filter-group {
