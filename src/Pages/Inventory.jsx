@@ -593,7 +593,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Size Amount
+                Weight/Volume
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -610,7 +610,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Unit Size
+                Unit of Measure
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -640,7 +640,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Price (Case)
+                Price (Box/Sack)
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -715,7 +715,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Stock
+                Quantity
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -803,7 +803,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Size Amount
+                Weight/Volume
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -820,7 +820,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Unit Size
+                Unit of Measure
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -850,7 +850,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Price (Case)
+                Price (Box/Sack)
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -925,7 +925,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Stock
+                Quantity
                 <span className="inventory-required">*</span>
               </label>
               <input
