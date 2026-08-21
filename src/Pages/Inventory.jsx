@@ -507,7 +507,7 @@ const filteredProducts = products
                 <th>Name</th>
                 <th>Size</th>
                 <th>Category</th>
-                <th>Price (Box/Sack)</th>
+                <th>Price (Case/Sack)</th>
                 <th>Price (Piece)</th>
                 <th>Location</th>
                 <th>Quantity</th>
@@ -655,7 +655,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Price (Box/Sack)
+                Price (Case/Sack)
                 <span className="inventory-required">*</span>
               </label>
               <input
@@ -868,7 +868,7 @@ const filteredProducts = products
               )}
 
               <label>
-                Price (Box/Sack)
+                Price (Case/Sack)
                 <span className="inventory-required">*</span>
               </label>
               <input
