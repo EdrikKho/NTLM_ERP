@@ -606,22 +606,31 @@ const filteredProducts = products
               />
 
               {submitted && !product.size_amt && (
-                <span className="inventory-error-text">Size Amount is required.</span>
+                <span className="inventory-error-text">Weight/Volume is required.</span>
               )}
 
               <label>
                 Unit of Measure
                 <span className="inventory-required">*</span>
               </label>
-              <input
+              <select
                 name="u_size"
                 value={product.u_size}
                 onChange={handleChange}
                 className={submitted && !product.u_size ? "inventory-input-error" : ""}
-              />
+              >
+                <option value="">Select Unit</option>
+                <option value="mg">mg</option>
+                <option value="g">g</option>
+                <option value="kg">kg</option>
+                <option value="oz">oz</option>
+                <option value="mL">mL</option>
+                <option value="L">L</option>
+                <option value="gal">gal</option>
+              </select>
 
               {submitted && !product.u_size && (
-                <span className="inventory-error-text">Unit Size is required.</span>
+                <span className="inventory-error-text">Unit of Measure is required.</span>
               )}
 
               <label>
