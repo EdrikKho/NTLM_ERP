@@ -619,7 +619,7 @@ const filteredProducts = products
                 onChange={handleChange}
                 className={submitted && !product.u_size ? "inventory-input-error" : ""}
               >
-                <option value="">Select Unit</option>
+                <option value="">Select Unit of Measure</option>
                 <option value="mg">mg</option>
                 <option value="g">g</option>
                 <option value="kg">kg</option>
