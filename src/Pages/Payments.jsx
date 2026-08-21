@@ -478,14 +478,21 @@ const Payments = () => {
                     <span className="payment_required">*</span>
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     name="check_no"
+                    placeholder="Enter check number"
                     value={payment.check_no}
                     onChange={handleChange}
                     className={submitted && !payment.check_no ? "payment-input-error" : ""}
                     style={{ outline: 'none' }}
                     onFocus={(e) => e.target.style.borderColor = '#185229'}
                     onBlur={(e) => e.target.style.borderColor = ''}
+                    pattern="[0-9]*"
+                    onKeyPress={(e) => {
+                      if (!/[0-9]/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                   />
 
                   {submitted && !payment.check_no && (
