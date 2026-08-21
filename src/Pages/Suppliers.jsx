@@ -18,6 +18,7 @@ const Suppliers = () => {
 
   const [submitted, setSubmitted] = useState(false);
   const [submittedEdit, setSubmittedEdit] = useState(false);
+  const [sortOption, setSortOption] = useState('default'); // 'default' or 'alphabetical'
 
   // ADD SUPPLIER STATE
   const [supplier, setSupplier] = useState({
@@ -221,10 +222,19 @@ const Suppliers = () => {
     fetchSuppliers();
   }
 
-  // SEARCH FILTER
-  const filteredSuppliers = suppliers.filter((s) =>
-    s.com_name?.toLowerCase().includes(search.toLowerCase())
-  );
+  // SEARCH FILTER WITH SORTING
+  const filteredSuppliers = suppliers
+    .filter((s) =>
+      s.com_name?.toLowerCase().includes(search.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (sortOption === 'alphabetical') {
+        // Sort alphabetically by company name
+        return a.com_name.localeCompare(b.com_name);
+      }
+      // Default: sort by sup_no descending (most recently added first)
+      return b.sup_no - a.sup_no;
+    });
 
   return (
     <div className="supplierpage">
@@ -274,6 +284,16 @@ const Suppliers = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 className="search-bar"
               />
+
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="supplier-filter-select"
+                style={{ marginLeft: '-4px' }}
+              >
+                <option value="default">Default (Newest First)</option>
+                <option value="alphabetical">Alphabetical (A-Z)</option>
+              </select>
             </div>
           </div>
         </div>

@@ -346,3 +346,20 @@ table button {
   margin-bottom: 8px;
   display: block;
 }
+
+.supplier-filter-select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  margin-left: 1px;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  flex: 1;
+  min-width: 120px;
+}
+
+.supplier-filter-select:focus {
+  outline: none;
+  border-color: #185229;
+}
