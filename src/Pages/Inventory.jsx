@@ -208,9 +208,15 @@ const Inventory = () => {
       return;
     }
 
+    // Prepare data - convert empty price_piece to null
+    const productData = {
+      ...product,
+      price_piece: product.price_piece === '' ? null : parseFloat(product.price_piece)
+    };
+
     const { error } = await supabase
       .from('PRODUCT')
-      .insert([product]);
+      .insert([productData]);
 
     if (!error) {
       toast.success('Product added successfully');
@@ -251,7 +257,7 @@ const Inventory = () => {
         u_size: selected.u_size,
         category: selected.category,
         price_case: selected.price_case,
-        price_piece: selected.price_piece,
+        price_piece: selected.price_piece ?? '', // Convert null to empty string
         sup_no: selected.sup_no,
         loc_name: selected.loc_name,
         stock: selected.stock
@@ -305,7 +311,7 @@ const Inventory = () => {
         u_size: product2.u_size,
         category: product2.category,
         price_case: product2.price_case,
-        price_piece: product2.price_piece,
+        price_piece: product2.price_piece === '' ? null : parseFloat(product2.price_piece),
         sup_no: product2.sup_no,
         loc_name: product2.loc_name,
         stock: product2.stock
