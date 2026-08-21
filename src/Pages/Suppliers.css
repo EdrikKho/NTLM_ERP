@@ -350,13 +350,13 @@ table button {
 .supplier-filter-select {
   padding: 10px 12px;
   border: 1px solid #ccc;
-  margin-left: 1px;
+  margin-left: 5px;
   border-radius: 6px;
   font-size: 14px;
   background: white;
   cursor: pointer;
   flex: 1;
-  min-width: 120px;
+  min-width: 150px;
 }
 
 .supplier-filter-select:focus {
