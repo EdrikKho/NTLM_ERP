@@ -411,7 +411,7 @@ table button {
   font-size: 14px;
   background: white;
   cursor: pointer;
-  flex: 1;
+  
   min-width: 100px;
 }
 
