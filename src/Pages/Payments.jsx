@@ -28,7 +28,10 @@ const Payments = () => {
   const [payment, setPayment] = useState({
     date: new Date().toISOString().split('T')[0],
     p_method: '',
-    salestrans_no: ''
+    salestrans_no: '',
+    check_no: '',
+    check_date: '',
+    bank_name: ''
   });
 
   // EDIT PAYMENT STATE
@@ -152,6 +155,13 @@ const Payments = () => {
       return;
     }
 
+    // After checking date, p_method, salestrans_no
+    if (payment.p_method === 'Check') {
+      if (!payment.check_no || !payment.check_date || !payment.bank_name) {
+        return;
+      }
+    }
+
     // Get user ID from email
     const u_id = await getUserIdFromEmail(email);
     if (!u_id) {
@@ -162,7 +172,10 @@ const Payments = () => {
       date: payment.date,
       p_method: payment.p_method,
       u_id: u_id,
-      salestrans_no: parseInt(payment.salestrans_no)
+      salestrans_no: parseInt(payment.salestrans_no),
+      check_no: payment.p_method === 'Check' ? payment.check_no : null,
+      check_date: payment.p_method === 'Check' ? payment.check_date : null,
+      bank_name: payment.p_method === 'Check' ? payment.bank_name : null
     };
 
     const { error } = await supabase
@@ -343,6 +356,9 @@ const Payments = () => {
               <tr>
                 <th>Date</th>
                 <th>Payment Method</th>
+                <th>Check Number</th>
+                <th>Check Date</th>
+                <th>Bank Name</th>
                 <th>Customer Name</th>
                 <th>Sales Order Date</th>
                 <th>Total Amount</th>
@@ -355,6 +371,9 @@ const Payments = () => {
                 <tr key={payment.pay_no}>
                   <td style={{ textAlign: 'left' }}>{payment.date ? new Date(payment.date).toLocaleDateString() : ''}</td>
                   <td style={{ textAlign: 'left' }}>{payment.p_method}</td>
+                  <td style={{ textAlign: 'left' }}>{payment.p_method === 'Check' ? payment.check_no || 'N/A' : 'N/A'}</td>
+                  <td style={{ textAlign: 'left' }}>{payment.p_method === 'Check' && payment.check_date ? new Date(payment.check_date).toLocaleDateString() : 'N/A'}</td>
+                  <td style={{ textAlign: 'left' }}>{payment.p_method === 'Check' ? payment.bank_name || 'N/A' : 'N/A'}</td>
                   <td style={{ textAlign: 'left' }}>{payment.SALES_TRANS?.CUSTOMER?.name || 'N/A'}</td>
                   <td style={{ textAlign: 'left' }}>{payment.SALES_TRANS?.date ? new Date(payment.SALES_TRANS.date).toLocaleDateString() : 'N/A'}</td>
                   <td style={{ textAlign: 'right' }}>₱ {payment.SALES_TRANS?.total_amt?.toLocaleString() || '0.00'}</td>
@@ -444,6 +463,60 @@ const Payments = () => {
                 <span className="payment-error-text">Payment Method is required.</span>
               )}
 
+              {payment.p_method === 'Check' && (
+                <>
+                  <label>
+                    Check Number
+                    <span className="payment_required">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    name="check_no"
+                    placeholder="Enter check number"
+                    value={payment.check_no}
+                    onChange={handleChange}
+                    className={submitted && !payment.check_no ? "payment-input-error" : ""}
+                  />
+
+                  {submitted && !payment.check_no && (
+                    <span className="payment-error-text">Check Number is required.</span>
+                  )}
+
+                  <label>
+                    Check Date
+                    <span className="payment_required">*</span>
+                  </label>
+                  <input
+                    type="date"
+                    name="check_date"
+                    value={payment.check_date}
+                    onChange={handleChange}
+                    className={submitted && !payment.check_date ? "payment-input-error" : ""}
+                  />
+
+                  {submitted && !payment.check_date && (
+                    <span className="payment-error-text">Check Date is required.</span>
+                  )}
+
+                  <label>
+                    Bank Name
+                    <span className="payment_required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="bank_name"
+                    placeholder="Enter bank name"
+                    value={payment.bank_name}
+                    onChange={handleChange}
+                    className={submitted && !payment.bank_name ? "payment-input-error" : ""}
+                  />
+
+                  {submitted && !payment.bank_name && (
+                    <span className="payment-error-text">Bank Name is required.</span>
+                  )}
+                </>
+              )}
+
               <div className="payment-modal-actions">
                 <button type="submit">
                   Save
@@ -458,7 +531,10 @@ const Payments = () => {
                     setPayment({
                       date: new Date().toISOString().split('T')[0],
                       p_method: '',
-                      salestrans_no: ''
+                      salestrans_no: '',
+                      check_no: '',
+                      check_date: '',
+                      bank_name: ''
                     });
                   }}
                 >
