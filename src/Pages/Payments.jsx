@@ -472,10 +472,12 @@ const Payments = () => {
                   <input
                     type="number"
                     name="check_no"
-                    placeholder="Enter check number"
                     value={payment.check_no}
                     onChange={handleChange}
                     className={submitted && !payment.check_no ? "payment-input-error" : ""}
+                    style={{ outline: 'none' }}
+                    onFocus={(e) => e.target.style.borderColor = '#185229'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
                   />
 
                   {submitted && !payment.check_no && (
@@ -489,6 +491,7 @@ const Payments = () => {
                   <input
                     type="date"
                     name="check_date"
+                    style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                     value={payment.check_date}
                     onChange={handleChange}
                     className={submitted && !payment.check_date ? "payment-input-error" : ""}
@@ -505,10 +508,12 @@ const Payments = () => {
                   <input
                     type="text"
                     name="bank_name"
-                    placeholder="Enter bank name"
                     value={payment.bank_name}
                     onChange={handleChange}
                     className={submitted && !payment.bank_name ? "payment-input-error" : ""}
+                    style={{ outline: 'none' }}
+                    onFocus={(e) => e.target.style.borderColor = '#185229'}
+                    onBlur={(e) => e.target.style.borderColor = ''}
                   />
 
                   {submitted && !payment.bank_name && (
