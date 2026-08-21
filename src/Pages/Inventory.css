@@ -411,8 +411,7 @@ table button {
   font-size: 14px;
   background: white;
   cursor: pointer;
-  
-  min-width: 100px;
+  min-width: 200px;
 }
 
 .inventory-filter-select:focus {
