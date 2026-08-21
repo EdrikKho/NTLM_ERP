@@ -26,6 +26,7 @@ const Inventory = () => {
   const [locationFilter, setLocationFilter] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [categories, setCategories] = useState([]);
+  const [sortOption, setSortOption] = useState('default'); // 'default' or 'alphabetical'
 
   // ADD PRODUCT STATE
   const [product, setProduct] = useState({
@@ -384,8 +385,9 @@ const Inventory = () => {
     }
   }, [products]);
 
-  // SEARCH FILTER
-  const filteredProducts = products.filter((p) => {
+  // SEARCH FILTER WITH SORTING
+const filteredProducts = products
+  .filter((p) => {
     const matchesSearch = 
       p.name?.toLowerCase().includes(search.toLowerCase()) ||
       p.brand?.toLowerCase().includes(search.toLowerCase()) ||
@@ -397,6 +399,14 @@ const Inventory = () => {
     const matchesCategory = categoryFilter ? p.category === categoryFilter : true;
     
     return matchesSearch && matchesLocation && matchesCategory;
+  })
+  .sort((a, b) => {
+    if (sortOption === 'alphabetical') {
+      // Sort alphabetically by brand
+      return a.brand.localeCompare(b.brand);
+    }
+    // Default: sort by prod_no descending (most recently added first)
+    return b.prod_no - a.prod_no;
   });
 
   return (
@@ -444,6 +454,15 @@ const Inventory = () => {
                   className="inventory-search-bar"
                 />
               </div>
+
+              <select
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+                className="inventory-filter-select"
+              >
+                <option value="default">Sort: Default (Newest First)</option>
+                <option value="alphabetical">Sort: Alphabetical (A-Z)</option>
+              </select>
 
               <div className="inventory-filter-group">
                 <select
