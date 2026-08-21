@@ -356,7 +356,7 @@ table button {
   background: white;
   cursor: pointer;
   flex: 1;
-  min-width: 180px;
+  min-width: 190px;
 }
 
 .supplier-filter-select:focus {
