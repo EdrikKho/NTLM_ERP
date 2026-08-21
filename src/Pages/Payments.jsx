@@ -403,25 +403,6 @@ const Payments = () => {
               )}
 
               <label>
-                Payment Method
-                <span className="payment_required">*</span>
-              </label>
-              <select
-                name="p_method"
-                value={payment.p_method}
-                onChange={handleChange}
-                className={submitted && !payment.p_method ? "payment-input-error" : ""}
-              >
-                <option value="">Select Payment Method</option>
-                <option value="Cash">Cash</option>
-                <option value="Check">Check</option>
-              </select>
-
-              {submitted && !payment.p_method && (
-                <span className="payment-error-text">Payment Method is required.</span>
-              )}
-
-              <label>
                 Sales Order
                 <span className="payment_required">*</span>
               </label>
@@ -441,6 +422,25 @@ const Payments = () => {
 
               {submitted && !payment.salestrans_no && (
                 <span className="payment-error-text">Sales Order is required.</span>
+              )}
+
+              <label>
+                Payment Method
+                <span className="payment_required">*</span>
+              </label>
+              <select
+                name="p_method"
+                value={payment.p_method}
+                onChange={handleChange}
+                className={submitted && !payment.p_method ? "payment-input-error" : ""}
+              >
+                <option value="">Select Payment Method</option>
+                <option value="Cash">Cash</option>
+                <option value="Check">Check</option>
+              </select>
+
+              {submitted && !payment.p_method && (
+                <span className="payment-error-text">Payment Method is required.</span>
               )}
 
               <div className="payment-modal-actions">
