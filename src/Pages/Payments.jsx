@@ -391,6 +391,7 @@ const Payments = () => {
               <input
                 type="date"
                 name="date"
+                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
                 value={payment.date}
                 onChange={handleChange}
                 className={submitted && !payment.date ? "payment-input-error" : ""}
