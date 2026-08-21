@@ -825,9 +825,9 @@ const filteredProducts = products
               </label>
               <select
                 name="u_size"
-                value={product.u_size}
-                onChange={handleChange}
-                className={submitted && !product.u_size ? "inventory-input-error" : ""}
+                value={product2.u_size}
+                onChange={handleChange2}
+                className={submittedEdit && !product2.u_size ? "inventory-input-error" : ""}
               >
                 <option value="">Select Unit of Measure</option>
                 <option value="mg">mg</option>
