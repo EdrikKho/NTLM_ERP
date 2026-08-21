@@ -187,7 +187,6 @@ const Inventory = () => {
       !product.u_size ||
       !product.category ||
       !product.price_case ||
-      !product.price_piece ||
       !product.sup_no ||
       !product.loc_name ||
       !product.stock
@@ -275,7 +274,6 @@ const Inventory = () => {
       !product2.u_size ||
       !product2.category ||
       !product2.price_case ||
-      !product2.price_piece ||
       !product2.sup_no ||
       !product2.loc_name ||
       !product2.stock
@@ -519,7 +517,9 @@ const filteredProducts = products
                   <td style={{ textAlign: 'left' }}>{product.size_amt} {product.u_size}</td>
                   <td style={{ textAlign: 'left' }}>{product.category}</td>
                   <td style={{ textAlign: 'right' }}>₱ {parseFloat(product.price_case).toFixed(2)}</td>
-                  <td style={{ textAlign: 'right' }}>₱ {parseFloat(product.price_piece).toFixed(2)}</td>
+                  <td style={{ textAlign: 'right' }}>
+                    {product.price_piece ? `₱ ${parseFloat(product.price_piece).toFixed(2)}` : 'N/A'}
+                  </td>
                   <td style={{ textAlign: 'left' }}>{product.loc_name}</td>
                   <td style={{ textAlign: 'left' }}>{product.stock}</td>
 
@@ -667,7 +667,6 @@ const filteredProducts = products
 
               <label>
                 Price (Piece)
-                <span className="inventory-required">*</span>
               </label>
               <input
                 name="price_piece"
@@ -675,12 +674,7 @@ const filteredProducts = products
                 step="0.01"
                 value={product.price_piece}
                 onChange={handleChange}
-                className={submitted && !product.price_piece ? "inventory-input-error" : ""}
               />
-
-              {submitted && !product.price_piece && (
-                <span className="inventory-error-text">Price (Piece) is required.</span>
-              )}
 
               <label>
                 Supplier
@@ -886,7 +880,6 @@ const filteredProducts = products
 
               <label>
                 Price (Piece)
-                <span className="inventory-required">*</span>
               </label>
               <input
                 name="price_piece"
@@ -894,12 +887,7 @@ const filteredProducts = products
                 step="0.01"
                 value={product2.price_piece}
                 onChange={handleChange2}
-                className={submittedEdit && !product2.price_piece ? "inventory-input-error" : ""}
               />
-
-              {submittedEdit && !product2.price_piece && (
-                <span className="inventory-error-text">Price (Piece) is required.</span>
-              )}
 
               <label>
                 Supplier
