@@ -269,11 +269,12 @@ body {
 
 .dashboard-table thead th {
   font-weight: normal;
-  font-size: 1rem;
+  font-size: 14px;
   text-align: center;
   vertical-align: middle;
   padding: 12px;
   white-space: nowrap;
+  color: white;
 }
 
 .dashboard-table tbody tr:nth-child(even) {
@@ -311,23 +312,4 @@ body {
 
 .dashboard-clickable:active {
   transform: scale(0.98);
-}
-
-/* Status badge styles - Matching Reports.css */
-.status-badge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.status-pending {
-  background: #fff3cd;
-  color: #856404;
-}
-
-.status-completed {
-  background: #d4edda;
-  color: #155724;
 }
