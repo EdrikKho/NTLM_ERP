@@ -24,7 +24,11 @@ const Dashboard = () => {
   });
 
   // State for table data and which scorecard is active
-  const [activeTable, setActiveTable] = useState('todaySales');
+  const [activeTable, setActiveTable] = useState(() => {
+    if (role === 'employee') return 'pendingSalesOrders';
+    if (role === 'dispatcher') return 'pendingTransfers';
+    return 'todaySales';
+  });
   const [tableData, setTableData] = useState([]);
 
   const [lowStockItems, setLowStockItems] = useState([]);
@@ -503,7 +507,7 @@ const Dashboard = () => {
                   {/* Pending Transfers */}
                   <div 
                     className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
-                    style={{ flex: '0 0 49%', maxWidth: '49%' }}
+                    style={{ flex: '0 0 49.3%', maxWidth: '49.3%' }}
                     onClick={() => handleScorecardClick('pendingTransfers')}
                   >
                     <div className="dashboard-scorecard-header">
@@ -518,7 +522,7 @@ const Dashboard = () => {
                   {/* Released Transfers */}
                   <div 
                     className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
-                    style={{ flex: '0 0 49%', maxWidth: '49%' }}
+                    style={{ flex: '0 0 49.3%', maxWidth: '49.3%' }}
                     onClick={() => handleScorecardClick('releasedTransfers')}
                   >
                     <div className="dashboard-scorecard-header">
