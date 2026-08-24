@@ -322,6 +322,18 @@ const Reports = () => {
                       <th>Total Sales</th>
                     </tr>
                   </thead>
+                  <tbody>
+                    {salesData.map((sale, index) => (
+                        <tr key={index}>
+                          <td style={{ textAlign: 'left' }}>
+                            {new Date(sale.date).toLocaleDateString()}
+                          </td>
+                          <td style={{ textAlign: 'right' }}>
+                            ₱ {sale.total.toFixed(2)}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
                   <tfoot>
                     <tr className="reports-total-row">
                       <td style={{ textAlign: 'left' }}>
@@ -348,6 +360,16 @@ const Reports = () => {
                     <th>Sales Generated</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {topProducts.map((product, index) => (
+                      <tr key={index}>
+                        <td style={{ textAlign: 'left' }}>{product.brand}</td>
+                        <td style={{ textAlign: 'left' }}>{product.name}</td>
+                        <td style={{ textAlign: 'left' }}>{product.size}</td>
+                        <td style={{ textAlign: 'right' }}>₱ {product.totalSales.toFixed(2)}</td>
+                      </tr>
+                    ))}
+                </tbody>
               </table>
             </div>
           </div>
@@ -397,7 +419,7 @@ const Reports = () => {
                     </tr>
                   </thead>
                   <tbody>
-                      {arData.map((item, index) => (
+                    {arData.map((item, index) => (
                         <tr key={index}>
                           <td style={{ textAlign: 'left' }}>
                             {new Date(item.date).toLocaleDateString()}
