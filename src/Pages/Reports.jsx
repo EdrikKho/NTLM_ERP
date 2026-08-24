@@ -16,7 +16,6 @@ const Reports = () => {
 
   const role = user?.user_metadata?.role || '';
 
-  // ADD this after your state variables:
   useEffect(() => {
     const now = new Date();
     const currentMonth = now.toISOString().slice(0, 7);
@@ -83,9 +82,10 @@ const Reports = () => {
       const startDate = `${year}-${monthNum}-01`;
       const endDate = new Date(year, parseInt(monthNum), 0).toISOString().split('T')[0];
 
+      // FIX: Select 'salestrans_no' (not 'sales_trans_no')
       const { data: salesData, error: salesError } = await supabase
         .from('SALES_TRANS')
-        .select('salestrans_no')
+        .select('salestrans_no')  // Changed from 'sales_trans_no' to 'salestrans_no'
         .eq('status', 'Completed')
         .gte('date', startDate)
         .lte('date', endDate);
@@ -97,13 +97,14 @@ const Reports = () => {
         return;
       }
 
-      const salesTransNos = salesData.map(s => s.sales_trans_no);
+      // FIX: Map 'salestrans_no' (not 'sales_trans_no')
+      const salesTransNos = salesData.map(s => s.salestrans_no);  // Changed from s.sales_trans_no
 
-      // CHANGE: Table name to 'LINE_ITEM' AND field to 'salestrans_no'
+      // This part is correct - using LINE_ITEM with salestrans_no
       const { data: salesItems, error: itemsError } = await supabase
-        .from('LINE_ITEM')  // Changed from SALES_ITEM
+        .from('LINE_ITEM') 
         .select('prod_no, qty')
-        .in('salestrans_no', salesTransNos);  // Changed from sales_trans_no to salestrans_no
+        .in('salestrans_no', salesTransNos); 
 
       if (itemsError) throw itemsError;
 
