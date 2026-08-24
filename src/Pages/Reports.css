@@ -47,8 +47,8 @@
   align-items: center;
   gap: 10px;
   flex-wrap: nowrap;
-  flex: 1 1 auto; /* Allow it to grow and shrink */
-  min-width: 200px; /* Minimum width before wrapping */
+  flex: 0 0 auto; /* Prevent container from shrinking */
+  min-width: auto;
 }
 
 .reports-search-icon {
@@ -146,11 +146,12 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
-  min-width: 500px; /* Minimum size */
-  max-width: 1000px; /* Maximum size */
-  width: 100%; /* Take available space */
+  width: 1040px; /* Fixed width */
+  min-width: 1040px; /* Prevent shrinking */
+  max-width: 1040px; /* Prevent growing */
   height: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  flex: 0 0 auto; /* Prevent flex from shrinking it */
 }
 
 .reports-month-input:focus {
