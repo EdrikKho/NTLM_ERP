@@ -33,7 +33,6 @@ body {
   padding-bottom: 10px;
   padding-left: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e8ecf1;
   transition: box-shadow 0.3s ease;
 }
 
@@ -71,18 +70,6 @@ body {
   color: #1a202c;
 }
 
-.dashboard-scorecard-value-green {
-  color: #16a34a;
-}
-
-.dashboard-scorecard-value-yellow {
-  color: #f59e0b;
-}
-
-.dashboard-scorecard-value-red {
-  color: #dc2626;
-}
-
 /* Single Value Scorecards (Second Row) */
 .dashboard-scorecard-single {
   display: flex;
@@ -103,18 +90,6 @@ body {
   margin: 0;
 }
 
-.dashboard-scorecard-number-blue {
-  color: #2563eb;
-}
-
-.dashboard-scorecard-number-purple {
-  color: #7c3aed;
-}
-
-.dashboard-scorecard-number-cyan {
-  color: #0891b2;
-}
-
 /* Sections */
 .dashboard-section {
   background-color: #ffffff;
@@ -126,8 +101,7 @@ body {
 }
 
 .dashboard-section-title {
-  color: #6b7280;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   margin-bottom: 20px;
   text-transform: uppercase;
