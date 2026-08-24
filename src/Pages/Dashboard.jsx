@@ -314,8 +314,8 @@ const Dashboard = () => {
             transfertrans_no,
             date,
             status,
-            requester_id,
-            USER!requester_id (
+            dispatcher_id,
+            USER!dispatcher_id (
               f_name
             )
           `)
@@ -587,7 +587,7 @@ const Dashboard = () => {
                             {activeTable === 'releasedTransfers' && (  // ADD THIS BLOCK
                               <>
                                 <th>Date</th>
-                                <th>Requester</th>
+                                <th>Dispatcher</th>
                                 <th>Status</th>
                               </>
                             )}
