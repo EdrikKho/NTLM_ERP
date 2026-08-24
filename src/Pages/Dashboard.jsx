@@ -19,6 +19,7 @@ const Dashboard = () => {
     pendingSalesOrders: 0,
     pendingPurchaseOrders: 0,
     pendingTransfers: 0,
+    releasedTransfers: 0,  
     loading: false
   });
 
@@ -34,10 +35,11 @@ const Dashboard = () => {
     }
   }, [activeTable]);
 
-  // Set initial active table for employee
   useEffect(() => {
     if (role === 'employee') {
       setActiveTable('pendingSalesOrders');
+    } else if (role === 'dispatcher') {
+      setActiveTable('pendingTransfers');  
     }
   }, [role]);
 
@@ -118,6 +120,14 @@ const Dashboard = () => {
 
       if (transferPendingError) throw transferPendingError;
 
+      // 7. Released Transfers (status = 'Released' from TRANSFER_TRANS)
+      const { count: releasedTransferCount, error: releasedTransferError } = await supabase
+        .from('TRANSFER_TRANS')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'Released');
+
+      if (releasedTransferError) throw releasedTransferError;
+
       setDashboardData({
         todaySales: { totalOrders, totalSales },
         pendingReceivables: { 
@@ -131,6 +141,7 @@ const Dashboard = () => {
         pendingSalesOrders: pendingSalesCount || 0,
         pendingPurchaseOrders: pendingPurchaseCount || 0,
         pendingTransfers: pendingTransferCount || 0,
+        releasedTransfers: releasedTransferCount || 0, 
         loading: false
       });
 
@@ -268,6 +279,24 @@ const Dashboard = () => {
         data = transferData || [];
         break;
 
+        case 'releasedTransfers':
+        const { data: releasedData, error: releasedError } = await supabase
+          .from('TRANSFER_TRANS')
+          .select(`
+            transfertrans_no,
+            date,
+            status,
+            requester_id,
+            USER!requester_id (
+              f_name
+            )
+          `)
+          .eq('status', 'Released');
+
+        if (releasedError) throw releasedError;
+        data = releasedData || [];
+        break;
+
         default:
           data = [];
       }
@@ -299,6 +328,8 @@ const Dashboard = () => {
         return 'Pending Purchase Orders';
       case 'pendingTransfers':
         return 'Pending Transfers';
+      case 'releasedTransfers':  
+        return 'Released Transfers';
       default:
         return '';
     }
@@ -417,51 +448,87 @@ const Dashboard = () => {
                   </div>
                 </div>
               )}
-
+              
+              
               {/* Scorecards Grid - Second Row (Pending Counts) */}
-              <div className="dashboard-scorecards-row">
-                {/* Pending Sales Orders */}
-                <div 
-                  className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
-                  onClick={() => handleScorecardClick('pendingSalesOrders')}
-                >
-                  <div className="dashboard-scorecard-header">
-                    <FiShoppingCart className="dashboard-icon"/>
-                    <h3 className="dashboard-scorecard-title">Pending Sales Orders</h3>
+              {(role === 'admin' || role === 'employee') && (
+                <div className="dashboard-scorecards-row">
+                  {/* Pending Sales Orders */}
+                  <div 
+                    className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                    onClick={() => handleScorecardClick('pendingSalesOrders')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FiShoppingCart className="dashboard-icon"/>
+                      <h3 className="dashboard-scorecard-title">Pending Sales Orders</h3>
+                    </div>
+                    <p className="dashboard-scorecard-number dashboard-scorecard-number-blue">
+                      {dashboardData.pendingSalesOrders}
+                    </p>
                   </div>
-                  <p className="dashboard-scorecard-number dashboard-scorecard-number-blue">
-                    {dashboardData.pendingSalesOrders}
-                  </p>
-                </div>
 
-                {/* Pending Purchase Orders */}
-                <div 
-                  className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
-                  onClick={() => handleScorecardClick('pendingPurchaseOrders')}
-                >
-                  <div className="dashboard-scorecard-header">
-                    <FiClipboard className="dashboard-icon"/>
-                    <h3 className="dashboard-scorecard-title">Pending Purchase Orders</h3>
+                  {/* Pending Purchase Orders */}
+                  <div 
+                    className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                    onClick={() => handleScorecardClick('pendingPurchaseOrders')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FiClipboard className="dashboard-icon"/>
+                      <h3 className="dashboard-scorecard-title">Pending Purchase Orders</h3>
+                    </div>
+                    <p className="dashboard-scorecard-number dashboard-scorecard-number-purple">
+                      {dashboardData.pendingPurchaseOrders}
+                    </p>
                   </div>
-                  <p className="dashboard-scorecard-number dashboard-scorecard-number-purple">
-                    {dashboardData.pendingPurchaseOrders}
-                  </p>
-                </div>
 
-                {/* Pending Transfers */}
-                <div 
-                  className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
-                  onClick={() => handleScorecardClick('pendingTransfers')}
-                >
-                  <div className="dashboard-scorecard-header">
-                    <FiRepeat className="dashboard-icon"/>
-                    <h3 className="dashboard-scorecard-title">Pending Transfers</h3>
+                  {/* Pending Transfers */}
+                  <div 
+                    className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                    onClick={() => handleScorecardClick('pendingTransfers')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FiRepeat className="dashboard-icon"/>
+                      <h3 className="dashboard-scorecard-title">Pending Transfers</h3>
+                    </div>
+                    <p className="dashboard-scorecard-number dashboard-scorecard-number-cyan">
+                      {dashboardData.pendingTransfers}
+                    </p>
                   </div>
-                  <p className="dashboard-scorecard-number dashboard-scorecard-number-cyan">
-                    {dashboardData.pendingTransfers}
-                  </p>
                 </div>
-              </div>
+              )}
+
+              {/* Scorecards Grid - Dispatcher Row */}
+              {role === 'dispatcher' && (
+                <div className="dashboard-scorecards-row">
+                  {/* Pending Transfers */}
+                  <div 
+                    className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                    onClick={() => handleScorecardClick('pendingTransfers')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FiRepeat className="dashboard-icon"/>
+                      <h3 className="dashboard-scorecard-title">Pending Transfers</h3>
+                    </div>
+                    <p className="dashboard-scorecard-number dashboard-scorecard-number-cyan">
+                      {dashboardData.pendingTransfers}
+                    </p>
+                  </div>
+
+                  {/* Released Transfers */}
+                  <div 
+                    className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                    onClick={() => handleScorecardClick('releasedTransfers')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FiRepeat className="dashboard-icon" style={{color: 'green'}}/>
+                      <h3 className="dashboard-scorecard-title">Released Transfers</h3>
+                    </div>
+                    <p className="dashboard-scorecard-number dashboard-scorecard-number-green">
+                      {dashboardData.releasedTransfers}
+                    </p>
+                  </div>
+                </div>
+              )}
 
               {/* Table Section */}
                 <div className="dashboard-section">
@@ -481,6 +548,13 @@ const Dashboard = () => {
                               </>
                             )}
                             {activeTable === 'pendingTransfers' && (
+                              <>
+                                <th>Date</th>
+                                <th>Requester</th>
+                                <th>Status</th>
+                              </>
+                            )}
+                            {activeTable === 'releasedTransfers' && (  // ADD THIS BLOCK
                               <>
                                 <th>Date</th>
                                 <th>Requester</th>
@@ -523,6 +597,19 @@ const Dashboard = () => {
                                 <td style={{ textAlign: 'left' }}>{item.USER?.f_name}</td>
                                 <td style={{ textAlign: 'left' }}>
                                   <span className="status-badge status-pending">{item.status}</span>
+                                </td>
+                              </tr>
+                            ))
+                          }
+                          {activeTable === 'releasedTransfers' &&   // ADD THIS BLOCK
+                            tableData.map((item) => (
+                              <tr key={item.transfertrans_no}>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>{item.USER?.f_name}</td>
+                                <td style={{ textAlign: 'left' }}>
+                                  <span className="status-badge status-completed">{item.status}</span>
                                 </td>
                               </tr>
                             ))
