@@ -287,6 +287,14 @@ const Dashboard = () => {
     }
   };
 
+  // Format currency with 2 decimal places
+  const formatCurrency = (amount) => {
+    if (amount === undefined || amount === null || isNaN(amount)) {
+      return '0.00';
+    }
+    return amount.toFixed(2).toLocaleString();
+  };
+
   const role = user?.user_metadata?.role || '';
   const firstName = user?.user_metadata?.first_name || '';
   const lastName = user?.user_metadata?.last_name || '';
