@@ -135,7 +135,7 @@ const Dashboard = () => {
               {/* Scorecards Grid - First Row */}
               <div className="dashboard-scorecards-row">
                 {/* Today's Sales */}
-                <div className="dashboard-scorecard">
+                <div className="dashboard-scorecardfirst">
                   <h3 className="dashboard-scorecard-title">Today's Sales</h3>
                   <div className="dashboard-scorecard-content">
                     <div className="dashboard-scorecard-item">
@@ -154,7 +154,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Pending Receivables */}
-                <div className="dashboard-scorecard">
+                <div className="dashboard-scorecardfirst">
                   <h3 className="dashboard-scorecard-title">Pending Receivables</h3>
                   <div className="dashboard-scorecard-content">
                     <div className="dashboard-scorecard-item">
@@ -173,7 +173,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* Overdue Receivables */}
-                <div className="dashboard-scorecard">
+                <div className="dashboard-scorecardfirst">
                   <h3 className="dashboard-scorecard-title">Overdue Receivables</h3>
                   <div className="dashboard-scorecard-content">
                     <div className="dashboard-scorecard-item">
