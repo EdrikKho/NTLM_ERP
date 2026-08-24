@@ -389,11 +389,11 @@ table button {
   display: flex;
   gap: 15px;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .inventory-search-container {
-  flex: 2;
+  flex: 1 0 auto; /* Grow but don't shrink */
   min-width: 100px;
 }
 
