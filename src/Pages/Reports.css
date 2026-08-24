@@ -144,6 +144,7 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
+  min-width: 97.6%;
   height: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -153,19 +154,49 @@
   outline: none;
 }
 
+.reports-ar-search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.reports-ar-month-input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  height: 18px;
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.reports-ar-month-input:focus {
+  border-color: #185229;
+  outline: none;
+}
+
 /* Receivables */
-.reports-customer-select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.reports-ar-customer-select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
   font-size: 14px;
   background: white;
   min-width: 200px;
+  max-width: 300px;
+  flex: 1;
   cursor: pointer;
   height: 38px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.reports-customer-select:focus {
+.reports-ar-customer-select:focus {
   outline: none;
   border-color: #185229;
 }
@@ -242,6 +273,34 @@
     width: 100%;
     min-width: auto;
   }
+
+  .reports-ar-search-container {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  
+  .reports-ar-month-input {
+    max-width: 100%;
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .reports-ar-customer-select {
+    max-width: 100%;
+    width: 100%;
+    min-width: auto;
+  }
+
+  .reports-toggle-container {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .reports-toggle-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -249,5 +308,29 @@
   .reports-styled-table td {
     font-size: 12px;
     padding: 6px 8px;
+  }
+}
+
+@media (max-width: 992px) {
+  .reportspage {
+    margin-left: 240px;
+  }
+  
+  .reports-ar-month-input {
+    max-width: 220px;
+  }
+  
+  .reports-ar-customer-select {
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .reports-ar-month-input {
+    max-width: 250px;
+  }
+  
+  .reports-ar-customer-select {
+    max-width: 250px;
   }
 }

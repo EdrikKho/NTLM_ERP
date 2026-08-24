@@ -392,19 +392,19 @@ const Reports = () => {
           <div className="reports-section">
             <div className="reports-search-card">
               <div className="reports-filters-container">
-                <div className="reports-search-container">
+                <div className="reports-ar-search-container">
                   <input
                     type="month"
                     id="month"
                     value={selectedMonth}
                     onChange={handleMonthChange}
-                    className="reports-month-input"
+                    className="reports-ar-month-input"
                   />
                   <select
                     id="customerFilter"
                     value={selectedCustomer}
                     onChange={handleCustomerChange}
-                    className="reports-customer-select"
+                    className="reports-ar-customer-select"
                   >
                     <option value="">All Customers</option>
                     {customers.map(customer => (
