@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../client';
-import { FaChartLine, FaMoneyCheck, FaExclamationTriangle, FaShoppingCart, FaClipboard, FaRepeat } from 'react-icons/fa';
+import { FaChartLine, FaMoneyCheck, FaExclamationTriangle } from 'react-icons/fa';
 import { FiShoppingCart, FiClipboard, FiRepeat } from 'react-icons/fi';
 import './Dashboard.css';
 import { FaRepeat } from 'react-icons/fa6';
