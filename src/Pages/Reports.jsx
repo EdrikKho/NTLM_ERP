@@ -209,7 +209,7 @@ const Reports = () => {
       <div className="reports-header-row">
         <h1>Reports</h1>
       </div>
-
+      <h2 className="reports-table-title">Sales Report</h2>
       <div className="reports-section">
         <div className="reports-search-card">
           <div className="reports-filters-container">
@@ -245,7 +245,6 @@ const Reports = () => {
         </div>
 
         <div className="reports-table-container">
-          <h2 className="reports-table-title">Sales Report</h2>
           {loading ? (
             <div className="reports-loading">Loading...</div>
           ) : (
