@@ -149,7 +149,7 @@
   width: 100%; /* Fill the container */
   min-width: 100%; /* Force it to fill */
   max-width: 100%; /* Prevent it from exceeding */
-  height: 18px;
+  height: 30px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box; /* Include padding in width calculation */
 }
