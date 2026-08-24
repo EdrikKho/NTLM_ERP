@@ -1,4 +1,10 @@
-
+.dashboard-container {
+  background: white;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-left: 270px;
+}
 
 .dashboard-content-wrapper {
   padding: 20px;
