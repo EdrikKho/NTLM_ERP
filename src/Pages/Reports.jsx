@@ -227,7 +227,7 @@ const Reports = () => {
                         {new Date(sale.date).toLocaleDateString()}
                       </td>
                       <td style={{ textAlign: 'right' }}>
-                        ₱ {sale.totalAmt.toFixed(2)}
+                        ₱ {sale.total.toFixed(2)}
                       </td>
                     </tr>
                   ))
