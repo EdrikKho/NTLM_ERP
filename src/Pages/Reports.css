@@ -20,6 +20,13 @@
   margin-top: 20px;
 }
 
+.reports-toggle-container {
+  display: flex;
+  gap: 20px; /* Increase from 10px to 20px or whatever you want */
+  margin: 20px 0 30px 0;
+  padding: 0 20px;
+}
+
 .reports-search-card {
   background: white;
   padding: 15px 20px;
