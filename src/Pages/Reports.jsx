@@ -194,9 +194,6 @@ const Reports = () => {
         <div className="reports-search-card">
           <div className="reports-filters-container">
             <div className="reports-search-container">
-              <label htmlFor="month" className="reports-month-label">
-                Select Month:
-              </label>
               <input
                 type="month"
                 id="month"
