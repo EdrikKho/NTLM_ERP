@@ -16,7 +16,7 @@ const Dashboard = () => {
     pendingSalesOrders: 0,
     pendingPurchaseOrders: 0,
     pendingTransfers: 0,
-    loading: true
+    loading: false
   });
 
   useEffect(() => {
@@ -129,10 +129,6 @@ const Dashboard = () => {
         <div className="dashboard-content-wrapper">
           <h1 className="dashboard-title">Dashboard</h1>
 
-          {dashboardData.loading ? (
-            <div className="dashboard-loading">Loading dashboard data...</div>
-          ) : (
-            <>
               {/* Scorecards Grid - First Row */}
               <div className="dashboard-scorecards-row">
                 {/* Today's Sales */}
@@ -253,8 +249,6 @@ const Dashboard = () => {
                   </tbody>
                 </table>
               </div>
-            </>
-          )}
         </div>
       </div>
     </div>
