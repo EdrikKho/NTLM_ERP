@@ -23,8 +23,6 @@
 .reports-toggle-container {
   display: flex;
   gap: 20px; /* Increase from 10px to 20px or whatever you want */
-  margin: 20px 0 30px 0;
-  padding: 0 20px;
 }
 
 .reports-search-card {
@@ -169,7 +167,7 @@
 
 .reports-customer-select:focus {
   outline: none;
-  border-color: #4A90D9;
+  border-color: #185229;
 }
 
 .reports-filters-container {
@@ -194,10 +192,6 @@
   display: inline-block;
 }
 
-.status-pending {
-  background: #fff3e0;
-  color: #e65100;
-}
 /* Responsive */
 @media (max-width: 1024px) {
   .reportspage {
