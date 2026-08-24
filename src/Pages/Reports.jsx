@@ -303,7 +303,6 @@ const Reports = () => {
                     value={selectedMonth}
                     onChange={handleMonthChange}
                     className="reports-month-input"
-                    style = {{ minWidth: '1040px', width: '1040px'}}
                   />
                 </div>
               </div>
@@ -400,7 +399,6 @@ const Reports = () => {
                     value={selectedMonth}
                     onChange={handleMonthChange}
                     className="reports-month-input"
-                    style = {{ minWidth: '830px', width: '830px'}}
                   />
                   <select
                     id="customerFilter"
