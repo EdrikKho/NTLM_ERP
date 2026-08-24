@@ -20,7 +20,7 @@ body {
 .dashboard-icon {
   font-size: 25px;
   color: #185229;
-  height: 100px;
+  padding-top: 15px;
 }
 
 /* Loading State */
