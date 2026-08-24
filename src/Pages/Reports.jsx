@@ -1,9 +1,8 @@
-// Reports.jsx
+// Reports.jsx - Simplified version matching your other pages
 import React, { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
-import { supabase } from '../lib/supabaseClient';
+import { supabase } from '../client';
 import { FiSearch } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import './Reports.css';
@@ -18,8 +17,6 @@ const Reports = () => {
   const [loading, setLoading] = useState(false);
 
   const role = user?.user_metadata?.role || '';
-  const firstName = user?.user_metadata?.first_name || '';
-  const lastName = user?.user_metadata?.last_name || '';
 
   // Generate month options
   const months = [
@@ -37,12 +34,11 @@ const Reports = () => {
     { value: 12, label: 'December' }
   ];
 
-  // Generate year options (current year and 5 years back)
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: 6 }, (_, i) => currentYear - i);
 
   useEffect(() => {
-    if (role === 'superuser' || role === 'admin') {
+    if (role === 'admin' || role === 'superuser') {
       fetchSalesData();
       fetchTopProducts();
     }
@@ -51,17 +47,15 @@ const Reports = () => {
   const fetchSalesData = async () => {
     setLoading(true);
     try {
-      // Get start and end date for the selected month
       const startDate = new Date(selectedYear, selectedMonth - 1, 1);
       const endDate = new Date(selectedYear, selectedMonth, 0);
       
       const startDateStr = startDate.toISOString().split('T')[0];
       const endDateStr = endDate.toISOString().split('T')[0];
 
-      // Fetch sales data with status 'Completed'
       const { data, error } = await supabase
         .from('SALES_TRANS')
-        .select('date, total_amt, sales_trans_no')
+        .select('date, total_amt')
         .eq('status', 'Completed')
         .gte('date', startDateStr)
         .lte('date', endDateStr)
@@ -69,7 +63,6 @@ const Reports = () => {
 
       if (error) throw error;
 
-      // Group sales by date
       const salesByDate = {};
       let total = 0;
       
@@ -83,7 +76,6 @@ const Reports = () => {
         total += sale.total_amt;
       });
 
-      // Convert to array format for table
       const formattedSales = Object.entries(salesByDate).map(([date, totalAmt]) => ({
         date,
         totalAmt
@@ -101,14 +93,12 @@ const Reports = () => {
 
   const fetchTopProducts = async () => {
     try {
-      // Get start and end date for the selected month
       const startDate = new Date(selectedYear, selectedMonth - 1, 1);
       const endDate = new Date(selectedYear, selectedMonth, 0);
       
       const startDateStr = startDate.toISOString().split('T')[0];
       const endDateStr = endDate.toISOString().split('T')[0];
 
-      // First, get all completed sales transactions for the month
       const { data: salesData, error: salesError } = await supabase
         .from('SALES_TRANS')
         .select('sales_trans_no')
@@ -125,7 +115,6 @@ const Reports = () => {
 
       const salesTransNos = salesData.map(s => s.sales_trans_no);
 
-      // Get all sales items for these transactions
       const { data: salesItems, error: itemsError } = await supabase
         .from('SALES_ITEM')
         .select('prod_no, qty')
@@ -138,7 +127,6 @@ const Reports = () => {
         return;
       }
 
-      // Get product details for all product numbers
       const prodNos = [...new Set(salesItems.map(item => item.prod_no))];
       
       const { data: products, error: productsError } = await supabase
@@ -148,13 +136,11 @@ const Reports = () => {
 
       if (productsError) throw productsError;
 
-      // Calculate sales by product (aggregating across locations)
       const productSales = {};
       
       salesItems.forEach(item => {
         const product = products.find(p => p.prod_no === item.prod_no);
         if (product) {
-          // Group by brand, name, size_amt, and u_size (ignore loc_name)
           const key = `${product.brand}|${product.name}|${product.size_amt}|${product.u_size}`;
           const salesAmount = item.qty * product.price_piece;
           
@@ -164,14 +150,13 @@ const Reports = () => {
             productSales[key] = {
               brand: product.brand,
               name: product.name,
-              size: `${product.size_amt} ${product.u_size}`, // Concatenate size_amt and u_size
+              size: `${product.size_amt} ${product.u_size}`,
               totalSales: salesAmount
             };
           }
         }
       });
 
-      // Sort by total sales and get top 10
       const sortedProducts = Object.values(productSales)
         .sort((a, b) => b.totalSales - a.totalSales)
         .slice(0, 10);
@@ -191,8 +176,17 @@ const Reports = () => {
     setSelectedYear(parseInt(e.target.value));
   };
 
-  if (!(role === 'superuser' || role === 'admin')) {
-    return <div>Access Denied</div>;
+  // If user doesn't have access
+  if (role !== 'admin' && role !== 'superuser') {
+    return (
+      <div className="reportspage">
+        <Sidebar />
+        <div style={{ marginLeft: '270px', padding: '20px' }}>
+          <h1>Access Denied</h1>
+          <p>You do not have permission to view this page.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -212,12 +206,10 @@ const Reports = () => {
         theme="light"
       />
 
-      {/* HEADER */}
       <div className="reports-header-row">
         <h1>Reports</h1>
       </div>
 
-      {/* SALES REPORT SECTION */}
       <div className="reports-section">
         <div className="reports-search-card">
           <div className="reports-filters-container">
@@ -227,7 +219,6 @@ const Reports = () => {
                 value={selectedMonth}
                 onChange={handleMonthChange}
                 className="reports-filter-select"
-                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
               >
                 {months.map(month => (
                   <option key={month.value} value={month.value}>
@@ -242,7 +233,6 @@ const Reports = () => {
                 value={selectedYear}
                 onChange={handleYearChange}
                 className="reports-filter-select"
-                style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
               >
                 {years.map(year => (
                   <option key={year} value={year}>
@@ -301,7 +291,6 @@ const Reports = () => {
         </div>
       </div>
 
-      {/* TOP PERFORMING PRODUCTS SECTION */}
       <div className="reports-section">
         <div className="reports-table-container">
           <h2 className="reports-table-title">Top Performing Products</h2>
