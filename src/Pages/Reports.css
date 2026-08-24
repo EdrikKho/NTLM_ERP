@@ -94,7 +94,7 @@
   font-size: 1rem;
   text-align: center;
   vertical-align: middle;
-  padding: 19px 13px;
+  padding: 12px;
   white-space: nowrap;
 }
 
@@ -109,7 +109,7 @@
 .reports-styled-table tbody td {
   text-align: center;
   vertical-align: middle;
-  padding: 12px 16px;
+  padding: 19px 13px;
   white-space: nowrap;
   color: #555;
 }
