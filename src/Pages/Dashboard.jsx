@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../client';
 import { FaChartLine, FaMoneyCheck, FaExclamationTriangle, FaShoppingCart, FaClipboard, FaRepeat } from 'react-icons/fa';
+import { FiShoppingCart, FiClipboard, FiRepeat } from 'react-icons/fi';
 import './Dashboard.css';
 import { FaRepeat } from 'react-icons/fa6';
 
@@ -203,7 +204,7 @@ const Dashboard = () => {
                 {/* Pending Sales Orders */}
                 <div className="dashboard-scorecard dashboard-scorecard-single">
                   <div className="dashboard-scorecard-header">
-                    <FaShoppingCart className="dashboard-icon"/>
+                    <FiShoppingCart className="dashboard-icon"/>
                     <h3 className="dashboard-scorecard-title">Pending Sales Orders</h3>
                   </div>
                   <p className="dashboard-scorecard-number dashboard-scorecard-number-blue">
@@ -214,7 +215,7 @@ const Dashboard = () => {
                 {/* Pending Purchase Orders */}
                 <div className="dashboard-scorecard dashboard-scorecard-single">
                   <div className="dashboard-scorecard-header">
-                    <FaClipboard className="dashboard-icon"/>
+                    <FiClipboard className="dashboard-icon"/>
                     <h3 className="dashboard-scorecard-title">Pending Purchase Orders</h3>
                   </div>
                   <p className="dashboard-scorecard-number dashboard-scorecard-number-purple">
@@ -225,7 +226,7 @@ const Dashboard = () => {
                 {/* Pending Transfers */}
                 <div className="dashboard-scorecard dashboard-scorecard-single">
                   <div className="dashboard-scorecard-header">
-                    <FaRepeat className="dashboard-icon"/>
+                    <FiRepeat className="dashboard-icon"/>
                     <h3 className="dashboard-scorecard-title">Pending Transfers</h3>
                   </div>
                   <p className="dashboard-scorecard-number dashboard-scorecard-number-cyan">
