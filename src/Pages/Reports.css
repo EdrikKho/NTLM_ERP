@@ -85,13 +85,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
 }
 
-.reports-table-title {
-  font-size: 18px;
-  color: #444;
-  margin: 0 0 15px 0;
-  padding: 0 10px;
-}
-
 .reports-styled-table {
   width: 100%;
   min-width: 700px;
