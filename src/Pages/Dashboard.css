@@ -1,3 +1,7 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .dashboard-container {
   background: white;
   min-height: 100vh;
@@ -27,7 +31,7 @@
   background-color: #ffffff;
   border-radius: 12px;
   padding-bottom: 10px;
-  padding-left: 10px;
+  padding-left: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   border: 1px solid #e8ecf1;
   transition: box-shadow 0.3s ease;
@@ -38,9 +42,8 @@
 }
 
 .dashboard-scorecard-title {
-  color: #6b7280;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 700;
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
