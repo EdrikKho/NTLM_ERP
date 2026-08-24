@@ -149,6 +149,48 @@
   outline: none;
 }
 
+/* Receivables */
+.reports-customer-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.reports-customer-select:focus {
+  outline: none;
+  border-color: #4A90D9;
+}
+
+.reports-filters-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.reports-search-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status-pending {
+  background: #fff3e0;
+  color: #e65100;
+}
 /* Responsive */
 @media (max-width: 1024px) {
   .reportspage {
