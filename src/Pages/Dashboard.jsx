@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../client';
-import { FaChartLine, FaMoneyCheck } from 'react-icons/fa';
+import { FaChartLine, FaMoneyCheck, FaExclamationTriangle } from 'react-icons/fa';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -174,10 +174,12 @@ const Dashboard = () => {
                     </div>
                   </div>
                 </div>
-
                 {/* Overdue Receivables */}
                 <div className="dashboard-scorecardfirst">
-                  <h3 className="dashboard-scorecard-title">Overdue Receivables</h3>
+                  <div className="dashboard-scorecard-header">
+                    <FaExclamationTriangle className="dashboard-icon" style={{color:'red'}}/>
+                    <h3 className="dashboard-scorecard-title">Overdue Receivables</h3>
+                  </div>
                   <div className="dashboard-scorecard-content">
                     <div className="dashboard-scorecard-item">
                       <p className="dashboard-scorecard-label">Total Receivables</p>
