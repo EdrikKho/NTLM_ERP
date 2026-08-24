@@ -149,7 +149,7 @@ const Dashboard = () => {
                     <div className="dashboard-scorecard-item">
                       <p className="dashboard-scorecard-label">Total Sales</p>
                       <p className="dashboard-scorecard-value dashboard-scorecard-value-green">
-                        ₱{dashboardData.todaySales.totalSales.toLocaleString()}
+                        ₱{dashboardData.todaySales.totalSales.toFixed(2).toLocaleString()}
                       </p>
                     </div>
                   </div>
@@ -171,7 +171,7 @@ const Dashboard = () => {
                     <div className="dashboard-scorecard-item">
                       <p className="dashboard-scorecard-label">Total Amount</p>
                       <p className="dashboard-scorecard-value dashboard-scorecard-value-yellow">
-                        ₱{dashboardData.pendingReceivables.totalAmount.toLocaleString()}
+                        ₱{dashboardData.pendingReceivables.totalAmount.toFixed(2).toLocaleString()}
                       </p>
                     </div>
                   </div>
@@ -192,7 +192,7 @@ const Dashboard = () => {
                     <div className="dashboard-scorecard-item">
                       <p className="dashboard-scorecard-label">Total Amount</p>
                       <p className="dashboard-scorecard-value dashboard-scorecard-value-red">
-                        ₱{dashboardData.overdueReceivables.totalAmount.toLocaleString()}
+                        ₱{dashboardData.overdueReceivables.totalAmount.toFixed(2).toLocaleString()}
                       </p>
                     </div>
                   </div>
