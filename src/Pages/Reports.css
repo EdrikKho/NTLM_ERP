@@ -183,8 +183,8 @@
   border-radius: 6px;
   font-size: 14px;
   background: white;
-  min-width: 200px;
-  max-width: 300px;
+  min-width: 100px;
+  max-width: 200px;
   flex: 1;
   cursor: pointer;
   height: 42px;
