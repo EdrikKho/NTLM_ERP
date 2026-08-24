@@ -25,8 +25,10 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const todayStr = today.toISOString();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+      const todayStr = `${year}-${month}-${day}`;
 
       // 1. Today's Sales (from SALES_TRANS with today's date and status = 'Completed')
       const { data: todaySales, error: todayError } = await supabase
