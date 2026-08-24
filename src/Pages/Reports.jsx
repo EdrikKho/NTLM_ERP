@@ -48,36 +48,23 @@ const Reports = () => {
     try {
       const [year, monthNum] = selectedMonth.split('-');
       const startDate = `${year}-${monthNum}-01`;
-      const endDate = new Date(year, parseInt(monthNum), 0).toISOString().split('T')[0];
+      
+      // FIX: Create end date properly to include the last day
+      const endDate = new Date(year, parseInt(monthNum), 0);
+      // Set to end of day to include all transactions on the last day
+      endDate.setHours(23, 59, 59, 999);
+      const endDateStr = endDate.toISOString().split('T')[0];
 
       const { data, error } = await supabase
         .from('SALES_TRANS')
         .select('date, total_amt')
         .eq('status', 'Completed')
         .gte('date', startDate)
-        .lte('date', endDate)
+        .lte('date', endDateStr)  // This should now include July 31
         .order('date', { ascending: true });
 
       if (error) throw error;
-
-      const dailyTotals = {};
-      let totalSum = 0;
-
-      data?.forEach(order => {
-        const date = order.date;
-        const total = parseFloat(order.total_amt) || 0;
-        if (!dailyTotals[date]) dailyTotals[date] = 0;
-        dailyTotals[date] += total;
-        totalSum += total;
-      });
-
-      const formattedData = Object.entries(dailyTotals).map(([date, total]) => ({
-        date,
-        total
-      }));
-
-      setSalesData(formattedData);
-      setMonthlyTotal(totalSum);
+      // ... rest of the code
     } catch (error) {
       console.error('Error fetching sales data:', error);
       toast.error('Failed to fetch sales data');
