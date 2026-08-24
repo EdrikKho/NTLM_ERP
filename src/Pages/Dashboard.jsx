@@ -503,7 +503,7 @@ const Dashboard = () => {
                   {/* Pending Transfers */}
                   <div 
                     className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
-                    style={{ flex: '0 0 48%', maxWidth: '48%' }}
+                    style={{ flex: '0 0 49%', maxWidth: '49%' }}
                     onClick={() => handleScorecardClick('pendingTransfers')}
                   >
                     <div className="dashboard-scorecard-header">
@@ -518,7 +518,7 @@ const Dashboard = () => {
                   {/* Released Transfers */}
                   <div 
                     className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
-                    style={{ flex: '0 0 48%', maxWidth: '48%' }}
+                    style={{ flex: '0 0 49%', maxWidth: '49%' }}
                     onClick={() => handleScorecardClick('releasedTransfers')}
                   >
                     <div className="dashboard-scorecard-header">
