@@ -10,6 +10,8 @@ import './Dashboard.css';
 const Dashboard = () => {
   const { user } = useAuth();
 
+  const role = user?.user_metadata?.role || '';
+
   const [dashboardData, setDashboardData] = useState({
     todaySales: { totalOrders: 0, totalSales: 0 },
     pendingReceivables: { totalReceivables: 0, totalAmount: 0 },
@@ -31,6 +33,13 @@ const Dashboard = () => {
       fetchTableData(activeTable);
     }
   }, [activeTable]);
+
+  // Set initial active table for employee
+  useEffect(() => {
+    if (role === 'employee') {
+      setActiveTable('pendingSalesOrders');
+    }
+  }, [role]);
 
   useEffect(() => {
     fetchDashboardData();
@@ -317,8 +326,6 @@ const Dashboard = () => {
       setLowStockItems([]);
     }
   };
-
-  const role = user?.user_metadata?.role || '';
   const firstName = user?.user_metadata?.first_name || '';
   const lastName = user?.user_metadata?.last_name || '';
 
@@ -332,83 +339,84 @@ const Dashboard = () => {
         {/* Dashboard Content */}
         <div className="dashboard-content-wrapper">
           <h1 className="dashboard-title">Dashboard</h1>
+                {/* Scorecards Grid - First Row */}
+                {role === 'admin' && (
+                <div className="dashboard-scorecards-row">
+                  {/* Today's Sales */}
+                  <div 
+                    className="dashboard-scorecardfirst dashboard-clickable"
+                    onClick={() => handleScorecardClick('todaySales')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FaChartLine className="dashboard-icon" />
+                      <h3 className="dashboard-scorecard-title">Today's Sales</h3>
+                    </div>
+                    <div className="dashboard-scorecard-content">
+                      <div className="dashboard-scorecard-item">
+                        <p className="dashboard-scorecard-label">Total Orders</p>
+                        <p className="dashboard-scorecard-value">
+                          {dashboardData.todaySales.totalOrders}
+                        </p>
+                      </div>
+                      <div className="dashboard-scorecard-item">
+                        <p className="dashboard-scorecard-label">Total Sales</p>
+                        <p className="dashboard-scorecard-value dashboard-scorecard-value-green">
+                          ₱{dashboardData.todaySales.totalSales.toFixed(2).toLocaleString()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
 
-              {/* Scorecards Grid - First Row */}
-              <div className="dashboard-scorecards-row">
-                {/* Today's Sales */}
-                <div 
-                  className="dashboard-scorecardfirst dashboard-clickable"
-                  onClick={() => handleScorecardClick('todaySales')}
-                >
-                  <div className="dashboard-scorecard-header">
-                    <FaChartLine className="dashboard-icon" />
-                    <h3 className="dashboard-scorecard-title">Today's Sales</h3>
-                  </div>
-                  <div className="dashboard-scorecard-content">
-                    <div className="dashboard-scorecard-item">
-                      <p className="dashboard-scorecard-label">Total Orders</p>
-                      <p className="dashboard-scorecard-value">
-                        {dashboardData.todaySales.totalOrders}
-                      </p>
+                  {/* Pending Receivables */}
+                  <div 
+                    className="dashboard-scorecardfirst dashboard-clickable"
+                    onClick={() => handleScorecardClick('pendingReceivables')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FaMoneyCheck className="dashboard-icon" />
+                      <h3 className="dashboard-scorecard-title">Pending Receivables</h3>
                     </div>
-                    <div className="dashboard-scorecard-item">
-                      <p className="dashboard-scorecard-label">Total Sales</p>
-                      <p className="dashboard-scorecard-value dashboard-scorecard-value-green">
-                        ₱{dashboardData.todaySales.totalSales.toFixed(2).toLocaleString()}
-                      </p>
+                    <div className="dashboard-scorecard-content">
+                      <div className="dashboard-scorecard-item">
+                        <p className="dashboard-scorecard-label">Total Receivables</p>
+                        <p className="dashboard-scorecard-value">
+                          {dashboardData.pendingReceivables.totalReceivables}
+                        </p>
+                      </div>
+                      <div className="dashboard-scorecard-item">
+                        <p className="dashboard-scorecard-label">Total Amount</p>
+                        <p className="dashboard-scorecard-value dashboard-scorecard-value-yellow">
+                          ₱{dashboardData.pendingReceivables.totalAmount.toFixed(2).toLocaleString()}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-
-                {/* Pending Receivables */}
-                <div 
-                  className="dashboard-scorecardfirst dashboard-clickable"
-                  onClick={() => handleScorecardClick('pendingReceivables')}
-                >
-                  <div className="dashboard-scorecard-header">
-                    <FaMoneyCheck className="dashboard-icon" />
-                    <h3 className="dashboard-scorecard-title">Pending Receivables</h3>
-                  </div>
-                  <div className="dashboard-scorecard-content">
-                    <div className="dashboard-scorecard-item">
-                      <p className="dashboard-scorecard-label">Total Receivables</p>
-                      <p className="dashboard-scorecard-value">
-                        {dashboardData.pendingReceivables.totalReceivables}
-                      </p>
+                  {/* Overdue Receivables */}
+                  <div 
+                    className="dashboard-scorecardfirst dashboard-clickable"
+                    onClick={() => handleScorecardClick('overdueReceivables')}
+                  >
+                    <div className="dashboard-scorecard-header">
+                      <FaExclamationTriangle className="dashboard-icon" style={{color:'red'}}/>
+                      <h3 className="dashboard-scorecard-title">Overdue Receivables</h3>
                     </div>
-                    <div className="dashboard-scorecard-item">
-                      <p className="dashboard-scorecard-label">Total Amount</p>
-                      <p className="dashboard-scorecard-value dashboard-scorecard-value-yellow">
-                        ₱{dashboardData.pendingReceivables.totalAmount.toFixed(2).toLocaleString()}
-                      </p>
+                    <div className="dashboard-scorecard-content">
+                      <div className="dashboard-scorecard-item">
+                        <p className="dashboard-scorecard-label">Total Receivables</p>
+                        <p className="dashboard-scorecard-value">
+                          {dashboardData.overdueReceivables.totalReceivables}
+                        </p>
+                      </div>
+                      <div className="dashboard-scorecard-item">
+                        <p className="dashboard-scorecard-label">Total Amount</p>
+                        <p className="dashboard-scorecard-value dashboard-scorecard-value-red">
+                          ₱{dashboardData.overdueReceivables.totalAmount.toFixed(2).toLocaleString()}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
-                {/* Overdue Receivables */}
-                <div 
-                  className="dashboard-scorecardfirst dashboard-clickable"
-                  onClick={() => handleScorecardClick('overdueReceivables')}
-                >
-                  <div className="dashboard-scorecard-header">
-                    <FaExclamationTriangle className="dashboard-icon" style={{color:'red'}}/>
-                    <h3 className="dashboard-scorecard-title">Overdue Receivables</h3>
-                  </div>
-                  <div className="dashboard-scorecard-content">
-                    <div className="dashboard-scorecard-item">
-                      <p className="dashboard-scorecard-label">Total Receivables</p>
-                      <p className="dashboard-scorecard-value">
-                        {dashboardData.overdueReceivables.totalReceivables}
-                      </p>
-                    </div>
-                    <div className="dashboard-scorecard-item">
-                      <p className="dashboard-scorecard-label">Total Amount</p>
-                      <p className="dashboard-scorecard-value dashboard-scorecard-value-red">
-                        ₱{dashboardData.overdueReceivables.totalAmount.toFixed(2).toLocaleString()}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              )}
 
               {/* Scorecards Grid - Second Row (Pending Counts) */}
               <div className="dashboard-scorecards-row">
@@ -573,7 +581,7 @@ const Dashboard = () => {
                         <td style={{ textAlign: 'left' }}>{item.brand}</td>
                         <td style={{ textAlign: 'left' }}>{item.name}</td>
                         <td style={{ textAlign: 'left' }}>
-                          {item.size_amt} {item.u_size} - {item.loc_name}
+                          {item.size_amt} {item.u_size}
                         </td>
                         <td style={{ textAlign: 'left' }}>{item.loc_name}</td>
                         <td style={{ textAlign: 'left' }}>
