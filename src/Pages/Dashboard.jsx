@@ -499,10 +499,11 @@ const Dashboard = () => {
 
               {/* Scorecards Grid - Dispatcher Row */}
               {role === 'dispatcher' && (
-                <div className="dashboard-scorecards-row">
+                <div className="dashboard-scorecards-row" style={{ display: 'flex', justifyContent: 'space-between' }}>
                   {/* Pending Transfers */}
                   <div 
                     className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                    style={{ flex: '0 0 48%', maxWidth: '48%' }}
                     onClick={() => handleScorecardClick('pendingTransfers')}
                   >
                     <div className="dashboard-scorecard-header">
@@ -517,6 +518,7 @@ const Dashboard = () => {
                   {/* Released Transfers */}
                   <div 
                     className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                    style={{ flex: '0 0 48%', maxWidth: '48%' }}
                     onClick={() => handleScorecardClick('releasedTransfers')}
                   >
                     <div className="dashboard-scorecard-header">
