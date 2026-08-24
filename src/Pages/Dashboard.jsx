@@ -237,22 +237,22 @@ const Dashboard = () => {
           break;
 
         case 'pendingTransfers':
-          const { data: transferData, error: transferError } = await supabase
-            .from('TRANSFER_TRANS')
-            .select(`
-              transfertrans_no,
-              date,
-              status,
-              requester_id,
-              USER!inner (
-                f_name
-              )
-            `)
-            .eq('status', 'Pending');
+        const { data: transferData, error: transferError } = await supabase
+          .from('TRANSFER_TRANS')
+          .select(`
+            transfertrans_no,
+            date,
+            status,
+            requester_id,
+            USER!requester_id (
+              f_name
+            )
+          `)
+          .eq('status', 'Pending');
 
-          if (transferError) throw transferError;
-          data = transferData || [];
-          break;
+        if (transferError) throw transferError;
+        data = transferData || [];
+        break;
 
         default:
           data = [];
