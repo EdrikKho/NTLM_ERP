@@ -144,9 +144,7 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
-  min-width: 200px; /* Change from 97.6% to 200px */
-  width: 200px; /* Add this */
-  height: 20px;
+  height: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -164,6 +162,7 @@
   background: white;
   min-width: 200px;
   cursor: pointer;
+  height: 18px;
 }
 
 .reports-customer-select:focus {
