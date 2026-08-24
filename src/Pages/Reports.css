@@ -116,6 +116,7 @@
 .reports-total-row {
   background: #f5f5f5;
   font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .reports-total-row td {

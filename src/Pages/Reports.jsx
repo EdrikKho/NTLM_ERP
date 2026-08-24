@@ -398,7 +398,7 @@ const Reports = () => {
                     value={selectedMonth}
                     onChange={handleMonthChange}
                     className="reports-month-input"
-                    style={{ marginRight: '10px' }}
+                    style={{ marginRight: '10px', width: '200px' }}
                   />
                   <select
                     id="customerFilter"

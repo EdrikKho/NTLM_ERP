@@ -1571,8 +1571,7 @@ const PurchaseOrders = () => {
                     type="date"
                     value={viewOrder.date ? new Date(viewOrder.date).toISOString().split('T')[0] : ''}
                     disabled
-                    style={{ backgroundColor: '#f5f5f5', cursor: 'not-allowed' }}
-                    style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000' }}
+                    style={{ fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif', fontSize: '14px', fontWeight: 499, color: '#000', backgroundColor: '#f5f5f5', cursor: 'not-allowed' }}
                   />
                 </div>
 
