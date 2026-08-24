@@ -243,7 +243,10 @@ const Dashboard = () => {
               transfertrans_no,
               date,
               status,
-              requester_id
+              requester_id,
+              USER!inner (
+                f_name
+              )
             `)
             .eq('status', 'Pending');
 
@@ -476,7 +479,7 @@ const Dashboard = () => {
                                 <td style={{ textAlign: 'left' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.SUPPLIER?.com_name || 'N/A'}</td>
+                                <td style={{ textAlign: 'left' }}>{item.SUPPLIER?.com_name}</td>
                                 <td style={{ textAlign: 'left' }}>
                                   <span className="status-badge status-pending">{item.status}</span>
                                 </td>
@@ -489,7 +492,7 @@ const Dashboard = () => {
                                 <td style={{ textAlign: 'left' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.requester_id || 'N/A'}</td>
+                                <td style={{ textAlign: 'left' }}>{item.USER?.f_name}</td>
                                 <td style={{ textAlign: 'left' }}>
                                   <span className="status-badge status-pending">{item.status}</span>
                                 </td>
@@ -505,7 +508,7 @@ const Dashboard = () => {
                                 <td style={{ textAlign: 'left' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name || 'N/A'}</td>
+                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
                                 <td style={{ textAlign: 'right' }}>
                                   ₱{formatCurrency(item.total_amt)}
                                 </td>
