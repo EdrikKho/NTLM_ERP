@@ -109,7 +109,7 @@
 .reports-styled-table tbody td {
   text-align: center;
   vertical-align: middle;
-  padding: 17px 13px;
+  padding: 18px 13px;
   white-space: nowrap;
   color: #555;
 }
@@ -121,7 +121,7 @@
 }
 
 .reports-total-row td {
-  padding: 17px 13px;
+  padding: 18px 13px;
   border-top: 2px solid #ddd;
 }
 
