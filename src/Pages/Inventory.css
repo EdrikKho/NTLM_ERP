@@ -375,6 +375,8 @@ table button {
   box-shadow:
     0 -2px 4px rgba(0, 0, 0, 0.04),
     0 4px 8px rgba(0, 0, 0, 0.08);
+  min-width: 700px;
+  overflow: hidden; /* Change from visible to hidden */
 }
 
 .inventory-error-text {
@@ -390,6 +392,9 @@ table button {
   gap: 15px;
   align-items: center;
   flex-wrap: nowrap;
+  width: 100%;
+  min-width: 800px;
+  overflow: visible; /* Keep this as visible so items show */
 }
 
 .inventory-search-container {
