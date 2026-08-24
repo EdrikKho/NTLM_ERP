@@ -164,7 +164,7 @@
   align-items: center;
   gap: 10px;
   width: 100%;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .reports-ar-month-input {
@@ -174,10 +174,11 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
-  height: 18px;
-  flex: 1;
-  min-width: 200px;
-  max-width: 300px;
+  height: 42px;
+  box-sizing: border-box;
+  flex: 1; /* Fill remaining space */
+  min-width: 150px; /* Minimum size before it starts shrinking */
+  max-width: 100%; /* Prevent overflow */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
