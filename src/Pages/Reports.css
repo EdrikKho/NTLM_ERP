@@ -153,11 +153,6 @@
   box-sizing: border-box; /* Include padding in width calculation */
 }
 
-.reports-month-input:focus {
-  border-color: #185229;
-  outline: none;
-}
-
 .reports-ar-search-container {
   display: flex;
   align-items: center;
@@ -179,11 +174,6 @@
   min-width: 150px; /* Minimum size before it starts shrinking */
   max-width: 100%; /* Prevent overflow */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.reports-ar-month-input:focus {
-  border-color: #185229;
-  outline: none;
 }
 
 /* Receivables */
