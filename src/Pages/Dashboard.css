@@ -10,6 +10,13 @@ body {
   margin-left: 270px;
 }
 
+.dashboard-scorecard-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .dashboard-scorecard-icon {
   font-size: 20px;
   color: #185229;

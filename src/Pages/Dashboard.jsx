@@ -137,8 +137,10 @@ const Dashboard = () => {
               <div className="dashboard-scorecards-row">
                 {/* Today's Sales */}
                 <div className="dashboard-scorecardfirst">
-                  <FaChartLine className="dashboard-icon" />
-                  <h3 className="dashboard-scorecard-title">Today's Sales</h3>
+                  <div className="dashboard-scorecard-header">
+                    <FaChartLine className="dashboard-icon" />
+                    <h3 className="dashboard-scorecard-title">Today's Sales</h3>
+                  </div>
                   <div className="dashboard-scorecard-content">
                     <div className="dashboard-scorecard-item">
                       <p className="dashboard-scorecard-label">Total Orders</p>
