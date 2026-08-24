@@ -24,6 +24,7 @@ const Dashboard = () => {
   const [activeTable, setActiveTable] = useState('todaySales');
   const [tableData, setTableData] = useState([]);
 
+  const [lowStockItems, setLowStockItems] = useState([]);
   // Fetch table data when activeTable changes
   useEffect(() => {
     if (activeTable) {
@@ -33,6 +34,10 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchDashboardData();
+  }, []);
+
+  useEffect(() => {
+    fetchLowStockItems();
   }, []);
 
   const fetchDashboardData = async () => {
@@ -298,6 +303,21 @@ const Dashboard = () => {
     return amount.toFixed(2).toLocaleString();
   };
 
+  const fetchLowStockItems = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('PRODUCT')
+        .select('prod_no, brand, name, size_amt, u_size, loc_name, stock')
+        .lte('stock', 5);
+
+      if (error) throw error;
+      setLowStockItems(data || []);
+    } catch (error) {
+      console.error('Error fetching low stock items:', error);
+      setLowStockItems([]);
+    }
+  };
+
   const role = user?.user_metadata?.role || '';
   const firstName = user?.user_metadata?.first_name || '';
   const lastName = user?.user_metadata?.last_name || '';
@@ -529,25 +549,41 @@ const Dashboard = () => {
                 </div>
 
               {/* Low Stock Items Table */}
-                <h3 className="dashboard-section-title">Low Stock Items</h3>
-                <table className="dashboard-table">
-                  <thead>
+              <h3 className="dashboard-section-title">Low Stock Items</h3>
+              <table className="dashboard-table">
+                <thead>
+                  <tr>
+                    <th>Brand</th>
+                    <th>Name</th>
+                    <th>Size</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {lowStockItems.length === 0 ? (
                     <tr>
-                      <th>Brand</th>
-                      <th>Name</th>
-                      <th>Size</th>
-                      <th>Location</th>
-                      <th>Stock</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td colSpan="5" className="dashboard-table-empty">
+                      <td colSpan="4" className="dashboard-table-empty">
                         No low stock items
                       </td>
                     </tr>
-                  </tbody>
-                </table>
+                  ) : (
+                    lowStockItems.map((item) => (
+                      <tr key={item.prod_no}>
+                        <td style={{ textAlign: 'left' }}>{item.brand}</td>
+                        <td style={{ textAlign: 'left' }}>{item.name}</td>
+                        <td style={{ textAlign: 'left' }}>
+                          {item.size_amt} {item.u_size} - {item.loc_name}
+                        </td>
+                        <td style={{ textAlign: 'right' }}>
+                          <span className={item.stock <= 5 ? 'status-badge status-pending' : ''}>
+                            {item.stock}
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
         </div>
       </div>
     </div>
