@@ -207,8 +207,8 @@ const Reports = () => {
         `)
         .eq('status', 'Completed')
         .eq('p_status', 'Pending')
-        .gte('date', startDate)
-        .lte('date', endDate)
+        .gte('due_date', startDate)
+        .lte('due_date', endDate)
         .order('due_date', { ascending: true });
 
       if (selectedCustomer) {
@@ -244,19 +244,6 @@ const Reports = () => {
   const handleCustomerChange = (e) => {
     setSelectedCustomer(e.target.value);
   };
-
-  // If user doesn't have access
-  if (role !== 'admin' && role !== 'superuser') {
-    return (
-      <div className="reportspage">
-        <Sidebar />
-        <div style={{ marginLeft: '270px', padding: '20px' }}>
-          <h1>Access Denied</h1>
-          <p>You do not have permission to view this page.</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="reportspage">
