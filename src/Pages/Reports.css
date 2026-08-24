@@ -162,7 +162,7 @@
   background: white;
   min-width: 200px;
   cursor: pointer;
-  height: 100px;
+  height: 30px;
 }
 
 .reports-customer-select:focus {
