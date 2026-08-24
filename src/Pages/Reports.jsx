@@ -271,6 +271,7 @@ const Reports = () => {
         <button
           className={`reports-toggle-btn ${selectedReport === 'sales' ? 'active' : ''}`}
           onClick={() => setSelectedReport('sales')}
+          style={{width:'200px;'}}
         >
           Sales
         </button>
