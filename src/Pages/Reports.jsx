@@ -391,14 +391,14 @@ const Reports = () => {
           <div className="reports-section">
             <div className="reports-search-card">
               <div className="reports-filters-container">
-                <div className="reports-search-container">
+                <div className="reports-search-container" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <input
                     type="month"
                     id="month"
                     value={selectedMonth}
                     onChange={handleMonthChange}
                     className="reports-month-input"
-                    style={{ marginRight: '10px', width: '200px' }}
+                    style={{ marginRight: '10px', width: '100px' }}
                   />
                   <select
                     id="customerFilter"
@@ -438,7 +438,7 @@ const Reports = () => {
                           <td style={{ textAlign: 'right' }}>
                             ₱ {parseFloat(item.total_amt).toFixed(2)}
                           </td>
-                          <td style={{ textAlign: 'center' }}>
+                          <td style={{ textAlign: 'left' }}>
                             <span className="status-badge status-pending">
                               {item.p_status || 'Pending'}
                             </span>
