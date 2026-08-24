@@ -556,6 +556,7 @@ const Dashboard = () => {
                     <th>Brand</th>
                     <th>Name</th>
                     <th>Size</th>
+                    <th>Location</th>
                     <th>Quantity</th>
                   </tr>
                 </thead>
@@ -574,7 +575,8 @@ const Dashboard = () => {
                         <td style={{ textAlign: 'left' }}>
                           {item.size_amt} {item.u_size} - {item.loc_name}
                         </td>
-                        <td style={{ textAlign: 'right' }}>
+                        <td style={{ textAlign: 'left' }}>{item.loc_name}</td>
+                        <td style={{ textAlign: 'left' }}>
                           <span className={item.stock <= 5 ? 'status-badge status-pending' : ''}>
                             {item.stock}
                           </span>
