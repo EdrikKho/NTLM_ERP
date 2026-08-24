@@ -20,6 +20,7 @@ const Reports = () => {
   const [selectedReport, setSelectedReport] = useState('sales'); 
   const [arData, setArData] = useState([]); 
 
+
   const role = user?.user_metadata?.role || '';
 
   useEffect(() => {
@@ -391,14 +392,14 @@ const Reports = () => {
           <div className="reports-section">
             <div className="reports-search-card">
               <div className="reports-filters-container">
-                <div className="reports-search-container" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div className="reports-search-container">
                   <input
                     type="month"
                     id="month"
                     value={selectedMonth}
                     onChange={handleMonthChange}
                     className="reports-month-input"
-                    style={{ marginRight: '10px', width: '100px' }}
+                    style={{ width: 'auto' }}
                   />
                   <select
                     id="customerFilter"

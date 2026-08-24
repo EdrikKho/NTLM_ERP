@@ -45,9 +45,8 @@
 .reports-search-container {
   display: flex;
   align-items: center;
-  flex: 1;
-  min-width: 200px;
-  position: relative;
+  gap: 10px;
+  flex-wrap: nowrap;
 }
 
 .reports-search-icon {
@@ -145,7 +144,8 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
-  min-width: 97.6%;
+  min-width: 200px; /* Change from 97.6% to 200px */
+  width: 200px; /* Add this */
   height: 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
