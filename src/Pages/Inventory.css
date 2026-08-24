@@ -400,7 +400,7 @@ table button {
 .inventory-filter-group {
   display: flex;
   gap: 10px;
-  flex: 1;
+  flex: 0 0 auto; /* Don't grow or shrink */
 }
 
 .inventory-filter-select {
