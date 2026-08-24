@@ -63,74 +63,98 @@ const Dashboard = () => {
       const day = String(today.getDate()).padStart(2, '0');
       const todayStr = `${year}-${month}-${day}`;
 
-      // 1. Today's Sales (from SALES_TRANS with today's date and status = 'Completed')
-      const { data: todaySales, error: todayError } = await supabase
-        .from('SALES_TRANS')
-        .select('salestrans_no, total_amt')
-        .eq('date', todayStr)
-        .eq('status', 'Completed');
+      // Fetch all data in parallel
+      const [
+        todaySalesPromise,
+        pendingReceivablesPromise,
+        overdueReceivablesPromise,
+        pendingSalesPromise,
+        pendingPurchasePromise,
+        pendingTransferPromise,
+        releasedTransferPromise
+      ] = await Promise.all([
+        // 1. Today's Sales
+        supabase
+          .from('SALES_TRANS')
+          .select('salestrans_no, total_amt')
+          .eq('date', todayStr)
+          .eq('status', 'Completed'),
+        
+        // 2. Pending Receivables
+        supabase
+          .from('SALES_TRANS')
+          .select('salestrans_no, total_amt')
+          .eq('status', 'Completed')
+          .eq('p_status', 'Pending'),
+        
+        // 3. Overdue Receivables
+        supabase
+          .from('SALES_TRANS')
+          .select('salestrans_no, total_amt, due_date')
+          .lt('due_date', todayStr)
+          .eq('status', 'Completed')
+          .eq('p_status', 'Pending'),
+        
+        // 4. Pending Sales Orders
+        supabase
+          .from('SALES_TRANS')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'Pending'),
+        
+        // 5. Pending Purchase Orders
+        supabase
+          .from('PURCHASE_TRANS')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'Pending'),
+        
+        // 6. Pending Transfers
+        supabase
+          .from('TRANSFER_TRANS')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'Pending'),
+        
+        // 7. Released Transfers
+        supabase
+          .from('TRANSFER_TRANS')
+          .select('*', { count: 'exact', head: true })
+          .eq('status', 'Released')
+      ]);
 
-      if (todayError) throw todayError;
+      // Check for errors
+      const [
+        todaySales,
+        pendingReceivables,
+        overdueReceivables,
+        pendingSalesCount,
+        pendingPurchaseCount,
+        pendingTransferCount,
+        releasedTransferCount
+      ] = [
+        todaySalesPromise,
+        pendingReceivablesPromise,
+        overdueReceivablesPromise,
+        pendingSalesPromise,
+        pendingPurchasePromise,
+        pendingTransferPromise,
+        releasedTransferPromise
+      ];
 
-      const totalOrders = todaySales?.length || 0;
-      const totalSales = todaySales?.reduce((sum, sale) => sum + (sale.total_amt || 0), 0) || 0;
+      if (todaySales.error) throw todaySales.error;
+      if (pendingReceivables.error) throw pendingReceivables.error;
+      if (overdueReceivables.error) throw overdueReceivables.error;
+      if (pendingSalesCount.error) throw pendingSalesCount.error;
+      if (pendingPurchaseCount.error) throw pendingPurchaseCount.error;
+      if (pendingTransferCount.error) throw pendingTransferCount.error;
+      if (releasedTransferCount.error) throw releasedTransferCount.error;
 
-      // 2. Pending Receivables (status = 'Completed' AND p_status = 'Pending')
-      const { data: pendingReceivables, error: pendingError } = await supabase
-        .from('SALES_TRANS')
-        .select('salestrans_no, total_amt')
-        .eq('status', 'Completed')
-        .eq('p_status', 'Pending');
+      const totalOrders = todaySales.data?.length || 0;
+      const totalSales = todaySales.data?.reduce((sum, sale) => sum + (sale.total_amt || 0), 0) || 0;
 
-      if (pendingError) throw pendingError;
+      const pendingReceivablesCount = pendingReceivables.data?.length || 0;
+      const pendingReceivablesAmount = pendingReceivables.data?.reduce((sum, sale) => sum + (sale.total_amt || 0), 0) || 0;
 
-      const pendingReceivablesCount = pendingReceivables?.length || 0;
-      const pendingReceivablesAmount = pendingReceivables?.reduce((sum, sale) => sum + (sale.total_amt || 0), 0) || 0;
-
-      // 3. Overdue Receivables (date < today AND status = 'Completed' AND p_status = 'Pending')
-      const { data: overdueReceivables, error: overdueError } = await supabase
-        .from('SALES_TRANS')
-        .select('salestrans_no, total_amt, due_date')
-        .lt('due_date', todayStr)
-        .eq('status', 'Completed')
-        .eq('p_status', 'Pending');
-
-      if (overdueError) throw overdueError;
-
-      const overdueReceivablesCount = overdueReceivables?.length || 0;
-      const overdueReceivablesAmount = overdueReceivables?.reduce((sum, sale) => sum + (sale.total_amt || 0), 0) || 0;
-
-      // 4. Pending Sales Orders (status = 'Pending' from SALES_TRANS)
-      const { count: pendingSalesCount, error: salesPendingError } = await supabase
-        .from('SALES_TRANS')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'Pending');
-
-      if (salesPendingError) throw salesPendingError;
-
-      // 5. Pending Purchase Orders (status = 'Pending' from PURCHASE_TRANS)
-      const { count: pendingPurchaseCount, error: purchasePendingError } = await supabase
-        .from('PURCHASE_TRANS')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'Pending');
-
-      if (purchasePendingError) throw purchasePendingError;
-
-      // 6. Pending Transfers (status = 'Pending' from TRANSFER_TRANS)
-      const { count: pendingTransferCount, error: transferPendingError } = await supabase
-        .from('TRANSFER_TRANS')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'Pending');
-
-      if (transferPendingError) throw transferPendingError;
-
-      // 7. Released Transfers (status = 'Released' from TRANSFER_TRANS)
-      const { count: releasedTransferCount, error: releasedTransferError } = await supabase
-        .from('TRANSFER_TRANS')
-        .select('*', { count: 'exact', head: true })
-        .eq('status', 'Released');
-
-      if (releasedTransferError) throw releasedTransferError;
+      const overdueReceivablesCount = overdueReceivables.data?.length || 0;
+      const overdueReceivablesAmount = overdueReceivables.data?.reduce((sum, sale) => sum + (sale.total_amt || 0), 0) || 0;
 
       setDashboardData({
         todaySales: { totalOrders, totalSales },
@@ -142,10 +166,10 @@ const Dashboard = () => {
           totalReceivables: overdueReceivablesCount, 
           totalAmount: overdueReceivablesAmount 
         },
-        pendingSalesOrders: pendingSalesCount || 0,
-        pendingPurchaseOrders: pendingPurchaseCount || 0,
-        pendingTransfers: pendingTransferCount || 0,
-        releasedTransfers: releasedTransferCount || 0, 
+        pendingSalesOrders: pendingSalesCount.count || 0,
+        pendingPurchaseOrders: pendingPurchaseCount.count || 0,
+        pendingTransfers: pendingTransferCount.count || 0,
+        releasedTransfers: releasedTransferCount.count || 0,
         loading: false
       });
 
