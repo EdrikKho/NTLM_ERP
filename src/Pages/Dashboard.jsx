@@ -3,8 +3,9 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../client';
-import { FaChartLine, FaMoneyCheck, FaExclamationTriangle } from 'react-icons/fa';
+import { FaChartLine, FaMoneyCheck, FaExclamationTriangle, FaShoppingCart, FaClipboard, FaRepeat } from 'react-icons/fa';
 import './Dashboard.css';
+import { FaRepeat } from 'react-icons/fa6';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -201,7 +202,10 @@ const Dashboard = () => {
               <div className="dashboard-scorecards-row">
                 {/* Pending Sales Orders */}
                 <div className="dashboard-scorecard dashboard-scorecard-single">
-                  <h3 className="dashboard-scorecard-title">Pending Sales Orders</h3>
+                  <div className="dashboard-scorecard-header">
+                    <FaShoppingCart className="dashboard-icon"/>
+                    <h3 className="dashboard-scorecard-title">Pending Sales Orders</h3>
+                  </div>
                   <p className="dashboard-scorecard-number dashboard-scorecard-number-blue">
                     {dashboardData.pendingSalesOrders}
                   </p>
@@ -209,7 +213,10 @@ const Dashboard = () => {
 
                 {/* Pending Purchase Orders */}
                 <div className="dashboard-scorecard dashboard-scorecard-single">
-                  <h3 className="dashboard-scorecard-title">Pending Purchase Orders</h3>
+                  <div className="dashboard-scorecard-header">
+                    <FaClipboard className="dashboard-icon"/>
+                    <h3 className="dashboard-scorecard-title">Pending Purchase Orders</h3>
+                  </div>
                   <p className="dashboard-scorecard-number dashboard-scorecard-number-purple">
                     {dashboardData.pendingPurchaseOrders}
                   </p>
@@ -217,7 +224,10 @@ const Dashboard = () => {
 
                 {/* Pending Transfers */}
                 <div className="dashboard-scorecard dashboard-scorecard-single">
-                  <h3 className="dashboard-scorecard-title">Pending Transfers</h3>
+                  <div className="dashboard-scorecard-header">
+                    <FaRepeat className="dashboard-icon"/>
+                    <h3 className="dashboard-scorecard-title">Pending Transfers</h3>
+                  </div>
                   <p className="dashboard-scorecard-number dashboard-scorecard-number-cyan">
                     {dashboardData.pendingTransfers}
                   </p>
