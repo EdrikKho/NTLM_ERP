@@ -1,14 +1,4 @@
-/* Dashboard Container */
-.dashboard-container {
-  display: flex;
-  min-height: 100vh;
-}
 
-.dashboard-main-content {
-  margin-left: 300px;
-  width: 100%;
-  padding: 20px;
-}
 
 .dashboard-content-wrapper {
   padding: 20px;
