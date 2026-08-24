@@ -146,9 +146,8 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
-  flex: 1 1 auto; /* Allow it to grow and shrink */
-  min-width: 180px; /* Minimum size */
-  max-width: 300px; /* Maximum size */
+  min-width: 500px; /* Minimum size */
+  max-width: 1000px; /* Maximum size */
   width: 100%; /* Take available space */
   height: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -277,6 +276,7 @@
   .reports-month-input {
     width: 100%;
     min-width: auto;
+    max-width: 100%; /* Override for mobile */
   }
 
   .reports-ar-search-container {
