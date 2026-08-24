@@ -308,9 +308,6 @@ const Reports = () => {
             </div>
 
             <div className="reports-table-container">
-              {loading ? (
-                <div className="reports-loading">Loading...</div>
-              ) : (
                 <table className="reports-styled-table">
                   <thead>
                     <tr>
@@ -349,7 +346,6 @@ const Reports = () => {
                     </tr>
                   </tfoot>
                 </table>
-              )}
             </div>
           </div>
 
@@ -422,9 +418,6 @@ const Reports = () => {
             </div>
 
             <div className="reports-table-container">
-              {loading ? (
-                <div className="reports-loading">Loading...</div>
-              ) : (
                 <table className="reports-styled-table">
                   <thead>
                     <tr>
@@ -467,7 +460,6 @@ const Reports = () => {
                     )}
                   </tbody>
                 </table>
-              )}
             </div>
           </div>
         </>
