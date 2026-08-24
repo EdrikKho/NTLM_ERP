@@ -47,8 +47,8 @@
   align-items: center;
   gap: 10px;
   flex-wrap: nowrap;
-  flex: 0 0 auto; /* Prevent container from shrinking */
-  min-width: auto;
+  width: 100%; /* Match parent width */
+  flex: 0 0 100%; /* Prevent flex from changing it */
 }
 
 .reports-search-icon {
@@ -146,12 +146,12 @@
   font-size: 14px;
   background: white;
   cursor: pointer;
-  width: 1040px; /* Fixed width */
-  min-width: 1040px; /* Prevent shrinking */
-  max-width: 1040px; /* Prevent growing */
+  width: 100%; /* Fill the container */
+  min-width: 100%; /* Force it to fill */
+  max-width: 100%; /* Prevent it from exceeding */
   height: 18px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  flex: 0 0 auto; /* Prevent flex from shrinking it */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .reports-month-input:focus {
