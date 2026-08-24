@@ -122,8 +122,6 @@ body {
 }
 
 .dashboard-section-title {
-  font-size: 18px;
-  font-weight: 500;
   margin-bottom: 20px;
   letter-spacing: 0.5px;
 }
@@ -220,6 +218,7 @@ body {
   background: white;
   border-radius: 7px;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .dashboard-table thead {
