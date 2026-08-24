@@ -243,7 +243,7 @@ body {
 }
 
 
-/* Dashboard Table Styles - Matching Reports.css Exactly 
+/* Dashboard Table Styles - Matching Reports.css Exactly */
 .dashboard-table-container {
   width: 100%;
   margin-top: 20px;
@@ -252,8 +252,8 @@ body {
   border-radius: 7px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
 }
-*/
 
+/*
 .dashboard-table {
   width: 100%;
   min-width: 700px;
@@ -262,6 +262,7 @@ body {
   border-radius: 7px;
   overflow: hidden;
 }
+*/
 
 .dashboard-table thead {
   background: #185229;
