@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../client';
+import { FaChartLine } from 'react-icons/fa';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -136,6 +137,7 @@ const Dashboard = () => {
               <div className="dashboard-scorecards-row">
                 {/* Today's Sales */}
                 <div className="dashboard-scorecardfirst">
+                  <FaChartLine className="dashboard-icon" />
                   <h3 className="dashboard-scorecard-title">Today's Sales</h3>
                   <div className="dashboard-scorecard-content">
                     <div className="dashboard-scorecard-item">

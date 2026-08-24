@@ -10,6 +10,11 @@ body {
   margin-left: 270px;
 }
 
+.dashboard-scorecard-icon {
+  font-size: 20px;
+  color: #185229;
+}
+
 /* Loading State */
 .dashboard-loading {
   text-align: center;
@@ -30,7 +35,7 @@ body {
 .dashboard-scorecardfirst {
   background-color: #ffffff;
   border-radius: 12px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   padding-left: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
@@ -39,7 +44,7 @@ body {
 .dashboard-scorecard {
   background-color: #ffffff;
   border-radius: 12px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: box-shadow 0.3s ease;
 }
