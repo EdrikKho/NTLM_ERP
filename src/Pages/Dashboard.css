@@ -253,7 +253,7 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
 }
 
-/*
+
 .dashboard-table {
   width: 100%;
   min-width: 700px;
@@ -262,7 +262,7 @@ body {
   border-radius: 7px;
   overflow: hidden;
 }
-*/
+
 
 .dashboard-table thead {
   background: #185229;

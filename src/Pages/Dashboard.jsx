@@ -438,7 +438,7 @@ const Dashboard = () => {
               {/* Table Section */}
                 <div className="dashboard-section">
                   <h3 className="dashboard-section-title">{getTableTitle()}</h3>
-                  <div className="dashboard-table-container">
+                  
                     {tableData.length === 0 ? (
                       <div className="dashboard-table-empty">No records found</div>
                     ) : (
@@ -526,7 +526,6 @@ const Dashboard = () => {
                         </tbody>
                       </table>
                     )}
-                  </div>
                 </div>
 
               {/* Low Stock Items Table */}
