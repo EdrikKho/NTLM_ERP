@@ -103,6 +103,8 @@ button:active {
 
 .inventory-search-bar {
   width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 10px 12px 10px 38px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -372,11 +374,11 @@ table button {
   width: 100%;
   box-sizing: border-box;
 
+  overflow: hidden;
+
   box-shadow:
     0 -2px 4px rgba(0, 0, 0, 0.04),
     0 4px 8px rgba(0, 0, 0, 0.08);
-  min-width: 700px;
-  overflow: hidden; /* Change from visible to hidden */
 }
 
 .inventory-error-text {
@@ -391,21 +393,23 @@ table button {
   display: flex;
   gap: 15px;
   align-items: center;
-  flex-wrap: nowrap;
   width: 100%;
-  min-width: 800px;
-  overflow: visible; /* Keep this as visible so items show */
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .inventory-search-container {
-  flex: 1 0 auto; /* Grow but don't shrink */
-  min-width: 100px;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .inventory-filter-group {
   display: flex;
   gap: 10px;
-  flex: 0 0 auto; /* Don't grow or shrink */
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .inventory-filter-select {
