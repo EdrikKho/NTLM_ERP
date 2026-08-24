@@ -222,7 +222,7 @@ const Dashboard = () => {
           const { data: purchaseData, error: purchaseError } = await supabase
             .from('PURCHASE_TRANS')
             .select(`
-              purchasetrans_no,
+              purtrans_no,
               date,
               status,
               sup_no,
