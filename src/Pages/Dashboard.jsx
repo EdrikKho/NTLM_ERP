@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../client';
-import { FaChartLine, FaHandHoldingUsd } from 'react-icons/fa';
+import { FaChartLine, LuFilePenLine } from 'react-icons/fa';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -156,7 +156,7 @@ const Dashboard = () => {
                 {/* Pending Receivables */}
                 <div className="dashboard-scorecardfirst">
                   <div className="dashboard-scorecard-header">
-                    <FaHandHoldingUsd className="dashboard-icon" />
+                    <LuFilePenLine className="dashboard-icon" />
                     <h3 className="dashboard-scorecard-title">Pending Receivables</h3>
                   </div>
                   <div className="dashboard-scorecard-content">
