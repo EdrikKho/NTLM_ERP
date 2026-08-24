@@ -6,7 +6,6 @@ import { supabase } from '../client';
 import { FaChartLine, FaMoneyCheck, FaExclamationTriangle } from 'react-icons/fa';
 import { FiShoppingCart, FiClipboard, FiRepeat } from 'react-icons/fi';
 import './Dashboard.css';
-import { FaRepeat } from 'react-icons/fa6';
 
 const Dashboard = () => {
   const { user } = useAuth();
@@ -20,6 +19,17 @@ const Dashboard = () => {
     pendingTransfers: 0,
     loading: false
   });
+
+  // State for table data and which scorecard is active
+  const [activeTable, setActiveTable] = useState('todaySales');
+  const [tableData, setTableData] = useState([]);
+
+  // Fetch table data when activeTable changes
+  useEffect(() => {
+    if (activeTable) {
+      fetchTableData(activeTable);
+    }
+  }, [activeTable]);
 
   useEffect(() => {
     fetchDashboardData();
@@ -116,6 +126,167 @@ const Dashboard = () => {
     }
   };
 
+  const fetchTableData = async (tableType) => {
+    try {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = String(today.getMonth() + 1).padStart(2, '0');
+      const day = String(today.getDate()).padStart(2, '0');
+      const todayStr = `${year}-${month}-${day}`;
+
+      let data = [];
+
+      switch (tableType) {
+        case 'todaySales':
+          const { data: salesData, error: salesError } = await supabase
+            .from('SALES_TRANS')
+            .select(`
+              salestrans_no,
+              date,
+              status,
+              total_amt,
+              cust_no,
+              CUSTOMER!inner (
+                name
+              )
+            `)
+            .eq('date', todayStr)
+            .eq('status', 'Completed');
+
+          if (salesError) throw salesError;
+          data = salesData || [];
+          break;
+
+        case 'pendingReceivables':
+          const { data: pendingData, error: pendingError } = await supabase
+            .from('SALES_TRANS')
+            .select(`
+              salestrans_no,
+              date,
+              status,
+              total_amt,
+              cust_no,
+              CUSTOMER!inner (
+                name
+              )
+            `)
+            .eq('status', 'Completed')
+            .eq('p_status', 'Pending');
+
+          if (pendingError) throw pendingError;
+          data = pendingData || [];
+          break;
+
+        case 'overdueReceivables':
+          const { data: overdueData, error: overdueError } = await supabase
+            .from('SALES_TRANS')
+            .select(`
+              salestrans_no,
+              date,
+              status,
+              total_amt,
+              due_date,
+              cust_no,
+              CUSTOMER!inner (
+                name
+              )
+            `)
+            .lt('due_date', todayStr)
+            .eq('status', 'Completed')
+            .eq('p_status', 'Pending');
+
+          if (overdueError) throw overdueError;
+          data = overdueData || [];
+          break;
+
+        case 'pendingSalesOrders':
+          const { data: salesPendingData, error: salesPendingError } = await supabase
+            .from('SALES_TRANS')
+            .select(`
+              salestrans_no,
+              date,
+              status,
+              total_amt,
+              cust_no,
+              CUSTOMER!inner (
+                name
+              )
+            `)
+            .eq('status', 'Pending');
+
+          if (salesPendingError) throw salesPendingError;
+          data = salesPendingData || [];
+          break;
+
+        case 'pendingPurchaseOrders':
+          const { data: purchaseData, error: purchaseError } = await supabase
+            .from('PURCHASE_TRANS')
+            .select(`
+              purchasetrans_no,
+              date,
+              status,
+              sup_no,
+              SUPPLIER!inner (
+                com_name
+              )
+            `)
+            .eq('status', 'Pending');
+
+          if (purchaseError) throw purchaseError;
+          data = purchaseData || [];
+          break;
+
+        case 'pendingTransfers':
+          const { data: transferData, error: transferError } = await supabase
+            .from('TRANSFER_TRANS')
+            .select(`
+              transfertrans_no,
+              date,
+              status,
+              requester_id
+            `)
+            .eq('status', 'Pending');
+
+          if (transferError) throw transferError;
+          data = transferData || [];
+          break;
+
+        default:
+          data = [];
+      }
+
+      setTableData(data);
+    } catch (error) {
+      console.error('Error fetching table data:', error);
+      setTableData([]);
+    }
+  };
+
+  // Handle scorecard click
+  const handleScorecardClick = (tableType) => {
+    setActiveTable(tableType);
+  };
+
+  // Get table title based on active table
+  const getTableTitle = () => {
+    switch (activeTable) {
+      case 'todaySales':
+        return "Today's Sales Orders";
+      case 'pendingReceivables':
+        return 'Pending Receivables';
+      case 'overdueReceivables':
+        return 'Overdue Receivables';
+      case 'pendingSalesOrders':
+        return 'Pending Sales Orders';
+      case 'pendingPurchaseOrders':
+        return 'Pending Purchase Orders';
+      case 'pendingTransfers':
+        return 'Pending Transfers';
+      default:
+        return '';
+    }
+  };
+
   const role = user?.user_metadata?.role || '';
   const firstName = user?.user_metadata?.first_name || '';
   const lastName = user?.user_metadata?.last_name || '';
@@ -134,7 +305,10 @@ const Dashboard = () => {
               {/* Scorecards Grid - First Row */}
               <div className="dashboard-scorecards-row">
                 {/* Today's Sales */}
-                <div className="dashboard-scorecardfirst">
+                <div 
+                  className="dashboard-scorecardfirst dashboard-clickable"
+                  onClick={() => handleScorecardClick('todaySales')}
+                >
                   <div className="dashboard-scorecard-header">
                     <FaChartLine className="dashboard-icon" />
                     <h3 className="dashboard-scorecard-title">Today's Sales</h3>
@@ -156,7 +330,10 @@ const Dashboard = () => {
                 </div>
 
                 {/* Pending Receivables */}
-                <div className="dashboard-scorecardfirst">
+                <div 
+                  className="dashboard-scorecardfirst dashboard-clickable"
+                  onClick={() => handleScorecardClick('pendingReceivables')}
+                >
                   <div className="dashboard-scorecard-header">
                     <FaMoneyCheck className="dashboard-icon" />
                     <h3 className="dashboard-scorecard-title">Pending Receivables</h3>
@@ -177,7 +354,10 @@ const Dashboard = () => {
                   </div>
                 </div>
                 {/* Overdue Receivables */}
-                <div className="dashboard-scorecardfirst">
+                <div 
+                  className="dashboard-scorecardfirst dashboard-clickable"
+                  onClick={() => handleScorecardClick('overdueReceivables')}
+                >
                   <div className="dashboard-scorecard-header">
                     <FaExclamationTriangle className="dashboard-icon" style={{color:'red'}}/>
                     <h3 className="dashboard-scorecard-title">Overdue Receivables</h3>
@@ -202,7 +382,10 @@ const Dashboard = () => {
               {/* Scorecards Grid - Second Row (Pending Counts) */}
               <div className="dashboard-scorecards-row">
                 {/* Pending Sales Orders */}
-                <div className="dashboard-scorecard dashboard-scorecard-single">
+                <div 
+                  className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                  onClick={() => handleScorecardClick('pendingSalesOrders')}
+                >
                   <div className="dashboard-scorecard-header">
                     <FiShoppingCart className="dashboard-icon"/>
                     <h3 className="dashboard-scorecard-title">Pending Sales Orders</h3>
@@ -213,7 +396,10 @@ const Dashboard = () => {
                 </div>
 
                 {/* Pending Purchase Orders */}
-                <div className="dashboard-scorecard dashboard-scorecard-single">
+                <div 
+                  className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                  onClick={() => handleScorecardClick('pendingPurchaseOrders')}
+                >
                   <div className="dashboard-scorecard-header">
                     <FiClipboard className="dashboard-icon"/>
                     <h3 className="dashboard-scorecard-title">Pending Purchase Orders</h3>
@@ -224,7 +410,10 @@ const Dashboard = () => {
                 </div>
 
                 {/* Pending Transfers */}
-                <div className="dashboard-scorecard dashboard-scorecard-single">
+                <div 
+                  className="dashboard-scorecard dashboard-scorecard-single dashboard-clickable"
+                  onClick={() => handleScorecardClick('pendingTransfers')}
+                >
                   <div className="dashboard-scorecard-header">
                     <FiRepeat className="dashboard-icon"/>
                     <h3 className="dashboard-scorecard-title">Pending Transfers</h3>
@@ -235,13 +424,99 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* Sales Trend Section */}
-              <div className="dashboard-section">
-                <h3 className="dashboard-section-title">Sales Trend</h3>
-                <div className="dashboard-chart-placeholder">
-                  📊 Sales Trend Chart
+              {/* Table Section */}
+                <div className="dashboard-section">
+                  <h3 className="dashboard-section-title">{getTableTitle()}</h3>
+                  <div className="dashboard-table-container">
+                    {tableData.length === 0 ? (
+                      <div className="dashboard-table-empty">No records found</div>
+                    ) : (
+                      <table className="dashboard-table">
+                        <thead>
+                          <tr>
+                            {activeTable === 'pendingPurchaseOrders' && (
+                              <>
+                                <th>Date</th>
+                                <th>Supplier</th>
+                                <th>Status</th>
+                              </>
+                            )}
+                            {activeTable === 'pendingTransfers' && (
+                              <>
+                                <th>Date</th>
+                                <th>Requester</th>
+                                <th>Status</th>
+                              </>
+                            )}
+                            {(activeTable === 'todaySales' || 
+                              activeTable === 'pendingReceivables' || 
+                              activeTable === 'overdueReceivables' || 
+                              activeTable === 'pendingSalesOrders') && (
+                              <>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                              </>
+                            )}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {activeTable === 'pendingPurchaseOrders' && 
+                            tableData.map((item) => (
+                              <tr key={item.purchasetrans_no}>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>{item.SUPPLIER?.com_name || 'N/A'}</td>
+                                <td style={{ textAlign: 'left' }}>
+                                  <span className="status-badge status-pending">{item.status}</span>
+                                </td>
+                              </tr>
+                            ))
+                          }
+                          {activeTable === 'pendingTransfers' && 
+                            tableData.map((item) => (
+                              <tr key={item.transfertrans_no}>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>{item.requester_id || 'N/A'}</td>
+                                <td style={{ textAlign: 'left' }}>
+                                  <span className="status-badge status-pending">{item.status}</span>
+                                </td>
+                              </tr>
+                            ))
+                          }
+                          {(activeTable === 'todaySales' || 
+                            activeTable === 'pendingReceivables' || 
+                            activeTable === 'overdueReceivables' || 
+                            activeTable === 'pendingSalesOrders') && 
+                            tableData.map((item) => (
+                              <tr key={item.salestrans_no}>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name || 'N/A'}</td>
+                                <td style={{ textAlign: 'right' }}>
+                                  ₱{formatCurrency(item.total_amt)}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>
+                                  <span className={`status-badge ${
+                                    item.status === 'Completed' ? 'status-completed' : 
+                                    item.status === 'Pending' ? 'status-pending' : ''
+                                  }`}>
+                                    {item.status}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))
+                          }
+                        </tbody>
+                      </table>
+                    )}
+                  </div>
                 </div>
-              </div>
 
               {/* Low Stock Items Table */}
               <div className="dashboard-section">
