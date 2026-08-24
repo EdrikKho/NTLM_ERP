@@ -95,15 +95,16 @@ const Reports = () => {
     try {
       const [year, monthNum] = selectedMonth.split('-');
       const startDate = `${year}-${monthNum}-01`;
-      const endDate = new Date(year, parseInt(monthNum), 0).toISOString().split('T')[0];
+      const lastDay = new Date(year, parseInt(monthNum), 0);
+      const endDateStr = `${year}-${monthNum}-${String(lastDay.getDate()).padStart(2, '0')}`;
 
-      // FIX: Select 'salestrans_no' (not 'sales_trans_no')
+      // Step 1: Get all completed sales transactions for the month
       const { data: salesData, error: salesError } = await supabase
         .from('SALES_TRANS')
-        .select('salestrans_no')  // Changed from 'sales_trans_no' to 'salestrans_no'
+        .select('salestrans_no')
         .eq('status', 'Completed')
         .gte('date', startDate)
-        .lte('date', endDate);
+        .lte('date', endDateStr);
 
       if (salesError) throw salesError;
 
@@ -112,13 +113,12 @@ const Reports = () => {
         return;
       }
 
-      // FIX: Map 'salestrans_no' (not 'sales_trans_no')
-      const salesTransNos = salesData.map(s => s.salestrans_no);  // Changed from s.sales_trans_no
+      const salesTransNos = salesData.map(s => s.salestrans_no);
 
-      // This part is correct - using LINE_ITEM with salestrans_no
+      // Step 2: Get all line items with their subtotals for these transactions
       const { data: salesItems, error: itemsError } = await supabase
         .from('LINE_ITEM') 
-        .select('prod_no, qty')
+        .select('prod_no, subtotal')  // Get the subtotal directly from LINE_ITEM
         .in('salestrans_no', salesTransNos); 
 
       if (itemsError) throw itemsError;
@@ -128,36 +128,39 @@ const Reports = () => {
         return;
       }
 
+      // Step 3: Get product details
       const prodNos = [...new Set(salesItems.map(item => item.prod_no))];
       
       const { data: products, error: productsError } = await supabase
         .from('PRODUCT')
-        .select('prod_no, brand, name, size_amt, u_size, price_piece')
+        .select('prod_no, brand, name, size_amt, u_size')
         .in('prod_no', prodNos);
 
       if (productsError) throw productsError;
 
+      // Step 4: Aggregate subtotals by product
       const productSales = {};
       
       salesItems.forEach(item => {
         const product = products.find(p => p.prod_no === item.prod_no);
         if (product) {
           const key = `${product.brand}|${product.name}|${product.size_amt}|${product.u_size}`;
-          const salesAmount = item.qty * product.price_piece;
+          const subtotal = parseFloat(item.subtotal) || 0;
           
           if (productSales[key]) {
-            productSales[key].totalSales += salesAmount;
+            productSales[key].totalSales += subtotal;
           } else {
             productSales[key] = {
               brand: product.brand,
               name: product.name,
               size: `${product.size_amt} ${product.u_size}`,
-              totalSales: salesAmount
+              totalSales: subtotal
             };
           }
         }
       });
 
+      // Step 5: Sort and get top 10
       const sortedProducts = Object.values(productSales)
         .sort((a, b) => b.totalSales - a.totalSales)
         .slice(0, 10);
