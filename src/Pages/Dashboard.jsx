@@ -529,7 +529,6 @@ const Dashboard = () => {
                 </div>
 
               {/* Low Stock Items Table */}
-              <div className="dashboard-section">
                 <h3 className="dashboard-section-title">Low Stock Items</h3>
                 <table className="dashboard-table">
                   <thead>
@@ -549,7 +548,6 @@ const Dashboard = () => {
                     </tr>
                   </tbody>
                 </table>
-              </div>
         </div>
       </div>
     </div>
