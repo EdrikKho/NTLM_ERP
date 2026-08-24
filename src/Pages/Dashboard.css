@@ -6,12 +6,6 @@
   margin-left: 270px;
 }
 
-.dashboard-content-wrapper {
-  padding: 20px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
 /* Loading State */
 .dashboard-loading {
   text-align: center;
