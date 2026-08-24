@@ -60,22 +60,6 @@
   align-items: center;
 }
 
-.reports-filter-select {
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-  background: white;
-  cursor: pointer;
-  min-width: 150px;
-  height: 40px;
-}
-
-.reports-filter-select:focus {
-  border-color: #185229;
-  outline: none;
-}
-
 .reports-table-container {
   width: 100%;
   margin-top: 20px;
@@ -141,6 +125,30 @@
   font-size: 16px;
 }
 
+/* ADD these styles to Reports.css */
+.reports-month-label {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.reports-month-input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  background: white;
+  cursor: pointer;
+  min-width: 200px;
+  height: 40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.reports-month-input:focus {
+  border-color: #185229;
+  outline: none;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .reportspage {
@@ -187,6 +195,17 @@
   .reports-styled-table td {
     font-size: 13px;
     padding: 8px 10px;
+  }
+
+  .reports-search-container {
+    flex-direction: column;
+    align-items: stretch;
+    min-width: auto;
+  }
+  
+  .reports-month-input {
+    width: 100%;
+    min-width: auto;
   }
 }
 

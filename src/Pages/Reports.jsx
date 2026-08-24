@@ -3,14 +3,12 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import { useAuth } from '../context/AuthContext';
 import { supabase } from '../client';
-import { FiSearch } from 'react-icons/fi';
 import { toast, ToastContainer } from 'react-toastify';
 import './Reports.css';
 
 const Reports = () => {
   const { user } = useAuth();
-  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [selectedMonth, setSelectedMonth] = useState('');
   const [salesData, setSalesData] = useState([]);
   const [topProducts, setTopProducts] = useState([]);
   const [monthlyTotal, setMonthlyTotal] = useState(0);
@@ -18,71 +16,57 @@ const Reports = () => {
 
   const role = user?.user_metadata?.role || '';
 
-  // Generate month options
-  const months = [
-    { value: 1, label: 'January' },
-    { value: 2, label: 'February' },
-    { value: 3, label: 'March' },
-    { value: 4, label: 'April' },
-    { value: 5, label: 'May' },
-    { value: 6, label: 'June' },
-    { value: 7, label: 'July' },
-    { value: 8, label: 'August' },
-    { value: 9, label: 'September' },
-    { value: 10, label: 'October' },
-    { value: 11, label: 'November' },
-    { value: 12, label: 'December' }
-  ];
-
-  const currentYear = new Date().getFullYear();
-  const years = Array.from({ length: 6 }, (_, i) => currentYear - i);
+  // ADD this after your state variables:
+  useEffect(() => {
+    const now = new Date();
+    const currentMonth = now.toISOString().slice(0, 7);
+    setSelectedMonth(currentMonth);
+  }, []);
 
   useEffect(() => {
-    if (role === 'admin' || role === 'superuser') {
+    if (selectedMonth && (role === 'admin' || role === 'superuser')) {
       fetchSalesData();
       fetchTopProducts();
     }
-  }, [selectedMonth, selectedYear, role]);
+  }, [selectedMonth, role]);
 
   const fetchSalesData = async () => {
+    if (!selectedMonth) return;
+    
     setLoading(true);
     try {
-      const startDate = new Date(selectedYear, selectedMonth - 1, 1);
-      const endDate = new Date(selectedYear, selectedMonth, 0);
-      
-      const startDateStr = startDate.toISOString().split('T')[0];
-      const endDateStr = endDate.toISOString().split('T')[0];
+      const [year, monthNum] = selectedMonth.split('-');
+      const startDate = `${year}-${monthNum}-01`;
+      const endDate = new Date(year, parseInt(monthNum), 0).toISOString().split('T')[0];
 
       const { data, error } = await supabase
         .from('SALES_TRANS')
         .select('date, total_amt')
         .eq('status', 'Completed')
-        .gte('date', startDateStr)
-        .lte('date', endDateStr)
+        .gte('date', startDate)
+        .lte('date', endDate)
         .order('date', { ascending: true });
 
       if (error) throw error;
 
-      const salesByDate = {};
-      let total = 0;
-      
-      data?.forEach(sale => {
-        const dateStr = sale.date;
-        if (salesByDate[dateStr]) {
-          salesByDate[dateStr] += sale.total_amt;
-        } else {
-          salesByDate[dateStr] = sale.total_amt;
-        }
-        total += sale.total_amt;
+      const dailyTotals = {};
+      let totalSum = 0;
+
+      data?.forEach(order => {
+        const date = order.date;
+        const total = parseFloat(order.total_amt) || 0;
+        if (!dailyTotals[date]) dailyTotals[date] = 0;
+        dailyTotals[date] += total;
+        totalSum += total;
       });
 
-      const formattedSales = Object.entries(salesByDate).map(([date, totalAmt]) => ({
+      const formattedData = Object.entries(dailyTotals).map(([date, total]) => ({
         date,
-        totalAmt
+        total
       }));
 
-      setSalesData(formattedSales);
-      setMonthlyTotal(total);
+      setSalesData(formattedData);
+      setMonthlyTotal(totalSum);
     } catch (error) {
       console.error('Error fetching sales data:', error);
       toast.error('Failed to fetch sales data');
@@ -92,19 +76,19 @@ const Reports = () => {
   };
 
   const fetchTopProducts = async () => {
+    if (!selectedMonth) return;
+    
     try {
-      const startDate = new Date(selectedYear, selectedMonth - 1, 1);
-      const endDate = new Date(selectedYear, selectedMonth, 0);
-      
-      const startDateStr = startDate.toISOString().split('T')[0];
-      const endDateStr = endDate.toISOString().split('T')[0];
+      const [year, monthNum] = selectedMonth.split('-');
+      const startDate = `${year}-${monthNum}-01`;
+      const endDate = new Date(year, parseInt(monthNum), 0).toISOString().split('T')[0];
 
       const { data: salesData, error: salesError } = await supabase
         .from('SALES_TRANS')
         .select('sales_trans_no')
         .eq('status', 'Completed')
-        .gte('date', startDateStr)
-        .lte('date', endDateStr);
+        .gte('date', startDate)
+        .lte('date', endDate);
 
       if (salesError) throw salesError;
 
@@ -169,11 +153,7 @@ const Reports = () => {
   };
 
   const handleMonthChange = (e) => {
-    setSelectedMonth(parseInt(e.target.value));
-  };
-
-  const handleYearChange = (e) => {
-    setSelectedYear(parseInt(e.target.value));
+    setSelectedMonth(e.target.value);
   };
 
   // If user doesn't have access
@@ -214,32 +194,16 @@ const Reports = () => {
         <div className="reports-search-card">
           <div className="reports-filters-container">
             <div className="reports-search-container">
-              <FiSearch className="reports-search-icon" />
-              <select
+              <label htmlFor="month" className="reports-month-label">
+                Select Month:
+              </label>
+              <input
+                type="month"
+                id="month"
                 value={selectedMonth}
                 onChange={handleMonthChange}
-                className="reports-filter-select"
-              >
-                {months.map(month => (
-                  <option key={month.value} value={month.value}>
-                    {month.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="reports-filter-group">
-              <select
-                value={selectedYear}
-                onChange={handleYearChange}
-                className="reports-filter-select"
-              >
-                {years.map(year => (
-                  <option key={year} value={year}>
-                    {year}
-                  </option>
-                ))}
-              </select>
+                className="reports-month-input"
+              />
             </div>
           </div>
         </div>
@@ -278,7 +242,7 @@ const Reports = () => {
               <tfoot>
                 <tr className="reports-total-row">
                   <td style={{ textAlign: 'left' }}>
-                    <strong>Total Monthly Sales</strong>
+                    <strong>Total Sales for {selectedMonth}</strong>
                   </td>
                   <td style={{ textAlign: 'right' }}>
                     <strong>₱ {monthlyTotal.toFixed(2)}</strong>
@@ -290,9 +254,9 @@ const Reports = () => {
         </div>
       </div>
 
+      <h2 className="reports-table-title">Top Performing Products</h2>
       <div className="reports-section">
         <div className="reports-table-container">
-          <h2 className="reports-table-title">Top Performing Products</h2>
           <table className="reports-styled-table">
             <thead>
               <tr>
