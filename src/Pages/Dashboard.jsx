@@ -28,11 +28,12 @@ const Dashboard = () => {
       today.setHours(0, 0, 0, 0);
       const todayStr = today.toISOString();
 
-      // 1. Today's Sales (from SALES_TRANS with today's date)
+      // 1. Today's Sales (from SALES_TRANS with today's date and status = 'Completed')
       const { data: todaySales, error: todayError } = await supabase
         .from('SALES_TRANS')
         .select('salestrans_no, total_amt')
-        .eq('date', todayStr);
+        .eq('date', todayStr)
+        .eq('status', 'Completed');
 
       if (todayError) throw todayError;
 
