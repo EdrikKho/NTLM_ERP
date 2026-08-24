@@ -112,6 +112,7 @@ body {
   padding-bottom: 10px;
 }
 
+/* Sections */
 .dashboard-section {
   background-color: #ffffff;
   border-radius: 12px;
@@ -125,6 +126,7 @@ body {
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 20px;
+  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
@@ -139,6 +141,44 @@ body {
   color: #9ca3af;
   font-size: 16px;
   border: 1px dashed #d1d5db;
+}
+
+/* Table */
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dashboard-table thead tr {
+  border-bottom: 1px solid #e8ecf1;
+}
+
+.dashboard-table th {
+  text-align: left;
+  padding: 10px 8px;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-table td {
+  padding: 10px 8px;
+  color: #1a202c;
+  font-size: 14px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.dashboard-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.dashboard-table-empty {
+  text-align: center;
+  color: #9ca3af !important;
+  padding: 30px !important;
+  font-size: 14px !important;
 }
 
 /* Responsive Design */
@@ -213,7 +253,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
 }
 
-
 .dashboard-table {
   width: 100%;
   min-width: 700px;
@@ -222,7 +261,6 @@ body {
   border-radius: 7px;
   overflow: hidden;
 }
-
 
 .dashboard-table thead {
   background: #185229;
@@ -236,7 +274,6 @@ body {
   vertical-align: middle;
   padding: 12px;
   white-space: nowrap;
-  color: white;
 }
 
 .dashboard-table tbody tr:nth-child(even) {
@@ -275,3 +312,4 @@ body {
 .dashboard-clickable:active {
   transform: scale(0.98);
 }
+
