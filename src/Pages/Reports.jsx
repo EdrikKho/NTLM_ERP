@@ -406,16 +406,19 @@ const Reports = () => {
                 <table className="reports-styled-table">
                   <thead>
                     <tr>
-                      <th>Date</th>
-                      <th>Total Amount</th>
-                      <th>Payment Status</th>
                       <th>Due Date</th>
+                      <th>Sales Order Date</th>
+                      <th>Total Amount</th>
                       <th>Customer Name</th>
+                      <th>Payment Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     {arData.map((item, index) => (
                         <tr key={index}>
+                          <td style={{ textAlign: 'left' }}>
+                            {item.due_date ? new Date(item.due_date).toLocaleDateString() : 'N/A'}
+                          </td>
                           <td style={{ textAlign: 'left' }}>
                             {new Date(item.date).toLocaleDateString()}
                           </td>
@@ -423,15 +426,12 @@ const Reports = () => {
                             ₱{parseFloat(item.total_amt).toFixed(2)}
                           </td>
                           <td style={{ textAlign: 'left' }}>
+                            {item.customer_name}
+                          </td>
+                          <td style={{ textAlign: 'left' }}>
                             <span className="status-badge status-pending">
                               {item.p_status || 'Pending'}
                             </span>
-                          </td>
-                          <td style={{ textAlign: 'left' }}>
-                            {item.due_date ? new Date(item.due_date).toLocaleDateString() : 'N/A'}
-                          </td>
-                          <td style={{ textAlign: 'left' }}>
-                            {item.customer_name}
                           </td>
                         </tr>
                       ))}
