@@ -1166,7 +1166,7 @@ const SalesOrder = () => {
                 <tr key={order.salestrans_no}>
                   <td style={{ textAlign: 'left' }}>{new Date(order.date).toLocaleDateString()}</td>
                   <td style={{ textAlign: 'left' }}>{order.status}</td>
-                  <td style={{ textAlign: 'right' }}>₱ {order.total_amt?.toFixed(2)}</td>
+                  <td style={{ textAlign: 'right' }}>₱{order.total_amt?.toFixed(2)}</td>
                   <td style={{ textAlign: 'left' }}>{order.CUSTOMER?.name}</td>
                   <td style={{ textAlign: 'left' }}>
                     <button

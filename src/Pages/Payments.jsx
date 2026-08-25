@@ -376,7 +376,7 @@ const Payments = () => {
                   <td style={{ textAlign: 'left' }}>{payment.p_method === 'Check' ? payment.bank_name || 'N/A' : 'N/A'}</td>
                   <td style={{ textAlign: 'left' }}>{payment.SALES_TRANS?.CUSTOMER?.name || 'N/A'}</td>
                   <td style={{ textAlign: 'left' }}>{payment.SALES_TRANS?.date ? new Date(payment.SALES_TRANS.date).toLocaleDateString() : 'N/A'}</td>
-                  <td style={{ textAlign: 'right' }}>₱ {payment.SALES_TRANS?.total_amt?.toFixed(2) || '0.00'}</td>
+                  <td style={{ textAlign: 'right' }}>₱{payment.SALES_TRANS?.total_amt?.toFixed(2) || '0.00'}</td>
 
                   {/* <td>
                     <button

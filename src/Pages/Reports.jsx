@@ -317,7 +317,7 @@ const Reports = () => {
                             {new Date(sale.date).toLocaleDateString()}
                           </td>
                           <td style={{ textAlign: 'right' }}>
-                            ₱ {sale.total.toFixed(2)}
+                            ₱{sale.total.toFixed(2)}
                           </td>
                         </tr>
                       ))}
@@ -354,7 +354,7 @@ const Reports = () => {
                         <td style={{ textAlign: 'left' }}>{product.brand}</td>
                         <td style={{ textAlign: 'left' }}>{product.name}</td>
                         <td style={{ textAlign: 'left' }}>{product.size}</td>
-                        <td style={{ textAlign: 'right' }}>₱ {product.totalSales.toFixed(2)}</td>
+                        <td style={{ textAlign: 'right' }}>₱{product.totalSales.toFixed(2)}</td>
                       </tr>
                     ))}
                 </tbody>
@@ -413,7 +413,7 @@ const Reports = () => {
                             {new Date(item.date).toLocaleDateString()}
                           </td>
                           <td style={{ textAlign: 'right' }}>
-                            ₱ {parseFloat(item.total_amt).toFixed(2)}
+                            ₱{parseFloat(item.total_amt).toFixed(2)}
                           </td>
                           <td style={{ textAlign: 'left' }}>
                             <span className="status-badge status-pending">
