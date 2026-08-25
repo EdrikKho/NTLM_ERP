@@ -225,7 +225,8 @@ const Dashboard = () => {
               )
             `)
             .eq('status', 'Completed')
-            .eq('p_status', 'Pending');
+            .eq('p_status', 'Pending')
+            .order('due_date', { ascending: true });
 
           if (pendingError) throw pendingError;
           data = pendingData || [];
@@ -247,7 +248,8 @@ const Dashboard = () => {
             `)
             .lt('due_date', todayStr)
             .eq('status', 'Completed')
-            .eq('p_status', 'Pending');
+            .eq('p_status', 'Pending')
+            .order('due_date', { ascending: true });
 
           if (overdueError) throw overdueError;
           data = overdueData || [];
@@ -596,7 +598,7 @@ const Dashboard = () => {
                               activeTable === 'pendingSalesOrders') && (
                               <>
                                 <th>Date</th>
-                                <th>Customer</th>
+                                <th>Customer Name</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
                               </>
@@ -605,7 +607,7 @@ const Dashboard = () => {
                             {activeTable === 'pendingReceivables' && (
                               <>
                                 <th>Due Date</th>
-                                <th>Customer</th>
+                                <th>Customer Name</th>
                                 <th>Sales Order Date</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
@@ -615,7 +617,7 @@ const Dashboard = () => {
                             {activeTable === 'overdueReceivables' && (
                               <>
                                 <th>Due Date</th>
-                                <th>Customer</th>
+                                <th>Customer Name</th>
                                 <th>Sales Order Date</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
