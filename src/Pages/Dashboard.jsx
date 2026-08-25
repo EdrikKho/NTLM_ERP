@@ -218,6 +218,7 @@ const Dashboard = () => {
               date,
               status,
               total_amt,
+              due_date,
               cust_no,
               CUSTOMER!inner (
                 name
@@ -592,12 +593,30 @@ const Dashboard = () => {
                               </>
                             )}
                             {(activeTable === 'todaySales' || 
-                              activeTable === 'pendingReceivables' || 
-                              activeTable === 'overdueReceivables' || 
                               activeTable === 'pendingSalesOrders') && (
                               <>
                                 <th>Date</th>
                                 <th>Customer</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                              </>
+                            )}
+
+                            {activeTable === 'pendingReceivables' && (
+                              <>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Due Date</th>
+                                <th>Total Amount</th>
+                                <th>Status</th>
+                              </>
+                            )}
+
+                            {activeTable === 'overdueReceivables' && (
+                              <>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Due Date</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
                               </>
@@ -644,16 +663,85 @@ const Dashboard = () => {
                               </tr>
                             ))
                           }
-                          {(activeTable === 'todaySales' || 
-                            activeTable === 'pendingReceivables' || 
-                            activeTable === 'overdueReceivables' || 
-                            activeTable === 'pendingSalesOrders') && 
+                          {activeTable === 'todaySales' && 
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
                                 <td style={{ textAlign: 'left' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
                                 <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'right' }}>
+                                  ₱{formatCurrency(item.total_amt)}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>
+                                  <span className={`status-badge ${
+                                    item.status === 'Completed' ? 'status-completed' : 
+                                    item.status === 'Pending' ? 'status-pending' : ''
+                                  }`}>
+                                    {item.status}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))
+                          }
+
+                          {activeTable === 'pendingSalesOrders' && 
+                            tableData.map((item) => (
+                              <tr key={item.salestrans_no}>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'right' }}>
+                                  ₱{formatCurrency(item.total_amt)}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>
+                                  <span className={`status-badge ${
+                                    item.status === 'Completed' ? 'status-completed' : 
+                                    item.status === 'Pending' ? 'status-pending' : ''
+                                  }`}>
+                                    {item.status}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))
+                          }
+
+                          {activeTable === 'pendingReceivables' && 
+                            tableData.map((item) => (
+                              <tr key={item.salestrans_no}>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.due_date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'right' }}>
+                                  ₱{formatCurrency(item.total_amt)}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>
+                                  <span className={`status-badge ${
+                                    item.status === 'Completed' ? 'status-completed' : 
+                                    item.status === 'Pending' ? 'status-pending' : ''
+                                  }`}>
+                                    {item.status}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))
+                          }
+
+                          {activeTable === 'overdueReceivables' && 
+                            tableData.map((item) => (
+                              <tr key={item.salestrans_no}>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.date).toLocaleDateString()}
+                                </td>
+                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'left' }}>
+                                  {new Date(item.due_date).toLocaleDateString()}
+                                </td>
                                 <td style={{ textAlign: 'right' }}>
                                   ₱{formatCurrency(item.total_amt)}
                                 </td>
