@@ -193,7 +193,14 @@ const Reports = () => {
     try {
       const [year, monthNum] = selectedMonth.split('-');
       const startDate = `${year}-${monthNum}-01`;
-      const endDate = new Date(year, parseInt(monthNum), 0).toISOString().split('T')[0];
+      
+      // Calculate last day of month more reliably
+      const lastDay = new Date(parseInt(year), parseInt(monthNum), 0);
+      const endDay = String(lastDay.getDate()).padStart(2, '0');
+      const endDate = `${year}-${monthNum}-${endDay}`;
+
+      console.log('Start date:', startDate); // Should be 2026-08-01
+      console.log('End date:', endDate);     // Should be 2026-08-31
 
       let query = supabase
         .from('SALES_TRANS')
