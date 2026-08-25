@@ -604,9 +604,9 @@ const Dashboard = () => {
 
                             {activeTable === 'pendingReceivables' && (
                               <>
-                                <th>Date</th>
-                                <th>Customer</th>
                                 <th>Due Date</th>
+                                <th>Customer</th>
+                                <th>Sales Order Date</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
                               </>
@@ -614,9 +614,9 @@ const Dashboard = () => {
 
                             {activeTable === 'overdueReceivables' && (
                               <>
-                                <th>Date</th>
-                                <th>Customer</th>
                                 <th>Due Date</th>
+                                <th>Customer</th>
+                                <th>Sales Order Date</th>
                                 <th>Total Amount</th>
                                 <th>Status</th>
                               </>
@@ -711,11 +711,11 @@ const Dashboard = () => {
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
                                 <td style={{ textAlign: 'left' }}>
-                                  {new Date(item.date).toLocaleDateString()}
+                                  {new Date(item.due_date).toLocaleDateString()}
                                 </td>
                                 <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
                                 <td style={{ textAlign: 'left' }}>
-                                  {new Date(item.due_date).toLocaleDateString()}
+                                  {new Date(item.date).toLocaleDateString()}
                                 </td>
                                 <td style={{ textAlign: 'right' }}>
                                   ₱{formatCurrency(item.total_amt)}
@@ -736,11 +736,11 @@ const Dashboard = () => {
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
                                 <td style={{ textAlign: 'left' }}>
-                                  {new Date(item.date).toLocaleDateString()}
+                                  {new Date(item.due_date).toLocaleDateString()}
                                 </td>
                                 <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
                                 <td style={{ textAlign: 'left' }}>
-                                  {new Date(item.due_date).toLocaleDateString()}
+                                  {new Date(item.date).toLocaleDateString()}
                                 </td>
                                 <td style={{ textAlign: 'right' }}>
                                   ₱{formatCurrency(item.total_amt)}
