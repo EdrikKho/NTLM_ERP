@@ -207,8 +207,8 @@ const Reports = () => {
         `)
         .eq('status', 'Completed')
         .eq('p_status', 'Pending')
-        .gte('date', startDate)
-        .lte('date', endDate)
+        .gte('due_date', startDate)
+        .lte('due_date', endDate)
         .order('due_date', { ascending: true });
 
       if (selectedCustomer) {
