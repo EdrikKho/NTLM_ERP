@@ -268,7 +268,8 @@ const Dashboard = () => {
                 name
               )
             `)
-            .eq('status', 'Pending');
+            .eq('status', 'Pending')
+            .order('date', { ascending: true });
 
           if (salesPendingError) throw salesPendingError;
           data = salesPendingData || [];
@@ -286,7 +287,8 @@ const Dashboard = () => {
                 com_name
               )
             `)
-            .eq('status', 'Pending');
+            .eq('status', 'Pending')
+            .order('date', { ascending: true });
 
           if (purchaseError) throw purchaseError;
           data = purchaseData || [];
@@ -304,7 +306,8 @@ const Dashboard = () => {
               f_name
             )
           `)
-          .eq('status', 'Pending');
+          .eq('status', 'Pending')
+          .order('date', { ascending: true });
 
         if (transferError) throw transferError;
         data = transferData || [];
@@ -322,7 +325,8 @@ const Dashboard = () => {
               f_name
             )
           `)
-          .eq('status', 'Released');
+          .eq('status', 'Released')
+          .order('date', { ascending: true });
 
         if (releasedError) throw releasedError;
         data = releasedData || [];
