@@ -614,7 +614,6 @@ const Dashboard = () => {
                                 <th>Customer Name</th>
                                 <th>Sales Order Date</th>
                                 <th>Total Amount</th>
-                                <th>Status</th>
                               </>
                             )}
 
@@ -624,7 +623,6 @@ const Dashboard = () => {
                                 <th>Customer Name</th>
                                 <th>Sales Order Date</th>
                                 <th>Total Amount</th>
-                                <th>Status</th>
                               </>
                             )}
                           </tr>
@@ -726,14 +724,6 @@ const Dashboard = () => {
                                 <td style={{ textAlign: 'right' }}>
                                   ₱{formatCurrency(item.total_amt)}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>
-                                  <span className={`status-badge ${
-                                    item.status === 'Completed' ? 'status-completed' : 
-                                    item.status === 'Pending' ? 'status-pending' : ''
-                                  }`}>
-                                    {item.status}
-                                  </span>
-                                </td>
                               </tr>
                             ))
                           }
@@ -750,14 +740,6 @@ const Dashboard = () => {
                                 </td>
                                 <td style={{ textAlign: 'right' }}>
                                   ₱{formatCurrency(item.total_amt)}
-                                </td>
-                                <td style={{ textAlign: 'left' }}>
-                                  <span className={`status-badge ${
-                                    item.status === 'Completed' ? 'status-completed' : 
-                                    item.status === 'Pending' ? 'status-pending' : ''
-                                  }`}>
-                                    {item.status}
-                                  </span>
                                 </td>
                               </tr>
                             ))
