@@ -18,7 +18,7 @@ const SalesOrder = () => {
   const [loading, setLoading] = useState(false);
   const [lineItemSearch, setLineItemSearch] = useState('');
   const [lineItemSearchEdit, setLineItemSearchEdit] = useState('');
-
+  
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingOrder, setEditingOrder] = useState(null);
   const [editingOrderItems, setEditingOrderItems] = useState([]);
@@ -113,6 +113,8 @@ const SalesOrder = () => {
     prod_no: '',
     qty: ''
   });
+
+  const [isPrinting, setIsPrinting] = useState(false);
 
   useEffect(() => {
     fetchAllData();
@@ -653,11 +655,17 @@ const SalesOrder = () => {
     return editTempLineItems.reduce((sum, item) => sum + item.subtotal, 0);
   };
 
-  // HANDLE PRINT FUNCTION
   const handlePrint = (type) => {
+    // Prevent multiple print calls
+    if (isPrinting) {
+      console.log('Print already in progress, ignoring...');
+      return;
+    }
+    
+    setIsPrinting(true);
+    
     if (type === 'add') {
       const customerName = customers.find(c => c.cust_no === parseInt(salesOrder.cust_no))?.name || 'Not selected';
-      // Group the items before printing
       const groupedItems = groupProductsForPrint(tempLineItems);
       setPrintData({
         date: salesOrder.date,
@@ -667,7 +675,6 @@ const SalesOrder = () => {
       });
     } else if (type === 'edit') {
       const customerName = customers.find(c => c.cust_no === parseInt(editSalesOrder.cust_no))?.name || 'Not selected';
-      // Group the items before printing
       const groupedItems = groupProductsForPrint(editTempLineItems);
       setPrintData({
         date: editSalesOrder.date,
@@ -675,12 +682,35 @@ const SalesOrder = () => {
         items: groupedItems,
         total: calculateEditTotalAmount()
       });
+    } else if (type === 'view') {
+      const customerName = customers.find(c => c.cust_no === parseInt(viewOrder.cust_no))?.name || 'Not selected';
+      const transformedItems = viewOrderItems.map(item => ({
+        brand: item.PRODUCT?.brand || '',
+        name: item.PRODUCT?.name || '',
+        size_amt: item.PRODUCT?.size_amt || '',
+        u_size: item.PRODUCT?.u_size || '',
+        qty: item.qty,
+        unit: item.unit,
+        price: item.unit === 'Case' ? item.PRODUCT?.price_case : item.PRODUCT?.price_piece,
+        subtotal: item.subtotal
+      }));
+      const groupedItems = groupProductsForPrint(transformedItems);
+      setPrintData({
+        date: viewOrder.date,
+        customer: customerName,
+        items: groupedItems,
+        total: viewOrder.total_amt || 0
+      });
     }
     
-    // Small delay to ensure state updates before printing
+    // Use a single timeout with cleanup
     setTimeout(() => {
       window.print();
-    }, 100);
+      // Reset printing flag after print dialog is closed
+      setTimeout(() => {
+        setIsPrinting(false);
+      }, 1000);
+    }, 300);
   };
 
   // ADD SALES ORDER
@@ -1479,7 +1509,11 @@ const SalesOrder = () => {
                 <button
                   type="button"
                   className="print-btn"
-                  onClick={() => handlePrint('add')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handlePrint('add');
+                  }}
                 >
                   Print
                 </button>
@@ -1802,7 +1836,11 @@ const SalesOrder = () => {
                 <button
                   type="button"
                   className="print-btn"
-                  onClick={() => handlePrint('edit')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handlePrint('edit');
+                  }}
                 >
                   Print
                 </button>
@@ -2292,6 +2330,9 @@ const SalesOrder = () => {
                 type="button"
                 className="print-btn"
                 onClick={() => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handlePrint('view');
                   const customerName = customers.find(c => c.cust_no === parseInt(viewOrder.cust_no))?.name || 'Not selected';
                   const transformedItems = viewOrderItems.map(item => ({
                     brand: item.PRODUCT?.brand || '',

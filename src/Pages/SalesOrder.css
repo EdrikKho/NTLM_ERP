@@ -598,8 +598,9 @@ button:active {
   display: none;
 }
 
+/* ===== SINGLE PRINT STYLES BLOCK ===== */
 @media print {
-  /* Hide UI */
+  /* Hide EVERYTHING except the print template */
   body * {
     visibility: hidden !important;
   }
@@ -609,29 +610,19 @@ button:active {
     visibility: visible !important;
   }
 
-  /* Hide all UI elements */
-  .salesorder-modal-overlay,
-  .salesorder-modal,
-  .salesorder-modal-actions,
-  .add-item-btn,
-  .remove-item-btn,
-  .line-items-search,
-  .salesorder-form-section,
-  button {
-    display: none !important;
-  }
-  
-  /* Show only print content */
+  /* Position the print template properly */
   .print-template {
     display: block !important;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    padding: 20px;
-    background: white;
-    z-index: 9999;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    padding: 20px !important;
+    background: white !important;
+    z-index: 9999 !important;
+    margin: 0 !important;
+    overflow: visible !important;
   }
   
   .print-content {
@@ -647,20 +638,20 @@ button:active {
     margin-bottom: 20px;
   }
   
-  .print-header h2 .name{
-    margin-bottom: 10px;
-    font-size: 25px;
-  }
-
-  .printer-header h2 .title {
-    font-size: 15px;
-  }
-
   .print-header h1 {
     margin-bottom: 5px;
     font-size: 24px;
     margin-top: 0;
     text-align: center;
+  }
+
+  .print-header .name {
+    margin-bottom: 10px;
+    font-size: 25px;
+  }
+
+  .print-header .title {
+    font-size: 15px;
   }
 
   .print-header .street,
@@ -694,14 +685,13 @@ button:active {
     margin: 0 auto;
     border-collapse: collapse;
     margin-top: 10px;
-    align-items: center;
   }
   
   .print-table th {
     padding: 10px;
     text-align: center;
     font-size: 14px;
-    color:black;
+    color: black;
     font-weight: bold;
   }
   
@@ -724,6 +714,7 @@ button:active {
     font-size: 12px;
   }
 }
+
 
 .edit-item-btn {
     background-color: transparent;
