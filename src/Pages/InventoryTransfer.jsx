@@ -877,7 +877,7 @@ const InventoryTransfer = () => {
                   <td style={{ textAlign: 'left' }}>{transfer.requester ? `${transfer.requester.f_name}` : '-'}</td>
                   <td style={{ textAlign: 'left' }}>{transfer.dispatcher ? `${transfer.dispatcher.f_name}` : '-'}</td>
                   <td style={{ textAlign: 'left' }}>{transfer.receiver ? `${transfer.receiver.f_name}` : '-'}</td>
-                  <td>
+                  <td style={{ textAlign: 'center' }}>
                     <div style={{ display: 'flex', gap: '5px', width: '70px', justifyContent: 'flex-start' }}>
                       <button
                         className="view-btn"
