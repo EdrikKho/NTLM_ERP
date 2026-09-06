@@ -374,3 +374,9 @@ button:active {
   margin-bottom: 8px;
   display: block;
 }
+
+.createaccount-modal input:focus,
+.createaccount-modal select:focus {
+  outline: none;
+  border-color: #185229;
+}

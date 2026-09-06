@@ -386,7 +386,7 @@ const CreateAccount = () => {
                     </td>
                     <td style={{ textAlign: 'left' }}>{user.username}</td>
                     <td style={{ textAlign: 'left' }}>{user.email}</td>
-                    <td style={{ textAlign: 'left' }}>
+                    <td style={{ textAlign: 'center' }}>
                       <button
                         className="createaccount-del-btn"
                         onClick={() => openDeleteModal(user)}
