@@ -877,26 +877,24 @@ const InventoryTransfer = () => {
                   <td style={{ textAlign: 'left' }}>{transfer.requester ? `${transfer.requester.f_name}` : '-'}</td>
                   <td style={{ textAlign: 'left' }}>{transfer.dispatcher ? `${transfer.dispatcher.f_name}` : '-'}</td>
                   <td style={{ textAlign: 'left' }}>{transfer.receiver ? `${transfer.receiver.f_name}` : '-'}</td>
-                  <td style={{ textAlign: 'center' }}>
-                    <div style={{ display: 'flex', gap: '5px', width: '70px', justifyContent: 'flex-start' }}>
+                  <td>
+                    <button
+                      className="view-btn"
+                      onClick={() => viewTransferDetails(transfer.transfertrans_no)}
+                      title="View Inventory Transfer"
+                    >
+                      <FiEye color="#185229" size={18} />
+                    </button>
+                    {transfer.status !== 'Completed' && (
                       <button
-                        className="view-btn"
-                        onClick={() => viewTransferDetails(transfer.transfertrans_no)}
-                        title="View Inventory Transfer"
+                        className="edit-btn"
+                        onClick={() => openEditModal(transfer)}
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        title="Edit Inventory Transfer"
                       >
-                        <FiEye color="#185229" size={18} />
+                        <FiEdit color="#185229" size={18} />
                       </button>
-                      {transfer.status !== 'Completed' && (
-                        <button
-                          className="edit-btn"
-                          onClick={() => openEditModal(transfer)}
-                          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                          title="Edit Inventory Transfer"
-                        >
-                          <FiEdit color="#185229" size={18} />
-                        </button>
-                      )}
-                    </div>
+                    )}
                   </td>
                 </tr>
               ))}
