@@ -816,24 +816,34 @@ const PurchaseOrders = () => {
                   <td style={{ textAlign: 'left' }}>{new Date(order.date).toLocaleDateString()}</td>
                   <td style={{ textAlign: 'left' }}>{order.status}</td>
                   <td style={{ textAlign: 'left' }}>{order.SUPPLIER?.com_name}</td>
-                  <td style={{ textAlign: 'left' }}>
-                    <button
-                      className="view-btn"
-                      onClick={() => viewOrderDetails(order.purtrans_no)}
-                      title="View Purchase Order"
-                    >
-                      <FiEye color="#185229" size={18} />
-                    </button>
-                    {order.status !== 'Completed' && (
+                  <td style={{ textAlign: 'center' }}>
+                    <div style={{ display: 'inline-flex', gap: '5px' }}>
+                      <button
+                        className="view-btn"
+                        onClick={() => viewOrderDetails(order.purtrans_no)}
+                        title="View Purchase Order"
+                      >
+                        <FiEye color="#185229" size={18} />
+                      </button>
                       <button
                         className="edit-btn"
                         onClick={() => openEditModal(order)}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        style={{ 
+                          background: 'none', 
+                          border: 'none', 
+                          cursor: order.status !== 'Completed' ? 'pointer' : 'default',
+                          visibility: order.status !== 'Completed' ? 'visible' : 'hidden',
+                          pointerEvents: order.status !== 'Completed' ? 'auto' : 'none',
+                          padding: 0,
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
                         title="Edit Purchase Order"
+                        disabled={order.status === 'Completed'}
                       >
                         <FiEdit color="#185229" size={18} />
                       </button>
-                    )}
+                    </div>
                   </td>
                 </tr>
               ))}
