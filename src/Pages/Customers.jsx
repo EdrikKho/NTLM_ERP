@@ -321,27 +321,38 @@ const Customers = () => {
                   {role === 'admin' && <td style={{ textAlign: 'right' }}>₱{customer.balance.toFixed(2)}</td>}
                   <td style={{ textAlign: 'left' }}>{customer.p_terms} Days</td>
 
-                  <td style={{ textAlign: 'left' }}>
-                    <button
-                      className="edit-btn"
-                      onClick={() => displayCustomer(customer.cust_no)}
-                      title="Edit Customer"
-                    >
-                      <FiEdit color="#185229" size={18} />
-                    </button>
-
-                    {!customersWithSales.includes(customer.cust_no) && (
+                  <td style={{ textAlign: 'center' }}>
+                    <div style={{ display: 'inline-flex', gap: '5px' }}>
+                      <button
+                        className="edit-btn"
+                        onClick={() => displayCustomer(customer.cust_no)}
+                        title="Edit Customer"
+                      >
+                        <FiEdit color="#185229" size={18} />
+                      </button>
+                      
                       <button
                         className="del-btn"
                         onClick={() => {
                           setSelectedCustomer(customer);
                           setShowDeleteModal(true);
                         }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: !customersWithSales.includes(customer.cust_no) ? 'pointer' : 'default',
+                          visibility: !customersWithSales.includes(customer.cust_no) ? 'visible' : 'hidden',
+                          pointerEvents: !customersWithSales.includes(customer.cust_no) ? 'auto' : 'none',
+                          padding: 0,
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
                         title="Delete Customer"
+                        disabled={customersWithSales.includes(customer.cust_no)}
                       >
                         <FiTrash2 color="rgb(219, 32, 32)" size={18} />
                       </button>
-                    )}
+                    </div>
                   </td>
                 </tr>
               ))}
