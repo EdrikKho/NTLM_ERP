@@ -529,30 +529,39 @@ const filteredProducts = products
                   <td style={{ textAlign: 'left' }}>{product.loc_name}</td>
                   <td style={{ textAlign: 'left' }}>{product.stock}</td>
 
-                  <td style={{ textAlign: 'left' }}>
+                  <td style={{ textAlign: 'center' }}>
+                  <div style={{ display: 'inline-flex', gap: '5px' }}>
                     <button
                       className="inventory-edit-btn"
-                      onClick={() =>
-                        displayProduct(product.prod_no)
-                      }
+                      onClick={() => displayProduct(product.prod_no)}
                       title="Edit Product"
                     >
                       <FiEdit color="#185229" size={18} />
                     </button>
-
-                    {!productsInOrders.includes(product.prod_no) && (
-                      <button
-                        className="inventory-del-btn"
-                        onClick={() => {
-                          setSelectedProduct(product);
-                          setShowDeleteModal(true);
-                        }}
-                        title="Delete Product"
-                      >
-                        <FiTrash2 color="rgb(219, 32, 32)" size={18} />
-                      </button>
-                    )}
-                  </td>
+                    
+                    <button
+                      className="inventory-del-btn"
+                      onClick={() => {
+                        setSelectedProduct(product);
+                        setShowDeleteModal(true);
+                      }}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: !productsInOrders.includes(product.prod_no) ? 'pointer' : 'default',
+                        visibility: !productsInOrders.includes(product.prod_no) ? 'visible' : 'hidden',
+                        pointerEvents: !productsInOrders.includes(product.prod_no) ? 'auto' : 'none',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center'
+                      }}
+                      title="Delete Product"
+                      disabled={productsInOrders.includes(product.prod_no)}
+                    >
+                      <FiTrash2 color="rgb(219, 32, 32)" size={18} />
+                    </button>
+                  </div>
+                </td>
                 </tr>
               ))}
             </tbody>
