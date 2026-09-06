@@ -20,6 +20,14 @@ const Reports = () => {
   const [selectedReport, setSelectedReport] = useState('sales'); 
   const [arData, setArData] = useState([]); 
 
+  // month search
+  const handleReportToggle = (reportType) => {
+    setSelectedReport(reportType);
+    const now = new Date();
+    const currentMonth = now.toISOString().slice(0, 7);
+    setSelectedMonth(currentMonth);
+  };
+
 
   const role = user?.user_metadata?.role || '';
 
@@ -277,14 +285,14 @@ const Reports = () => {
       <div className="reports-toggle-container">
         <button
           className={`reports-toggle-btn ${selectedReport === 'sales' ? 'active' : ''}`}
-          onClick={() => setSelectedReport('sales')}
+          onClick={() => handleReportToggle('sales')}  // ← NEW
           style={{width:'150px'}}
         >
           Sales
         </button>
         <button
           className={`reports-toggle-btn ${selectedReport === 'ar' ? 'active' : ''}`}
-          onClick={() => setSelectedReport('ar')}
+          onClick={() => handleReportToggle('ar')}     // ← NEW
         >
           Accounts Receivable
         </button>
