@@ -878,12 +878,7 @@ const InventoryTransfer = () => {
                   <td style={{ textAlign: 'left' }}>{transfer.dispatcher ? `${transfer.dispatcher.f_name}` : '-'}</td>
                   <td style={{ textAlign: 'left' }}>{transfer.receiver ? `${transfer.receiver.f_name}` : '-'}</td>
                   <td style={{ textAlign: 'center' }}>
-                    <div style={{ 
-                      display: 'inline-flex', 
-                      gap: '5px', 
-                      width: '50px',
-                      justifyContent: 'center'
-                    }}>
+                    <div style={{ display: 'inline-flex', gap: '5px' }}>
                       <button
                         className="view-btn"
                         onClick={() => viewTransferDetails(transfer.transfertrans_no)}
@@ -891,16 +886,24 @@ const InventoryTransfer = () => {
                       >
                         <FiEye color="#185229" size={18} />
                       </button>
-                      {transfer.status !== 'Completed' && (
-                        <button
-                          className="edit-btn"
-                          onClick={() => openEditModal(transfer)}
-                          style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                          title="Edit Inventory Transfer"
-                        >
-                          <FiEdit color="#185229" size={18} />
-                        </button>
-                      )}
+                      <button
+                        className="edit-btn"
+                        onClick={() => openEditModal(transfer)}
+                        style={{ 
+                          background: 'none', 
+                          border: 'none', 
+                          cursor: transfer.status !== 'Completed' ? 'pointer' : 'default',
+                          visibility: transfer.status !== 'Completed' ? 'visible' : 'hidden',
+                          pointerEvents: transfer.status !== 'Completed' ? 'auto' : 'none',
+                          padding: 0,
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
+                        title="Edit Inventory Transfer"
+                        disabled={transfer.status === 'Completed'}
+                      >
+                        <FiEdit color="#185229" size={18} />
+                      </button>
                     </div>
                   </td>
                 </tr>
