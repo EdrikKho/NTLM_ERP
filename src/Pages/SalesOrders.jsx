@@ -1168,24 +1168,34 @@ const SalesOrder = () => {
                   <td style={{ textAlign: 'left' }}>{order.status}</td>
                   <td style={{ textAlign: 'right' }}>₱{order.total_amt?.toFixed(2)}</td>
                   <td style={{ textAlign: 'left' }}>{order.CUSTOMER?.name}</td>
-                  <td style={{ textAlign: 'left' }}>
-                    <button
-                      className="view-btn"
-                      onClick={() => viewOrderDetails(order.salestrans_no)}
-                      title="View Sales Order"
-                    >
-                      <FiEye color="#185229" size={18} />
-                    </button>
-                    {order.status !== 'Completed' && (
+                  <td style={{ textAlign: 'center' }}>
+                    <div style={{ display: 'inline-flex', gap: '5px' }}>
+                      <button
+                        className="view-btn"
+                        onClick={() => viewOrderDetails(order.salestrans_no)}
+                        title="View Sales Order"
+                      >
+                        <FiEye color="#185229" size={18} />
+                      </button>
                       <button
                         className="edit-btn"
                         onClick={() => openEditModal(order)}
-                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        style={{ 
+                          background: 'none', 
+                          border: 'none', 
+                          cursor: order.status !== 'Completed' ? 'pointer' : 'default',
+                          visibility: order.status !== 'Completed' ? 'visible' : 'hidden',
+                          pointerEvents: order.status !== 'Completed' ? 'auto' : 'none',
+                          padding: 0,
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
                         title="Edit Sales Order"
+                        disabled={order.status === 'Completed'}
                       >
                         <FiEdit color="#185229" size={18} />
                       </button>
-                    )}
+                    </div>
                   </td>
                 </tr>
               ))}
