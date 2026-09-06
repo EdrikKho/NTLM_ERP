@@ -320,32 +320,38 @@ const Suppliers = () => {
                   <td style={{ textAlign: 'left' }}>{supplier.sales_p}</td>
                   <td style={{ textAlign: 'left' }}>{supplier.contact_no}</td>
 
-                  <td style={{ textAlign: 'left' }}>
-                    <button
-                      className="edit-btn"
-                      onClick={() =>
-                        displaySupplier(supplier.sup_no)
-                      }
-                      title="Edit Supplier"
-                    >
-                      <FiEdit color="#185229" size={18} />
-                    </button>
-
-                    {!supplier.hasProducts && (
+                  <td style={{ textAlign: 'center' }}>
+                    <div style={{ display: 'inline-flex', gap: '5px' }}>
+                      <button
+                        className="edit-btn"
+                        onClick={() => displaySupplier(supplier.sup_no)}
+                        title="Edit Supplier"
+                      >
+                        <FiEdit color="#185229" size={18} />
+                      </button>
+                      
                       <button
                         className="del-btn"
                         onClick={() => {
                           setSelectedSupplier(supplier);
                           setShowDeleteModal(true);
                         }}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: !supplier.hasProducts ? 'pointer' : 'default',
+                          visibility: !supplier.hasProducts ? 'visible' : 'hidden',
+                          pointerEvents: !supplier.hasProducts ? 'auto' : 'none',
+                          padding: 0,
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}
                         title="Delete Supplier"
+                        disabled={supplier.hasProducts}
                       >
-                        <FiTrash2
-                          color="rgb(219, 32, 32)"
-                          size={18}
-                        />
+                        <FiTrash2 color="rgb(219, 32, 32)" size={18} />
                       </button>
-                    )}
+                    </div>
                   </td>
                 </tr>
               ))}
