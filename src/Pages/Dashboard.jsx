@@ -35,6 +35,7 @@ const Dashboard = () => {
   // Fetch table data when activeTable changes
   useEffect(() => {
     if (activeTable) {
+      setTableData([]);
       fetchTableData(activeTable);
     }
   }, [activeTable]);
