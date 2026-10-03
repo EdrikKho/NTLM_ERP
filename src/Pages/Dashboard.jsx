@@ -35,6 +35,7 @@ const Dashboard = () => {
   // Fetch table data when activeTable changes
   useEffect(() => {
     if (activeTable) {
+      setTableData([]);
       fetchTableData(activeTable);
     }
   }, [activeTable]);
@@ -572,7 +573,7 @@ const Dashboard = () => {
                   <h3 className="dashboard-section-title">{getTableTitle()}</h3>
                   
                     {tableData.length === 0 ? (
-                      <div className="dashboard-table-empty">No records found</div>
+                      <div className="dashboard-table-empty"></div>
                     ) : (
                       <table className="dashboard-table">
                         <thead>
@@ -715,7 +716,7 @@ const Dashboard = () => {
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
                                 <td style={{ textAlign: 'left' }}>
-                                  {item.due_date ? new Date(item.due_date).toLocaleDateString() : ''}
+                                  {new Date(item.due_date).toLocaleDateString()}
                                 </td>
                                 <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
                                 <td style={{ textAlign: 'left' }}>
@@ -732,7 +733,7 @@ const Dashboard = () => {
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
                                 <td style={{ textAlign: 'left' }}>
-                                  {item.due_date ? new Date(item.due_date).toLocaleDateString() : ''}
+                                  {new Date(item.due_date).toLocaleDateString()}
                                 </td>
                                 <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
                                 <td style={{ textAlign: 'left' }}>
