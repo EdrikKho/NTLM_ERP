@@ -766,7 +766,6 @@ const Dashboard = () => {
                   {lowStockItems.length === 0 ? (
                     <tr>
                       <td colSpan="4" className="dashboard-table-empty">
-                        No low stock items
                       </td>
                     </tr>
                   ) : (
