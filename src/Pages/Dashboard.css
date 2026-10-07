@@ -217,7 +217,7 @@ body {
   border-radius: 7px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 5px solid black;
+  border: 2px solid #185229;
 }
 
 .dashboard-table thead {
@@ -232,7 +232,7 @@ body {
   vertical-align: middle;
   padding: 12px;
   white-space: nowrap;
-  border: 5px solid black;
+  border: 2px solid #185229;
 }
 
 .dashboard-table tbody tr:nth-child(even) {
@@ -248,7 +248,7 @@ body {
   vertical-align: middle;
   padding: 18px 13px;
   white-space: nowrap;
-  border: 5px solid black;
+  border: 2px solid #185229;
 }
 
 .dashboard-table-empty {
