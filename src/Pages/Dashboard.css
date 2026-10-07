@@ -207,6 +207,8 @@ body {
   box-sizing: border-box;
   border-radius: 7px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
+  border: 1px solid #185229;
+  overflow: hidden;
 }
 
 .dashboard-table {
@@ -214,9 +216,6 @@ body {
   min-width: 700px;
   border-collapse: collapse;
   background: white;
-  border-radius: 7px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .dashboard-table thead {
