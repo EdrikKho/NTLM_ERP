@@ -125,7 +125,7 @@ table {
   width: 100%;
   min-width: 700px;
   border-collapse: collapse;
-  background: white;
+  /*background: white;*/
   border-radius: 7px;
   overflow: hidden;
   overflow: hidden;
