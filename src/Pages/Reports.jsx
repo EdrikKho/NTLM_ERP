@@ -332,10 +332,10 @@ const Reports = () => {
                   <tbody>
                     {salesData.map((sale, index) => (
                         <tr key={index}>
-                          <td style={{ textAlign: 'left' }}>
+                          <td style={{ textAlign: 'left', paddingLeft: '70px' }}>
                             {new Date(sale.date).toLocaleDateString()}
                           </td>
-                          <td style={{ textAlign: 'right' }}>
+                          <td style={{ textAlign: 'right', paddingRight: '70px'}}>
                             ₱{Number(sale.total || 0).toLocaleString('en-US', {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
@@ -346,10 +346,10 @@ const Reports = () => {
                   </tbody>
                   <tfoot>
                     <tr className="reports-total-row">
-                      <td style={{ textAlign: 'left' }}>
+                      <td style={{ textAlign: 'left', paddingLeft: '70px' }}>
                         <strong>Total Sales for {selectedMonth}</strong>
                       </td>
-                      <td style={{ textAlign: 'right' }}>
+                      <td style={{ textAlign: 'right', paddingRight: '70px' }}>
                         <strong>
                           ₱ {Number(monthlyTotal || 0).toLocaleString('en-US', {
                             minimumFractionDigits: 2,
