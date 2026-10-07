@@ -522,9 +522,19 @@ const filteredProducts = products
                   <td style={{ textAlign: 'left' }}>{product.name}</td>
                   <td style={{ textAlign: 'left' }}>{product.size_amt} {product.u_size}</td>
                   <td style={{ textAlign: 'left' }}>{product.category}</td>
-                  <td style={{ textAlign: 'right' }}>₱ {parseFloat(product.price_case).toFixed(2)}</td>
                   <td style={{ textAlign: 'right' }}>
-                    {product.price_piece ? `₱ ${parseFloat(product.price_piece).toFixed(2)}` : 'N/A'}
+                    ₱ {Number(product.price_case || 0).toLocaleString('en-US', {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
+                  </td>
+                  <td style={{ textAlign: 'right' }}>
+                    {product.price_piece
+                      ? `₱ ${Number(product.price_piece).toLocaleString('en-US', {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        })}`
+                      : 'N/A'}
                   </td>
                   <td style={{ textAlign: 'left' }}>{product.loc_name}</td>
                   <td style={{ textAlign: 'left' }}>{product.stock}</td>
