@@ -126,7 +126,7 @@ const Reports = () => {
       // Step 2: Get all line items with their subtotals for these transactions
       const { data: salesItems, error: itemsError } = await supabase
         .from('LINE_ITEM') 
-        .select('prod_no, subtotal')  // Get the subtotal directly from LINE_ITEM
+        .select('prod_no, subtotal, qty, unit')  // Get the subtotal directly from LINE_ITEM
         .in('salestrans_no', salesTransNos); 
 
       if (itemsError) throw itemsError;
@@ -146,23 +146,27 @@ const Reports = () => {
 
       if (productsError) throw productsError;
 
-      // Step 4: Aggregate subtotals by product
+      // Step 4: Aggregate subtotals and quantities by product
       const productSales = {};
-      
+
       salesItems.forEach(item => {
         const product = products.find(p => p.prod_no === item.prod_no);
         if (product) {
           const key = `${product.brand}|${product.name}|${product.size_amt}|${product.u_size}`;
           const subtotal = parseFloat(item.subtotal) || 0;
-          
+          // Only count quantity when unit is 'Case'
+          const qty = item.unit === 'Case' ? (parseFloat(item.qty) || 0) : 0;
+
           if (productSales[key]) {
             productSales[key].totalSales += subtotal;
+            productSales[key].quantitySold += qty;
           } else {
             productSales[key] = {
               brand: product.brand,
               name: product.name,
               size: `${product.size_amt} ${product.u_size}`,
-              totalSales: subtotal
+              totalSales: subtotal,
+              quantitySold: qty
             };
           }
         }
@@ -368,6 +372,7 @@ const Reports = () => {
                     <th>Brand</th>
                     <th>Name</th>
                     <th>Size</th>
+                    <th>Quantities Sold</th>
                     <th>Sales Generated</th>
                   </tr>
                 </thead>
@@ -377,6 +382,9 @@ const Reports = () => {
                         <td style={{ textAlign: 'left' }}>{product.brand}</td>
                         <td style={{ textAlign: 'left' }}>{product.name}</td>
                         <td style={{ textAlign: 'left' }}>{product.size}</td>
+                        <td style={{ textAlign: 'right' }}>
+                          {Number(product.quantitySold || 0).toLocaleString('en-US')}
+                        </td>
                         <td style={{ textAlign: 'right' }}>
                           ₱{Number(product.totalSales || 0).toLocaleString('en-US', {
                             minimumFractionDigits: 2,
