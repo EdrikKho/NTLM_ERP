@@ -376,7 +376,10 @@ const Dashboard = () => {
     if (amount === undefined || amount === null || isNaN(amount)) {
       return '0.00';
     }
-    return amount.toFixed(2).toLocaleString();
+    return Number(amount).toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   };
 
   const fetchLowStockItems = async () => {
