@@ -125,9 +125,8 @@ table {
   width: 100%;
   min-width: 700px;
   border-collapse: collapse;
-  /*background: white;*/
+  background: white;
   border-radius: 7px;
-  overflow: hidden;
   overflow: hidden;
   border: 1px solid #185229;
 }
@@ -138,8 +137,6 @@ table td {
   vertical-align: middle;
   padding: 12px;
   white-space: nowrap;
-  overflow: hidden;
-  border: 1px solid #185229;
 }
 
 thead {
