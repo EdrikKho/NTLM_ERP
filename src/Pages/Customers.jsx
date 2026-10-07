@@ -318,7 +318,14 @@ const Customers = () => {
                   <td style={{ textAlign: 'left' }}>{customer.name}</td>
                   <td style={{ textAlign: 'left' }}>{customer.contact_no}</td>
                   <td style={{ textAlign: 'left' }}>{customer.address}</td>
-                  {role === 'admin' && <td style={{ textAlign: 'right' }}>₱{customer.balance.toFixed(2)}</td>}
+                  {role === 'admin' && (
+                    <td style={{ textAlign: 'right' }}>
+                      ₱{Number(customer.balance || 0).toLocaleString('en-US', {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                  )}
                   <td style={{ textAlign: 'left' }}>{customer.p_terms} Days</td>
 
                   <td style={{ textAlign: 'center' }}>
