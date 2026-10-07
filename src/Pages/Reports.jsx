@@ -172,9 +172,9 @@ const Reports = () => {
         }
       });
 
-      // Step 5: Sort and get top 10
+      // Step 5: Sort by quantities sold (descending) and get top 10
       const sortedProducts = Object.values(productSales)
-        .sort((a, b) => b.totalSales - a.totalSales)
+        .sort((a, b) => b.quantitySold - a.quantitySold)
         .slice(0, 10);
 
       setTopProducts(sortedProducts);
@@ -383,7 +383,7 @@ const Reports = () => {
                         <td style={{ textAlign: 'left' }}>{product.name}</td>
                         <td style={{ textAlign: 'left' }}>{product.size}</td>
                         <td style={{ textAlign: 'right' }}>
-                          {Number(product.quantitySold || 0).toLocaleString('en-US')}
+                          {Number(product.quantitySold || 0).toLocaleString('en-US')} 
                         </td>
                         <td style={{ textAlign: 'right' }}>
                           ₱{Number(product.totalSales || 0).toLocaleString('en-US', {
