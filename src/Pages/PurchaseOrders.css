@@ -288,6 +288,7 @@ body {
   background: white;
   border-radius: 7px;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
 }
 
 .purchaseorder-orderitems-table th {
