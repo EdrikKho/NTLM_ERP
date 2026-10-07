@@ -783,13 +783,13 @@ const Dashboard = () => {
                   ) : (
                     lowStockItems.map((item) => (
                       <tr key={item.prod_no}>
-                        <td style={{ textAlign: 'left' }}>{item.brand}</td>
-                        <td style={{ textAlign: 'left' }}>{item.name}</td>
-                        <td style={{ textAlign: 'left' }}>
+                        <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{item.brand}</td>
+                        <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{item.name}</td>
+                        <td style={{ textAlign: 'left', paddingLeft: '10px' }}>
                           {item.size_amt} {item.u_size}
                         </td>
-                        <td style={{ textAlign: 'left' }}>{item.loc_name}</td>
-                        <td style={{ textAlign: 'left' }}>
+                        <td style={{ textAlign: 'left', paddingLeft: '10px' }}>{item.loc_name}</td>
+                        <td style={{ paddingLeft: '10px' }}>
                           <span className={item.stock <= 5 ? 'status-badge status-pending' : ''}>
                             {item.stock}
                           </span>
