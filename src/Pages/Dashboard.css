@@ -206,7 +206,6 @@ body {
   overflow-x: auto;
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03), 0 4px 5px rgba(0, 0, 0, 0.05);
-  border: 1px solid #185229;
 }
 
 .dashboard-table {
@@ -216,6 +215,7 @@ body {
   background: white;
   border-radius: 7px;
   overflow: hidden;
+  border: 1px solid #185229;
 }
 
 .dashboard-table thead {
