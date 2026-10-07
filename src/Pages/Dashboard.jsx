@@ -428,7 +428,10 @@ const Dashboard = () => {
                       <div className="dashboard-scorecard-item">
                         <p className="dashboard-scorecard-label">Total Sales</p>
                         <p className="dashboard-scorecard-value dashboard-scorecard-value-green">
-                          ₱{dashboardData.todaySales.totalSales.toFixed(2).toLocaleString()}
+                          ₱{dashboardData.todaySales.totalSales.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
                         </p>
                       </div>
                     </div>
@@ -453,7 +456,10 @@ const Dashboard = () => {
                       <div className="dashboard-scorecard-item">
                         <p className="dashboard-scorecard-label">Total Amount</p>
                         <p className="dashboard-scorecard-value dashboard-scorecard-value-yellow">
-                          ₱{dashboardData.pendingReceivables.totalAmount.toFixed(2).toLocaleString()}
+                          ₱{dashboardData.pendingReceivables.totalAmount.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
                         </p>
                       </div>
                     </div>
@@ -477,7 +483,10 @@ const Dashboard = () => {
                       <div className="dashboard-scorecard-item">
                         <p className="dashboard-scorecard-label">Total Amount</p>
                         <p className="dashboard-scorecard-value dashboard-scorecard-value-red">
-                          ₱{dashboardData.overdueReceivables.totalAmount.toFixed(2).toLocaleString()}
+                          ₱{dashboardData.overdueReceivables.totalAmount.toLocaleString('en-US', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                          })}
                         </p>
                       </div>
                     </div>
