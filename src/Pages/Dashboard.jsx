@@ -644,11 +644,11 @@ const Dashboard = () => {
                           {activeTable === 'pendingPurchaseOrders' && 
                             tableData.map((item) => (
                               <tr key={item.purchasetrans_no}>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.SUPPLIER?.com_name}</td>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>{item.SUPPLIER?.com_name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>
                                   <span className="status-badge status-pending">{item.status}</span>
                                 </td>
                               </tr>
@@ -657,11 +657,11 @@ const Dashboard = () => {
                           {activeTable === 'pendingTransfers' && 
                             tableData.map((item) => (
                               <tr key={item.transfertrans_no}>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.USER?.f_name}</td>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>{item.USER?.f_name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>
                                   <span className="status-badge status-pending">{item.status}</span>
                                 </td>
                               </tr>
@@ -670,11 +670,11 @@ const Dashboard = () => {
                           {activeTable === 'releasedTransfers' &&   // ADD THIS BLOCK
                             tableData.map((item) => (
                               <tr key={item.transfertrans_no}>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.USER?.f_name}</td>
-                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>{item.USER?.f_name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '100px' }}>
                                   <span className="status-badge status-completed">{item.status}</span>
                                 </td>
                               </tr>
