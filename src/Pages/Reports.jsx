@@ -445,22 +445,22 @@ const Reports = () => {
                   <tbody>
                     {arData.map((item, index) => (
                         <tr key={index}>
-                          <td style={{ textAlign: 'left' }}>
+                          <td style={{ textAlign: 'left', paddingLeft: '40px' }}>
                             {item.due_date ? new Date(item.due_date).toLocaleDateString() : 'N/A'}
                           </td>
-                          <td style={{ textAlign: 'left' }}>
+                          <td style={{ textAlign: 'left', paddingLeft: '40px' }}>
                             {new Date(item.date).toLocaleDateString()}
                           </td>
-                          <td style={{ textAlign: 'right' }}>
+                          <td style={{ textAlign: 'right', paddingRight: '40px' }}>
                             ₱{Number(item.total_amt || 0).toLocaleString('en-US', {
                               minimumFractionDigits: 2,
                               maximumFractionDigits: 2,
                             })}
                           </td>
-                          <td style={{ textAlign: 'left' }}>
+                          <td style={{ textAlign: 'left', paddingLeft: '40px' }}>
                             {item.customer_name}
                           </td>
-                          <td style={{ textAlign: 'left' }}>
+                          <td style={{ textAlign: 'left', paddingLeft: '40px' }}>
                             <span className="status-badge status-pending">
                               {item.p_status || 'Pending'}
                             </span>
