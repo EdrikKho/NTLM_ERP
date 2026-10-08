@@ -644,11 +644,11 @@ const Dashboard = () => {
                           {activeTable === 'pendingPurchaseOrders' && 
                             tableData.map((item) => (
                               <tr key={item.purchasetrans_no}>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.SUPPLIER?.com_name}</td>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.SUPPLIER?.com_name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   <span className="status-badge status-pending">{item.status}</span>
                                 </td>
                               </tr>
@@ -657,11 +657,11 @@ const Dashboard = () => {
                           {activeTable === 'pendingTransfers' && 
                             tableData.map((item) => (
                               <tr key={item.transfertrans_no}>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.USER?.f_name}</td>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.USER?.f_name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   <span className="status-badge status-pending">{item.status}</span>
                                 </td>
                               </tr>
@@ -670,11 +670,11 @@ const Dashboard = () => {
                           {activeTable === 'releasedTransfers' &&   // ADD THIS BLOCK
                             tableData.map((item) => (
                               <tr key={item.transfertrans_no}>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.USER?.f_name}</td>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.USER?.f_name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   <span className="status-badge status-completed">{item.status}</span>
                                 </td>
                               </tr>
@@ -683,14 +683,14 @@ const Dashboard = () => {
                           {activeTable === 'todaySales' && 
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
-                                <td style={{ textAlign: 'right' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'right', paddingRight: '60px' }}>
                                   ₱{formatCurrency(item.total_amt)}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   <span className={`status-badge ${
                                     item.status === 'Completed' ? 'status-completed' : 
                                     item.status === 'Pending' ? 'status-pending' : ''
@@ -705,14 +705,14 @@ const Dashboard = () => {
                           {activeTable === 'pendingSalesOrders' && 
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
-                                <td style={{ textAlign: 'right' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'right', paddingRight: '60px' }}>
                                   ₱{formatCurrency(item.total_amt)}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   <span className={`status-badge ${
                                     item.status === 'Completed' ? 'status-completed' : 
                                     item.status === 'Pending' ? 'status-pending' : ''
@@ -727,14 +727,14 @@ const Dashboard = () => {
                           {activeTable === 'pendingReceivables' && 
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.due_date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'right' }}>
+                                <td style={{ textAlign: 'right', paddingRight: '60px' }}>
                                   ₱{formatCurrency(item.total_amt)}
                                 </td>
                               </tr>
@@ -744,14 +744,14 @@ const Dashboard = () => {
                           {activeTable === 'overdueReceivables' && 
                             tableData.map((item) => (
                               <tr key={item.salestrans_no}>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.due_date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'left' }}>{item.CUSTOMER?.name}</td>
-                                <td style={{ textAlign: 'left' }}>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.CUSTOMER?.name}</td>
+                                <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                                   {new Date(item.date).toLocaleDateString()}
                                 </td>
-                                <td style={{ textAlign: 'right' }}>
+                                <td style={{ textAlign: 'right', paddingRight: '60px' }}>
                                   ₱{formatCurrency(item.total_amt)}
                                 </td>
                               </tr>
@@ -783,12 +783,12 @@ const Dashboard = () => {
                   ) : (
                     lowStockItems.map((item) => (
                       <tr key={item.prod_no}>
-                        <td style={{ textAlign: 'left', paddingLeft: '50px' }}>{item.brand}</td>
-                        <td style={{ textAlign: 'left', paddingLeft: '50px' }}>{item.name}</td>
-                        <td style={{ textAlign: 'left', paddingLeft: '50px' }}>
+                        <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.brand}</td>
+                        <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.name}</td>
+                        <td style={{ textAlign: 'left', paddingLeft: '60px' }}>
                           {item.size_amt} {item.u_size}
                         </td>
-                        <td style={{ textAlign: 'left', paddingLeft: '50px' }}>{item.loc_name}</td>
+                        <td style={{ textAlign: 'left', paddingLeft: '60px' }}>{item.loc_name}</td>
                         <td>
                           <span className={item.stock <= 5 ? 'status-badge status-pending' : ''}>
                             {item.stock}
